@@ -1,4 +1,5 @@
 import HDFS.hdfs;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.io.*;
 import java.rmi.RemoteException;
@@ -6,8 +7,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.IntSummaryStatistics;
 
 import static java.lang.Integer.max;
 
@@ -60,11 +61,41 @@ public class Namenode implements Namenodedef {
     }
 
     public byte[] blockReport(byte[] inp) throws RemoteException {
-        return new byte[0];
+        try {
+            /* Need to Improve this as well */
+            hdfs.BlockReportRequest request = hdfs.BlockReportRequest.parseFrom(inp);
+            int datanode_id = request.getId();
+            for (int blocknum : request.getBlockNumbersList()) {
+                if (map_block_datanode.get(blocknum) == null) {
+                    map_block_datanode.put(blocknum, new ArrayList<Integer>(Arrays.asList(datanode_id)));
+                } else {
+                    if (!map_block_datanode.get(blocknum).contains(datanode_id)) {
+                        map_block_datanode.get(blocknum).add(datanode_id);
+                    }
+                }
+            }
+            System.err.println("Got Block Report from " + datanode_id);
+            /* Need to Some thing here */
+            hdfs.BlockReportResponse.Builder response = hdfs.BlockReportResponse.newBuilder().addStatus(1);
+            return response.build().toByteArray();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public byte[] heartBeat(byte[] inp) throws RemoteException {
-        return new byte[0];
+        /* Need to acknowledge for heartbeat sent */
+        try {
+            hdfs.HeartBeatRequest request = hdfs.HeartBeatRequest.parseFrom(inp);
+            int datanode_id = request.getId();
+            System.err.println("Got Heart Beat from " + datanode_id); /* Need to do something as well */
+            hdfs.HeartBeatResponse.Builder response = hdfs.HeartBeatResponse.newBuilder().setStatus(1);
+            return response.build().toByteArray();
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static void main(String[] args) {
