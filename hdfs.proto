@@ -10,7 +10,7 @@ message OpenFileResponse {
    int32 status = 1; // result of the call
    int32 handle = 2; // file handle. Use this to close file on write
 // for read, the numbers for the various blocks. Not populated in write mode
-  repeated int32 blockNums = 3;  
+  repeated int32 blockNums = 3;
 }
 
 message CloseFileRequest {
@@ -24,6 +24,7 @@ message CloseFileResponse {
 message WriteBlockRequest {
    BlockLocations blockInfo = 1;
   repeated bytes data = 2;
+    bool Replicate = 3;
 }
 
 message WriteBlockResponse {

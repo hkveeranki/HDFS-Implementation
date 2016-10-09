@@ -2305,6 +2305,11 @@ public final class hdfs {
      * <code>repeated bytes data = 2;</code>
      */
     com.google.protobuf.ByteString getData(int index);
+
+    /**
+     * <code>optional bool Replicate = 3;</code>
+     */
+    boolean getReplicate();
   }
   /**
    * Protobuf type {@code WriteBlockRequest}
@@ -2319,6 +2324,7 @@ public final class hdfs {
     }
     private WriteBlockRequest() {
       data_ = java.util.Collections.emptyList();
+      replicate_ = false;
     }
 
     @java.lang.Override
@@ -2365,6 +2371,11 @@ public final class hdfs {
                 mutable_bitField0_ |= 0x00000002;
               }
               data_.add(input.readBytes());
+              break;
+            }
+            case 24: {
+
+              replicate_ = input.readBool();
               break;
             }
           }
@@ -2437,6 +2448,15 @@ public final class hdfs {
       return data_.get(index);
     }
 
+    public static final int REPLICATE_FIELD_NUMBER = 3;
+    private boolean replicate_;
+    /**
+     * <code>optional bool Replicate = 3;</code>
+     */
+    public boolean getReplicate() {
+      return replicate_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -2454,6 +2474,9 @@ public final class hdfs {
       }
       for (int i = 0; i < data_.size(); i++) {
         output.writeBytes(2, data_.get(i));
+      }
+      if (replicate_ != false) {
+        output.writeBool(3, replicate_);
       }
     }
 
@@ -2474,6 +2497,10 @@ public final class hdfs {
         }
         size += dataSize;
         size += 1 * getDataList().size();
+      }
+      if (replicate_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, replicate_);
       }
       memoizedSize = size;
       return size;
@@ -2498,6 +2525,8 @@ public final class hdfs {
       }
       result = result && getDataList()
           .equals(other.getDataList());
+      result = result && (getReplicate()
+          == other.getReplicate());
       return result;
     }
 
@@ -2516,6 +2545,9 @@ public final class hdfs {
         hash = (37 * hash) + DATA_FIELD_NUMBER;
         hash = (53 * hash) + getDataList().hashCode();
       }
+      hash = (37 * hash) + REPLICATE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getReplicate());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2642,6 +2674,8 @@ public final class hdfs {
         }
         data_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000002);
+        replicate_ = false;
+
         return this;
       }
 
@@ -2676,6 +2710,7 @@ public final class hdfs {
           bitField0_ = (bitField0_ & ~0x00000002);
         }
         result.data_ = data_;
+        result.replicate_ = replicate_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2730,6 +2765,9 @@ public final class hdfs {
             data_.addAll(other.data_);
           }
           onChanged();
+        }
+        if (other.getReplicate() != false) {
+          setReplicate(other.getReplicate());
         }
         onChanged();
         return this;
@@ -2943,6 +2981,32 @@ public final class hdfs {
       public Builder clearData() {
         data_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+
+      private boolean replicate_ ;
+      /**
+       * <code>optional bool Replicate = 3;</code>
+       */
+      public boolean getReplicate() {
+        return replicate_;
+      }
+      /**
+       * <code>optional bool Replicate = 3;</code>
+       */
+      public Builder setReplicate(boolean value) {
+        
+        replicate_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool Replicate = 3;</code>
+       */
+      public Builder clearReplicate() {
+        
+        replicate_ = false;
         onChanged();
         return this;
       }
@@ -7741,8 +7805,6 @@ public final class hdfs {
       return DEFAULT_INSTANCE;
     }
 
-      public class newBuilder {
-      }
   }
 
   public interface ListFilesResponseOrBuilder extends
@@ -11717,29 +11779,29 @@ public final class hdfs {
       "sponse\022\016\n\006status\030\001 \001(\005\022\016\n\006handle\030\002 \001(\005\022\021" +
       "\n\tblockNums\030\003 \003(\005\"\"\n\020CloseFileRequest\022\016\n" +
       "\006handle\030\001 \001(\005\"#\n\021CloseFileResponse\022\016\n\006st" +
-      "atus\030\001 \001(\005\"E\n\021WriteBlockRequest\022\"\n\tblock" +
+      "atus\030\001 \001(\005\"X\n\021WriteBlockRequest\022\"\n\tblock" +
       "Info\030\001 \001(\0132\017.BlockLocations\022\014\n\004data\030\002 \003(" +
-      "\014\"$\n\022WriteBlockResponse\022\016\n\006status\030\001 \001(\005\"" +
-      ",\n\020DataNodeLocation\022\n\n\002ip\030\001 \001(\t\022\014\n\004port\030" +
-      "\002 \001(\005\"K\n\016BlockLocations\022\023\n\013blockNumber\030\001",
-      " \001(\005\022$\n\tlocations\030\002 \003(\0132\021.DataNodeLocati" +
-      "on\")\n\024BlockLocationRequest\022\021\n\tblockNums\030" +
-      "\001 \003(\005\"P\n\025BlockLocationResponse\022\016\n\006status" +
-      "\030\001 \001(\005\022\'\n\016blockLocations\030\002 \003(\0132\017.BlockLo" +
-      "cations\"$\n\022AssignBlockRequest\022\016\n\006handle\030" +
-      "\001 \001(\005\"H\n\023AssignBlockResponse\022\016\n\006status\030\001" +
-      " \001(\005\022!\n\010newBlock\030\002 \001(\0132\017.BlockLocations\"" +
-      "#\n\020ListFilesRequest\022\017\n\007dirName\030\001 \001(\t\"6\n\021" +
-      "ListFilesResponse\022\016\n\006status\030\001 \001(\005\022\021\n\tfil" +
-      "eNames\030\002 \003(\t\"\'\n\020ReadBlockRequest\022\023\n\013bloc",
-      "kNumber\030\001 \001(\005\"1\n\021ReadBlockResponse\022\016\n\006st" +
-      "atus\030\001 \001(\005\022\014\n\004data\030\002 \003(\014\"[\n\022BlockReportR" +
-      "equest\022\n\n\002id\030\001 \001(\005\022#\n\010location\030\002 \001(\0132\021.D" +
-      "ataNodeLocation\022\024\n\014blockNumbers\030\003 \003(\005\"%\n" +
-      "\023BlockReportResponse\022\016\n\006status\030\001 \003(\005\"\036\n\020" +
-      "HeartBeatRequest\022\n\n\002id\030\001 \001(\005\"#\n\021HeartBea" +
-      "tResponse\022\016\n\006status\030\001 \001(\005B\014\n\004HDFSB\004hdfsb" +
-      "\006proto3"
+      "\014\022\021\n\tReplicate\030\003 \001(\010\"$\n\022WriteBlockRespon" +
+      "se\022\016\n\006status\030\001 \001(\005\",\n\020DataNodeLocation\022\n" +
+      "\n\002ip\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\"K\n\016BlockLocatio",
+      "ns\022\023\n\013blockNumber\030\001 \001(\005\022$\n\tlocations\030\002 \003" +
+      "(\0132\021.DataNodeLocation\")\n\024BlockLocationRe" +
+      "quest\022\021\n\tblockNums\030\001 \003(\005\"P\n\025BlockLocatio" +
+      "nResponse\022\016\n\006status\030\001 \001(\005\022\'\n\016blockLocati" +
+      "ons\030\002 \003(\0132\017.BlockLocations\"$\n\022AssignBloc" +
+      "kRequest\022\016\n\006handle\030\001 \001(\005\"H\n\023AssignBlockR" +
+      "esponse\022\016\n\006status\030\001 \001(\005\022!\n\010newBlock\030\002 \001(" +
+      "\0132\017.BlockLocations\"#\n\020ListFilesRequest\022\017" +
+      "\n\007dirName\030\001 \001(\t\"6\n\021ListFilesResponse\022\016\n\006" +
+      "status\030\001 \001(\005\022\021\n\tfileNames\030\002 \003(\t\"\'\n\020ReadB",
+      "lockRequest\022\023\n\013blockNumber\030\001 \001(\005\"1\n\021Read" +
+      "BlockResponse\022\016\n\006status\030\001 \001(\005\022\014\n\004data\030\002 " +
+      "\003(\014\"[\n\022BlockReportRequest\022\n\n\002id\030\001 \001(\005\022#\n" +
+      "\010location\030\002 \001(\0132\021.DataNodeLocation\022\024\n\014bl" +
+      "ockNumbers\030\003 \003(\005\"%\n\023BlockReportResponse\022" +
+      "\016\n\006status\030\001 \003(\005\"\036\n\020HeartBeatRequest\022\n\n\002i" +
+      "d\030\001 \001(\005\"#\n\021HeartBeatResponse\022\016\n\006status\030\001" +
+      " \001(\005B\014\n\004HDFSB\004hdfsb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -11782,7 +11844,7 @@ public final class hdfs {
     internal_static_WriteBlockRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_WriteBlockRequest_descriptor,
-        new java.lang.String[] { "BlockInfo", "Data", });
+        new java.lang.String[] { "BlockInfo", "Data", "Replicate", });
     internal_static_WriteBlockResponse_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_WriteBlockResponse_fieldAccessorTable = new
