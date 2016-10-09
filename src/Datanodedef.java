@@ -1,8 +1,7 @@
-package IDataNode;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface IDataNode extends Remote{
+public interface Datanodedef extends Remote{
 
 	/* ReadBlockResponse readBlock(ReadBlockRequest)) */
 	/* Method to read data from any block given block-number */
