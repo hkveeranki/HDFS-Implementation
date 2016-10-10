@@ -44,17 +44,36 @@ public class Namenode implements Namenodedef {
             return response.build().toByteArray();
         }
         else{ // Write mode
+            // Write data to different datanodes. Which data?
             response.setHandle(filename); // What should be the handle for it?
             return response.build().toByteArray();
         }
     }
 
     public byte[] closeFile(byte[] inp) throws RemoteException {
-        return new byte[0];
+        hdfs.CloseFileRequest request = hdfs.CloseFileRequest.parseFrom(inp);
+        String handle = request.getHandle();
+        return hdfs.CloseFileResponse.newBuilder().setStatus(1).build().toByteArray();
     }
 
     public byte[] getBlockLocations(byte[] inp) throws RemoteException {
-        return new byte[0];
+        hdfs.BlockLocationRequest request = hdfs.BlockLocationRequest.parseFrom(inp);
+        hdfs.BlockLocationResponse.Builder response = hdfs.BlockLoccationResponse.newBuilder().setStatus(1);
+        ArrayList<Integer> blocks = request.getBlockNumsList();
+        for (int i = 1; i < blocks.length; i++) {
+            int curBlock = Integer.valueOf(data[i]);
+            hdfs.BlockLocations.Builder blockLoc = hdfs.BlockLocations.newBuilder();
+            blockLoc.setBlockNumber(curBlock);
+            ArrayList<Integer> datanodes = map_block_datanode.get(curBlock);
+            for (int j = 1; j < datanodes.length; j++) {
+                hdfs.DataNodeLocation.Builder dataNodeLoc = hdfs.DataNodeLocation.newBuilder();
+                dataNodeLoc.setIp(datanode_ip[Integer.valueOf(datanodes[j])]);
+                dataNodeLoc.setPort(8000); // Which port will we be using?
+                blockLoc.addLocations(dataNodeLoc);
+            }
+            response.addBlockLocations(blockLoc);
+        }
+        return response.build().toByteArray();
     }
 
     public byte[] assignBlock(byte[] inp) throws RemoteException {
