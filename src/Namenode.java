@@ -56,8 +56,8 @@ public class Namenode implements Namenodedef {
             String filename = map_handle_filename.get(handle);
             ArrayList<Integer> blocks = map_filename_blocks.get(filename);
             String writeString = filename;
-            for (int i = 0; i < blocks.size(); i++) {
-                writeString += " " + blocks.get(i).toString();
+            for (Integer block : blocks) {
+                writeString += " " + block.toString();
             }
 
             File file_list = new File("file_list.txt");
@@ -66,7 +66,7 @@ public class Namenode implements Namenodedef {
             writer.close();
 
             return hdfs.CloseFileResponse.newBuilder().setStatus(1).build().toByteArray();
-        } catch (IOException | InvalidProtocolBufferException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
@@ -86,9 +86,9 @@ public class Namenode implements Namenodedef {
                     hdfs.DataNodeLocation.Builder dataNodeLoc = hdfs.DataNodeLocation.newBuilder();
                     dataNodeLoc.setIp(datanode_ip[datanodes.get(i)]);
                     dataNodeLoc.setPort(1099);
-                    blockLoc.addLocations(dataNodeLoc);
+                    blockLoc.addLocations(dataNodeLoc.build());
                 }
-                response.addBlockLocations(blockLoc);
+                response.addBlockLocations(blockLoc.build());
             }
             return response.build().toByteArray();
         } catch (InvalidProtocolBufferException e) {
@@ -106,19 +106,19 @@ public class Namenode implements Namenodedef {
             block_number += 1;
 
             Random generator = new Random();
-            int DataNode1 = generator.nextInt(datanode_ip.length);
-            int DataNode2 = generator.nextInt(datanode_ip.length);
+            int DataNode1 = generator.nextInt(datanode_num);
+            int DataNode2 = generator.nextInt(datanode_num);
             while (DataNode2 == DataNode1) {
-                DataNode2 =generator.nextInt(datanode_ip.length);
+                DataNode2 = generator.nextInt(datanode_num);
             }
 
-            ArrayList<Integer> blocks = new ArrayList<Integer>();
+            ArrayList<Integer> blocks = new ArrayList<>();
             if (map_filename_blocks.containsKey(filename)) {
                 blocks = map_filename_blocks.get(filename);
             }
             blocks.add(block_number);
             map_filename_blocks.put(filename, blocks);
-            ArrayList<Integer> datanodes = new ArrayList<Integer>();
+            ArrayList<Integer> datanodes = new ArrayList<>();
             datanodes.add(DataNode1);
             datanodes.add(DataNode2);
             map_block_datanode.put(block_number, datanodes);
@@ -132,10 +132,10 @@ public class Namenode implements Namenodedef {
 
             hdfs.BlockLocations.Builder blockLoc = hdfs.BlockLocations.newBuilder();
             blockLoc.setBlockNumber(block_number);
-            blockLoc.addLocations(dataNode1);
-            blockLoc.addLocations(dataNode2);
+            blockLoc.addLocations(dataNode1.build());
+            blockLoc.addLocations(dataNode2.build());
 
-            response.setNewBlock(blockLoc);
+            response.setNewBlock(blockLoc.build());
             return response.build().toByteArray();
 
         } catch (InvalidProtocolBufferException e) {
@@ -147,9 +147,7 @@ public class Namenode implements Namenodedef {
     public byte[] list(byte[] inp) throws RemoteException {
         try {
             hdfs.ListFilesResponse.Builder response = hdfs.ListFilesResponse.newBuilder().setStatus(1);
-            for (String file : map_filename_blocks.keySet()) {
-                response.addFileNames(file);
-            }
+            map_filename_blocks.keySet().forEach(response::addFileNames);
             return response.build().toByteArray();
         } catch (Exception e) {
             e.printStackTrace();
