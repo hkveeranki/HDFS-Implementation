@@ -22,9 +22,8 @@ public class Namenode implements Namenodedef {
     private static int block_number;
     private int file_number;
     private static String[] datanode_ip = {"127.0.0.1", "127.0.0.1", "127.0.0.1"};
-    private static int datanode_num = 3;
 
-    public Namenode() {
+    private Namenode() {
         file_number = 0;
         map_handle_filename = new HashMap<>();
     }
@@ -106,6 +105,7 @@ public class Namenode implements Namenodedef {
             block_number += 1;
 
             Random generator = new Random();
+            int datanode_num = datanode_ip.length;
             int DataNode1 = generator.nextInt(datanode_num);
             int DataNode2 = generator.nextInt(datanode_num);
             while (DataNode2 == DataNode1) {
@@ -162,7 +162,7 @@ public class Namenode implements Namenodedef {
             int datanode_id = request.getId();
             for (int blocknum : request.getBlockNumbersList()) {
                 if (map_block_datanode.get(blocknum) == null) {
-                    map_block_datanode.put(blocknum, new ArrayList<Integer>(Arrays.asList(datanode_id)));
+                    map_block_datanode.put(blocknum, new ArrayList<>(Arrays.asList(datanode_id)));
                 } else {
                     if (!map_block_datanode.get(blocknum).contains(datanode_id)) {
                         map_block_datanode.get(blocknum).add(datanode_id);
@@ -200,7 +200,7 @@ public class Namenode implements Namenodedef {
         map_block_datanode = new HashMap<>();
         /* Write the existing data */
         try {
-            boolean status = file_list.createNewFile();
+            file_list.createNewFile();
             BufferedReader reader = new BufferedReader(new FileReader(file_list));
             String line, file_name;
             while ((line = reader.readLine()) != null) {
