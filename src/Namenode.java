@@ -31,8 +31,22 @@ public class Namenode implements Namenodedef {
     }
 
     public byte[] openFile(byte[] inp) throws RemoteException {
-
-        return new byte[0];
+        hdfs.OpenFileResponse.Builder response = hdfs.OpenFileResponse.newBuilder().setStatus(1);
+        hdfs.OpenFileRequest request = hdfs.OpenFileRequest.parseFrom(inp);
+        String filename = request.getFileName();
+        boolean forRead = request.getForRead();
+        if (forRead == true) {
+            ArrayList<Integer> blocks = map_filename_blocks.get(filename);
+            for (int i = 1; i < data.length; i++) {
+                response.addBlockNumbers(Integer.valueOf(data[i]));
+            }
+            response.setHandle(filename); // What should be the handle for it?
+            return response.build().toByteArray();
+        }
+        else{ // Write mode
+            response.setHandle(filename); // What should be the handle for it?
+            return response.build().toByteArray();
+        }
     }
 
     public byte[] closeFile(byte[] inp) throws RemoteException {
