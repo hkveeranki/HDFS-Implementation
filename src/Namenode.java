@@ -51,10 +51,24 @@ public class Namenode implements Namenodedef {
     public byte[] closeFile(byte[] inp) throws RemoteException {
         try {
             hdfs.CloseFileRequest request = hdfs.CloseFileRequest.parseFrom(inp);
-        } catch (InvalidProtocolBufferException e) {
+            int handle = request.getHandle();
+            String filename = map_handle_filename.get(handle);
+            ArrayList<Integer> blocks = map_filename_blocks.get(filename);
+            String writeString = filename;
+            for (int i = 0; i < blocks.size(); i++) {
+                writeString += " " + blocks.get(i).toString();
+            }
+
+            File file_list = new File("file_list.txt");
+            FileWriter writer = new FileWriter(file_list);
+            writer.write(writeString + "\n");
+            writer.close();
+
+            return hdfs.CloseFileResponse.newBuilder().setStatus(1).build().toByteArray();
+        } catch (IOException | InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
-        return hdfs.CloseFileResponse.newBuilder().setStatus(1).build().toByteArray();
+        return null;
     }
 
     public byte[] getBlockLocations(byte[] inp) throws RemoteException {
