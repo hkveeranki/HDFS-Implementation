@@ -7,10 +7,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
-/**
- * Created by harry7 on 9/10/16.
- */
-
 
 public class Client {
     private static String namenode_ip;

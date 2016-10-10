@@ -12,9 +12,6 @@ import java.util.HashMap;
 
 import static java.lang.Integer.max;
 
-/**
- * Created by harry7 on 9/10/16.
- */
 public class Namenode implements Namenodedef {
 
     private HashMap<Integer, String> map_handle_filename;
@@ -53,6 +50,7 @@ public class Namenode implements Namenodedef {
     public byte[] closeFile(byte[] inp) throws RemoteException {
         hdfs.CloseFileRequest request = hdfs.CloseFileRequest.parseFrom(inp);
         String handle = request.getHandle();
+        // Close the file here using the file handle
         return hdfs.CloseFileResponse.newBuilder().setStatus(1).build().toByteArray();
     }
 

@@ -10,9 +10,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.List;
 
-/**
- * Created by harry7 on 9/10/16.
- */
+
 public class Datanode implements Datanodedef {
     private static String namenode_ip;
     private static int block_size = 16777216; /* 16 KB */
