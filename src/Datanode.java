@@ -1,34 +1,33 @@
 import HDFS.hdfs;
 import com.google.protobuf.ByteString;
-import com.google.protobuf.DescriptorProtos;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.io.*;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 
 public class Datanode implements Datanodedef {
-    private static String namenode_ip;
-    private static int block_size = 16777216; /* 16 KB */
+    private static String namenode_ip = "127.0.0.1";
 
-    public Datanode() {
+    private Datanode() {
     }
 
     public byte[] readBlock(byte[] inp) throws RemoteException {
         File file_dir = new File("Blocks");
         hdfs.ReadBlockResponse.Builder response = hdfs.ReadBlockResponse.newBuilder().setStatus(1);
         try {
+            int block_size = 16777216; /* 16 KB */
             hdfs.ReadBlockRequest request = hdfs.ReadBlockRequest.parseFrom(inp);
             int block_num = request.getBlockNumber();
             File block = new File(file_dir, String.valueOf(block_num));
             FileInputStream input = new FileInputStream(block);
             byte[] data = new byte[block_size];
-            int bytes_read;
-            while ((bytes_read = input.read(data)) != -1) {
+
+            while ((input.read(data)) != -1) {
                 ByteString block_data = ByteString.copyFrom(data);
                 response.addData(block_data);
             }
@@ -65,9 +64,7 @@ public class Datanode implements Datanodedef {
                 hdfs.WriteBlockRequest.Builder replica = hdfs.WriteBlockRequest.newBuilder();
                 replica.setBlockInfo(request.getBlockInfo());
                 replica.setReplicate(false);
-                for (ByteString data : data_list) {
-                    replica.addData(data);
-                }
+                data_list.forEach(replica::addData);
                 stub.writeBlock(replica.build().toByteArray());
             }
             return hdfs.WriteBlockResponse.newBuilder().setStatus(1).build().toByteArray();
@@ -87,10 +84,18 @@ public class Datanode implements Datanodedef {
         }
         File file_dir = new File("Blocks");
         if (!file_dir.exists()) {
-            boolean status = file_dir.mkdirs();
+            file_dir.mkdirs();
         }
         int myid = Integer.valueOf(args[0]);
         Datanode obj = new Datanode();
+        try {
+            Registry reg = LocateRegistry.getRegistry();
+            Datanodedef stub = (Datanodedef) UnicastRemoteObject.exportObject(obj, 0);
+            reg.rebind("DataNode", stub);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
         HeartbeatHandler handler1 = new HeartbeatHandler(myid);
         handler1.start();
         BlockreportHandler handler2 = new BlockreportHandler(myid);
@@ -135,7 +140,6 @@ public class Datanode implements Datanodedef {
             while (true) {
                 /* Send Periodically HeartBeat */
                 File blkReport = new File("block_report.txt");
-                String data = "";
                 if (blkReport.exists() && blkReport.length() != 0) {
                     try {
                         hdfs.BlockReportRequest.Builder request = hdfs.BlockReportRequest.newBuilder();
