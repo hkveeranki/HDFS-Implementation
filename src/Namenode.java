@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import static java.lang.Integer.max;
 
@@ -20,7 +21,7 @@ public class Namenode implements Namenodedef {
     private static HashMap<Integer, ArrayList<Integer>> map_block_datanode;
     private static int block_number;
     private int file_number;
-    private static String[] datanode_ip = {"127.0.0.1", "127.0.0.1"};
+    private static String[] datanode_ip = {"127.0.0.1", "127.0.0.1", "127.0.0.1"};
     private static int datanode_num = 3;
 
     public Namenode() {
@@ -38,7 +39,7 @@ public class Namenode implements Namenodedef {
                 ArrayList<Integer> blocks = map_filename_blocks.get(filename);
                 response.addAllBlockNums(blocks);
             } else {
-                file_number++;
+                file_number++; // Consider this to be a new file
                 response.setHandle(file_number);
             }
             return response.build().toByteArray();
@@ -97,7 +98,50 @@ public class Namenode implements Namenodedef {
     }
 
     public byte[] assignBlock(byte[] inp) throws RemoteException {
-        return new byte[0];
+        try {
+            hdfs.AssignBlockRequest request = hdfs.AssignBlockRequest.parseFrom(inp);
+            int handle = request.getHandle();
+            String filename = map_handle_filename.get(handle);
+            hdfs.AssignBlockResponse.Builder response = hdfs.AssignBlockResponse.newBuilder().setStatus(1);
+            block_number += 1;
+
+            Random generator = new Random();
+            int DataNode1 = generator.nextInt(datanode_ip.length);
+            int DataNode2 = generator.nextInt(datanode_ip.length);
+            while (DataNode2 == DataNode1) {
+                DataNode2 =generator.nextInt(datanode_ip.length);
+            }
+
+            ArrayList<Integer> blocks = new ArrayList<Integer>();
+            if (map_filename_blocks.containsKey(filename)) {
+                blocks = map_filename_blocks.get(filename);
+            }
+            blocks.add(block_number);
+            map_filename_blocks.put(filename, blocks);
+            ArrayList<Integer> datanodes = new ArrayList<Integer>();
+            datanodes.add(DataNode1);
+            datanodes.add(DataNode2);
+            map_block_datanode.put(block_number, datanodes);
+
+            hdfs.DataNodeLocation.Builder dataNode1 = hdfs.DataNodeLocation.newBuilder();
+            hdfs.DataNodeLocation.Builder dataNode2 = hdfs.DataNodeLocation.newBuilder();
+            dataNode1.setIp(datanode_ip[DataNode1]);
+            dataNode2.setIp(datanode_ip[DataNode2]);
+            dataNode1.setPort(1099);
+            dataNode2.setPort(1099);
+
+            hdfs.BlockLocations.Builder blockLoc = hdfs.BlockLocations.newBuilder();
+            blockLoc.setBlockNumber(block_number);
+            blockLoc.addLocations(dataNode1);
+            blockLoc.addLocations(dataNode2);
+
+            response.setNewBlock(blockLoc);
+            return response.build().toByteArray();
+
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public byte[] list(byte[] inp) throws RemoteException {
