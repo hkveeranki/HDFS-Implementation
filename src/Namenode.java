@@ -9,6 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import static java.lang.Integer.max;
 
@@ -29,49 +30,56 @@ public class Namenode implements Namenodedef {
 
     public byte[] openFile(byte[] inp) throws RemoteException {
         hdfs.OpenFileResponse.Builder response = hdfs.OpenFileResponse.newBuilder().setStatus(1);
-        hdfs.OpenFileRequest request = hdfs.OpenFileRequest.parseFrom(inp);
-        String filename = request.getFileName();
-        boolean forRead = request.getForRead();
-        if (forRead == true) {
-            ArrayList<Integer> blocks = map_filename_blocks.get(filename);
-            for (int i = 1; i < data.length; i++) {
-                response.addBlockNumbers(Integer.valueOf(data[i]));
+        try {
+            hdfs.OpenFileRequest request = hdfs.OpenFileRequest.parseFrom(inp);
+            String filename = request.getFileName();
+            boolean forRead = request.getForRead();
+            if (forRead) {
+                ArrayList<Integer> blocks = map_filename_blocks.get(filename);
+                response.addAllBlockNums(blocks);
+            } else {
+                file_number++;
+                response.setHandle(file_number);
             }
-            response.setHandle(filename); // What should be the handle for it?
             return response.build().toByteArray();
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
         }
-        else{ // Write mode
-            // Write data to different datanodes. Which data?
-            response.setHandle(filename); // What should be the handle for it?
-            return response.build().toByteArray();
-        }
+        return null;
     }
 
     public byte[] closeFile(byte[] inp) throws RemoteException {
-        hdfs.CloseFileRequest request = hdfs.CloseFileRequest.parseFrom(inp);
-        String handle = request.getHandle();
-        // Close the file here using the file handle
+        try {
+            hdfs.CloseFileRequest request = hdfs.CloseFileRequest.parseFrom(inp);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
         return hdfs.CloseFileResponse.newBuilder().setStatus(1).build().toByteArray();
     }
 
     public byte[] getBlockLocations(byte[] inp) throws RemoteException {
-        hdfs.BlockLocationRequest request = hdfs.BlockLocationRequest.parseFrom(inp);
-        hdfs.BlockLocationResponse.Builder response = hdfs.BlockLoccationResponse.newBuilder().setStatus(1);
-        ArrayList<Integer> blocks = request.getBlockNumsList();
-        for (int i = 1; i < blocks.length; i++) {
-            int curBlock = Integer.valueOf(data[i]);
-            hdfs.BlockLocations.Builder blockLoc = hdfs.BlockLocations.newBuilder();
-            blockLoc.setBlockNumber(curBlock);
-            ArrayList<Integer> datanodes = map_block_datanode.get(curBlock);
-            for (int j = 1; j < datanodes.length; j++) {
-                hdfs.DataNodeLocation.Builder dataNodeLoc = hdfs.DataNodeLocation.newBuilder();
-                dataNodeLoc.setIp(datanode_ip[Integer.valueOf(datanodes[j])]);
-                dataNodeLoc.setPort(8000); // Which port will we be using?
-                blockLoc.addLocations(dataNodeLoc);
+        try {
+            hdfs.BlockLocationRequest request = hdfs.BlockLocationRequest.parseFrom(inp);
+            hdfs.BlockLocationResponse.Builder response = hdfs.BlockLocationResponse.newBuilder().setStatus(1);
+            List<Integer> blocks = request.getBlockNumsList();
+            for (int i = 1; i < blocks.size(); i++) {
+                int curBlock = blocks.get(i);
+                hdfs.BlockLocations.Builder blockLoc = hdfs.BlockLocations.newBuilder();
+                blockLoc.setBlockNumber(curBlock);
+                ArrayList<Integer> datanodes = map_block_datanode.get(curBlock);
+                for (int j = 1; j < datanodes.size(); j++) {
+                    hdfs.DataNodeLocation.Builder dataNodeLoc = hdfs.DataNodeLocation.newBuilder();
+                    dataNodeLoc.setIp(datanode_ip[datanodes.get(i)]);
+                    dataNodeLoc.setPort(1099);
+                    blockLoc.addLocations(dataNodeLoc);
+                }
+                response.addBlockLocations(blockLoc);
             }
-            response.addBlockLocations(blockLoc);
+            return response.build().toByteArray();
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
         }
-        return response.build().toByteArray();
+        return null;
     }
 
     public byte[] assignBlock(byte[] inp) throws RemoteException {
