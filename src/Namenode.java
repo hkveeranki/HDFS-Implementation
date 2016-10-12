@@ -64,7 +64,7 @@ public class Namenode implements Namenodedef {
             out.write(filename + " ");
 
             for (int block : blocks) {
-                out.write(Integer.toString(block) + " ");
+                out.write(Integer.toString  (block) + " ");
             }
             out.newLine();
             out.close();
