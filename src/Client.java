@@ -41,7 +41,7 @@ public class Client {
                             byte[] read_bytes = new byte[block_size];
                             FileInputStream input = new FileInputStream(new File(file_name));
                             while (input.read(read_bytes) != -1) {
-                                byte[] resp = namenode_stub.assignBlock(request.build().toByteArray());
+                                byte[] resp = namenode_stub.assignBlock(assignBlockRequest.build().toByteArray());
                                 hdfs.AssignBlockResponse blockResponse = hdfs.AssignBlockResponse.parseFrom(resp);
                                 hdfs.BlockLocations loc = blockResponse.getNewBlock();
                                 reg = LocateRegistry.getRegistry(loc.getLocations(0).getIp(), loc.getLocations(0).getPort());
