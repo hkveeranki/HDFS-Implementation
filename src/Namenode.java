@@ -87,7 +87,7 @@ public class Namenode implements Namenodedef {
                 ArrayList<Integer> datanodes = map_block_datanode.get(curBlock);
                 for (int j = 0; j < datanodes.size(); j++) {
                     hdfs.DataNodeLocation.Builder dataNodeLoc = hdfs.DataNodeLocation.newBuilder();
-                    dataNodeLoc.setIp(datanode_ip[datanodes.get(i)]);
+                    dataNodeLoc.setIp(datanode_ip[datanodes.get(j)]);
                     dataNodeLoc.setPort(1099);
                     blockLoc.addLocations(dataNodeLoc.build());
                 }
