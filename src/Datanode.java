@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -26,9 +27,9 @@ public class Datanode implements Datanodedef {
             File block = new File(file_dir, String.valueOf(block_num));
             FileInputStream input = new FileInputStream(block);
             byte[] data = new byte[block_size];
-
-            while ((input.read(data)) != -1) {
-                ByteString block_data = ByteString.copyFrom(data);
+            int bytes_read;
+            while ((bytes_read = input.read(data)) != -1) {
+                ByteString block_data = ByteString.copyFrom(Arrays.copyOfRange(data, 0, bytes_read));
                 response.addData(block_data);
             }
 
@@ -47,14 +48,7 @@ public class Datanode implements Datanodedef {
             FileOutputStream out = new FileOutputStream(block);
             List<ByteString> data_list = request.getDataList();
             for (ByteString data : data_list) {
-                byte[] res = data.toByteArray();
-                int i = res.length;
-                while (i-- > 0 && res[i] == 0) {
-                    /* Removing Trailing Nulls */
-                }
-                byte[] output = new byte[i + 1];
-                System.arraycopy(res, 0, output, 0, i + 1);
-                out.write(output);
+                out.write(data.toByteArray());
             }
             out.close();
             File report = new File("block_report.txt");

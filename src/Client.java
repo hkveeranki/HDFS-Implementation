@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -38,22 +39,31 @@ public class Client {
                             int handle = response.getHandle();
                             hdfs.AssignBlockRequest.Builder assignBlockRequest = hdfs.AssignBlockRequest.newBuilder();
                             assignBlockRequest.setHandle(handle);
-                            byte[] read_bytes = new byte[block_size];
-                            FileInputStream input = new FileInputStream(new File(file_name));
-                            while (input.read(read_bytes) != -1) {
+                            File file = new File(file_name);
+                            int file_size = (int) file.length(), read_size = block_size, bytes_read;
+                            FileInputStream input = new FileInputStream(file);
+                            while (file_size > 0) {
+                                if (file_size <= block_size) {
+                                    read_size = file_size;
+                                }
+                                byte[] read_bytes = new byte[file_size];
+                                bytes_read = input.read(read_bytes, 0, read_size);
+                                file_size -= bytes_read;
+                                assert (bytes_read == read_bytes.length);
                                 byte[] resp = namenode_stub.assignBlock(assignBlockRequest.build().toByteArray());
                                 hdfs.AssignBlockResponse blockResponse = hdfs.AssignBlockResponse.parseFrom(resp);
                                 hdfs.BlockLocations loc = blockResponse.getNewBlock();
                                 reg = LocateRegistry.getRegistry(loc.getLocations(0).getIp(), loc.getLocations(0).getPort());
                                 Datanodedef datanode_stub = (Datanodedef) reg.lookup("DataNode");
                                 hdfs.WriteBlockRequest.Builder writeBlockRequest = hdfs.WriteBlockRequest.newBuilder().setReplicate(true);
-                                writeBlockRequest.addData(ByteString.copyFrom(read_bytes));
+                                writeBlockRequest.addData(ByteString.copyFrom(Arrays.copyOfRange(read_bytes, 0, bytes_read)));
                                 writeBlockRequest.setBlockInfo(loc);
                                 resp = datanode_stub.writeBlock(writeBlockRequest.build().toByteArray());
                                 if (resp != null) err.println("Write Block Successful");
                                 else {
                                     err.println("Write Block at " + loc.getLocations(0).getIp() + " failed");
                                 }
+                                Arrays.fill(read_bytes, (byte) 0);
                             }
                             hdfs.CloseFileRequest.Builder closeFileRequest = hdfs.CloseFileRequest.newBuilder();
                             closeFileRequest.setHandle(response.getHandle());
@@ -97,14 +107,7 @@ public class Client {
                                     if (read_resp != null) {
                                         hdfs.ReadBlockResponse readBlockResponse = hdfs.ReadBlockResponse.parseFrom(read_resp);
                                         ByteString data = readBlockResponse.getData(0);
-                                        byte[] res = data.toByteArray();
-                                        int index = res.length;
-                                        while (index-- > 0 && res[index] == 0) {
-                                        /* Removing Trailing Nulls */
-                                        }
-                                        byte[] output = new byte[index + 1];
-                                        System.arraycopy(res, 0, output, 0, index + 1);
-                                        outputStream.write(output);
+                                        outputStream.write(data.toByteArray());
                                     } else {
                                         err.println("Error Getting read from DataNode: " + dnLocation.getIp());
                                     }
