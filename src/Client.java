@@ -55,7 +55,9 @@ public class Client {
                                     err.println("Write Block at " + loc.getLocations(0).getIp() + " failed");
                                 }
                             }
-
+                            hdfs.CloseFileRequest.Builder closeFileRequest = hdfs.CloseFileRequest.newBuilder();
+                            closeFileRequest.setHandle(response.getHandle());
+                            namenode_stub.closeFile(closeFileRequest.build().toByteArray());
                         } else {
                             err.println("OpenFile Request failed at NameNode: " + namenode_ip);
                         }
@@ -106,6 +108,9 @@ public class Client {
                             }
                             outputStream.close();
                             err.println("Get file Successfull");
+                            hdfs.CloseFileRequest.Builder closeFileRequest = hdfs.CloseFileRequest.newBuilder();
+                            closeFileRequest.setHandle(response.getHandle());
+                            namenode_stub.closeFile(closeFileRequest.build().toByteArray());
                         } else {
                             err.println("OpenFile Request failed at NameNode: " + namenode_ip);
                         }

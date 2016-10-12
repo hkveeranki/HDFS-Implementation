@@ -47,7 +47,15 @@ public class Datanode implements Datanodedef {
             FileOutputStream out = new FileOutputStream(block);
             List<ByteString> data_list = request.getDataList();
             for (ByteString data : data_list) {
-                out.write(data.toByteArray());
+                byte[] res = data.toByteArray();
+                int i = res.length;
+                while (i-- > 0 && res[i] == 0) {
+                    /* Removing Trailing Nulls */
+                }
+                i++;
+                byte[] output = new byte[i + 1];
+                System.arraycopy(res, 0, output, 0, i + 1);
+                out.write(output);
             }
             out.close();
             File report = new File("block_report.txt");
