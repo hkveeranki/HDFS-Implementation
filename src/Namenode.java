@@ -55,16 +55,19 @@ public class Namenode implements Namenodedef {
             int handle = request.getHandle();
             String filename = map_handle_filename.get(handle);
             ArrayList<Integer> blocks = map_filename_blocks.get(filename);
-            String writeString = filename;
-            for (Integer block : blocks) {
-                writeString += " " + block.toString();
-            }
-
             File file_list = new File("file_list.txt");
-            FileWriter writer = new FileWriter(file_list);
-            writer.write(writeString + "\n");
-            writer.close();
+            if (!file_list.exists()) {
+                file_list.createNewFile();
+            }
+            FileWriter writer = new FileWriter(file_list.getName(), true);
+            BufferedWriter out = new BufferedWriter(writer);
+            out.write(filename + " ");
 
+            for (int block : blocks) {
+                out.write(Integer.toString(block) + " ");
+            }
+            out.newLine();
+            out.close();
             return hdfs.CloseFileResponse.newBuilder().setStatus(1).build().toByteArray();
         } catch (IOException e) {
             e.printStackTrace();

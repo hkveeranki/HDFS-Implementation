@@ -51,9 +51,12 @@ public class Datanode implements Datanodedef {
             }
             out.close();
             File report = new File("block_report.txt");
-            FileWriter writer = new FileWriter(report);
-            writer.write(String.valueOf(block_num) + "\n");
-            writer.close();
+            FileWriter writer = new FileWriter(report.getName(), true);
+            BufferedWriter output = new BufferedWriter(writer);
+
+            output.write(Integer.toString(block_num));
+            output.newLine();
+            output.close();
             /* Do the Replication */
             if (request.getReplicate()) {
                 hdfs.DataNodeLocation location_data = request.getBlockInfo().getLocations(1);
