@@ -98,13 +98,13 @@ public class Client {
                                         hdfs.ReadBlockResponse readBlockResponse = hdfs.ReadBlockResponse.parseFrom(read_resp);
                                         ByteString data = readBlockResponse.getData(0);
                                         byte[] res = data.toByteArray();
-                                        int i = res.length;
-                                        while (i-- > 0 && res[i] == 0) {
+                                        int index = res.length;
+                                        while (index-- > 0 && res[index] == 0) {
                                         /* Removing Trailing Nulls */
                                         }
-                                        i++;
-                                        byte[] output = new byte[i + 1];
-                                        System.arraycopy(res, 0, output, 0, i + 1);
+                                        index++;
+                                        byte[] output = new byte[index + 1];
+                                        System.arraycopy(res, 0, output, 0, index + 1);
                                         outputStream.write(output);
                                     } else {
                                         err.println("Error Getting read from DataNode: " + dnLocation.getIp());
