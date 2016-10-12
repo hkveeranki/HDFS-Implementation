@@ -97,8 +97,15 @@ public class Client {
                                     if (read_resp != null) {
                                         hdfs.ReadBlockResponse readBlockResponse = hdfs.ReadBlockResponse.parseFrom(read_resp);
                                         ByteString data = readBlockResponse.getData(0);
-                                        outputStream.write(data.toByteArray());
-
+                                        byte[] res = data.toByteArray();
+                                        int i = res.length;
+                                        while (i-- > 0 && res[i] == 0) {
+                                        /* Removing Trailing Nulls */
+                                        }
+                                        i++;
+                                        byte[] output = new byte[i + 1];
+                                        System.arraycopy(res, 0, output, 0, i + 1);
+                                        outputStream.write(output);
                                     } else {
                                         err.println("Error Getting read from DataNode: " + dnLocation.getIp());
                                     }
