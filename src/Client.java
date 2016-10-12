@@ -102,7 +102,6 @@ public class Client {
                                         while (index-- > 0 && res[index] == 0) {
                                         /* Removing Trailing Nulls */
                                         }
-                                        index++;
                                         byte[] output = new byte[index + 1];
                                         System.arraycopy(res, 0, output, 0, index + 1);
                                         outputStream.write(output);

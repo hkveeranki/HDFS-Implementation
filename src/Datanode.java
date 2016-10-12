@@ -52,7 +52,6 @@ public class Datanode implements Datanodedef {
                 while (i-- > 0 && res[i] == 0) {
                     /* Removing Trailing Nulls */
                 }
-                i++;
                 byte[] output = new byte[i + 1];
                 System.arraycopy(res, 0, output, 0, i + 1);
                 out.write(output);
