@@ -15,7 +15,7 @@ public class Client {
 
     public static void main(String[] args) throws RemoteException, NotBoundException {
         String namenode_ip = "127.0.0.1";
-        int block_size = 16777216; /* 16 KB */
+        int block_size = 16384; /* 16 KB */
         Registry reg = LocateRegistry.getRegistry(namenode_ip);
         Namenodedef namenode_stub = (Namenodedef) reg.lookup("NameNode");
         Scanner in = new Scanner(System.in);

@@ -20,7 +20,7 @@ public class Datanode implements Datanodedef {
         File file_dir = new File("Blocks");
         hdfs.ReadBlockResponse.Builder response = hdfs.ReadBlockResponse.newBuilder().setStatus(1);
         try {
-            int block_size = 16777216; /* 16 KB */
+            int block_size = 16384; /* 16 KB */
             hdfs.ReadBlockRequest request = hdfs.ReadBlockRequest.parseFrom(inp);
             int block_num = request.getBlockNumber();
             File block = new File(file_dir, String.valueOf(block_num));
