@@ -39,6 +39,7 @@ public class Namenode implements Namenodedef {
                 response.addAllBlockNums(blocks);
             } else {
                 file_number++; // Consider this to be a new file
+                map_handle_filename.put(file_number, filename);
                 response.setHandle(file_number);
             }
             return response.build().toByteArray();
@@ -76,12 +77,12 @@ public class Namenode implements Namenodedef {
             hdfs.BlockLocationRequest request = hdfs.BlockLocationRequest.parseFrom(inp);
             hdfs.BlockLocationResponse.Builder response = hdfs.BlockLocationResponse.newBuilder().setStatus(1);
             List<Integer> blocks = request.getBlockNumsList();
-            for (int i = 1; i < blocks.size(); i++) {
+            for (int i = 0; i < blocks.size(); i++) {
                 int curBlock = blocks.get(i);
                 hdfs.BlockLocations.Builder blockLoc = hdfs.BlockLocations.newBuilder();
                 blockLoc.setBlockNumber(curBlock);
                 ArrayList<Integer> datanodes = map_block_datanode.get(curBlock);
-                for (int j = 1; j < datanodes.size(); j++) {
+                for (int j = 0; j < datanodes.size(); j++) {
                     hdfs.DataNodeLocation.Builder dataNodeLoc = hdfs.DataNodeLocation.newBuilder();
                     dataNodeLoc.setIp(datanode_ip[datanodes.get(i)]);
                     dataNodeLoc.setPort(1099);
