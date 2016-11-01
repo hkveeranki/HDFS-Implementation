@@ -2,95 +2,163 @@ syntax="proto3";
 option java_outer_classname = "hdfs";
 option java_package = "HDFS";
 message OpenFileRequest {
-   string fileName = 1; // fileName
-   bool forRead = 2; // true, for read; false for write
+    string fileName = 1; // fileName
+    bool forRead = 2; // true, for read; false for write
 }
 
 message OpenFileResponse {
-   int32 status = 1; // result of the call
-   int32 handle = 2; // file handle. Use this to close file on write
-// for read, the numbers for the various blocks. Not populated in write mode
-  repeated int32 blockNums = 3;
+    int32 status = 1; // result of the call
+    int32 handle = 2; // file handle. Use this to close file on write
+    // for read, the numbers for the various blocks. Not populated in write mode
+    repeated int32 blockNums = 3;
 }
 
 message CloseFileRequest {
-   int32 handle = 1; // obtained from OpenFile
+    int32 handle = 1; // obtained from OpenFile
 }
 
 message CloseFileResponse {
-   int32 status = 1;
+    int32 status = 1;
 }
 
 message WriteBlockRequest {
-   BlockLocations blockInfo = 1;
-  repeated bytes data = 2;
+    BlockLocations blockInfo = 1;
+    repeated bytes data = 2;
     bool Replicate = 3;
 }
 
 message WriteBlockResponse {
-   int32 status = 1;
+    int32 status = 1;
 }
 
 message DataNodeLocation {
-   string ip = 1	;
-   int32 port = 2;
+    string ip = 1	;
+    int32 port = 2;
+}
+
+message JobSubmitRequest {
+    string mapName = 1;
+    string reducerName = 2;
+    string inputFile = 3;
+    string outputFile = 4;
+    int32 numReduceTasks = 5;
+}
+
+message JobSubmitResponse {
+    int32 status = 1;
+    int32 jobId = 2;
+}
+
+message JobStatusRequest {
+    int32 jobId = 1;
+}
+
+message JobStatusResponse {
+    int32 status = 1;
+    bool jobDone = 2;
+    int32 totalMapTasks = 3;
+    int32 numMapTasksStarted = 4;
+    int32 totalReduceTasks = 5;
+    int32 numReduceTasksStarted = 6;
+}
+
+message MapTaskStatus {
+    int32 jobId = 1;
+    int32 taskId = 2;
+    bool taskCompleted = 3;
+    string mapOutputFile = 4;
+}
+
+message ReduceTaskStatus {
+    int32 jobId = 1;
+    int32 taskId = 2;
+    bool taskCompleted = 3;
+}
+
+message HeartBeatRequestMapReduce {
+    int32 taskTrackerId = 1;
+    int32 numMapSlotsFree = 2;
+    int32 numReduceSlotsFree = 3;
+    repeated MapTaskStatus mapStatus = 4;
+    repeated ReduceTaskStatus reduceStatus = 5;
+}
+
+message MapTaskInfo {
+    int32 jobId = 1;
+    int32 taskId = 2;
+    string mapName = 3;
+    repeated BlockLocations inputBlocks = 4;
+}
+
+message ReducerTaskInfo {
+    int32 jobId = 1;
+    int32 taskId = 2;
+    string reducerName = 3;
+    repeated string mapOutputFiles = 4;
+    string outputFile = 5;
+}
+
+message HeartBeatResponseMapReduce {
+    int32 status = 1;
+    repeated MapTaskInfo mapTasks = 2;
+    repeated ReducerTaskInfo reduceTasks = 3;
 }
 
 message BlockLocations {
-   int32 blockNumber = 1;
-  repeated DataNodeLocation locations = 2;
+    int32 blockNumber = 1;
+    repeated DataNodeLocation locations = 2;
 }
 
 message BlockLocationRequest {
-  repeated int32 blockNums = 1;
+    repeated int32 blockNums = 1;
 }
 
 message BlockLocationResponse {
-   int32 status = 1;
-  repeated BlockLocations blockLocations = 2;
+    int32 status = 1;
+    repeated BlockLocations blockLocations = 2;
 }
 
 message AssignBlockRequest {
-   int32 handle = 1; // obtain using call to OpenFile
+    int32 handle = 1; // obtain using call to OpenFile
 }
 
 message AssignBlockResponse {
-   int32 status = 1;
-   BlockLocations newBlock = 2;
+    int32 status = 1;
+    BlockLocations newBlock = 2;
 }
 
 message ListFilesRequest {
-   string dirName = 1; // unused, place holder to support mkdir, etc
+    string dirName = 1; // unused, place holder to support mkdir, etc
 }
 
 message ListFilesResponse {
-   int32 status = 1;
-  repeated string fileNames = 2;
+    int32 status = 1;
+    repeated string fileNames = 2;
 }
 
 message ReadBlockRequest {
-   int32 blockNumber = 1;
+    int32 blockNumber = 1;
 }
 
 message ReadBlockResponse {
-   int32 status = 1;
-  repeated bytes data = 2;
+    int32 status = 1;
+    repeated bytes data = 2;
 }
 
 message BlockReportRequest {
-   int32 id = 1; // identity of the DN. All communication to the NN uses the same id
-   DataNodeLocation location = 2;
-  repeated int32 blockNumbers = 3;
+    int32 id = 1; // identity of the DN. All communication to the NN uses the same id
+    DataNodeLocation location = 2;
+    repeated int32 blockNumbers = 3;
 }
 
 message BlockReportResponse {
-  repeated int32 status = 1;
+    repeated int32 status = 1;
 }
 
 message HeartBeatRequest {
-   int32 id = 1;
+    int32 id = 1;
 }
 
 message HeartBeatResponse {
-   int32 status = 1;
+    int32 status = 1;
 }

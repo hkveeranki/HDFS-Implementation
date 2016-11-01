@@ -4054,6 +4054,8321 @@ public final class hdfs {
 
   }
 
+  public interface JobSubmitRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:JobSubmitRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string mapName = 1;</code>
+     */
+    java.lang.String getMapName();
+    /**
+     * <code>optional string mapName = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getMapNameBytes();
+
+    /**
+     * <code>optional string reducerName = 2;</code>
+     */
+    java.lang.String getReducerName();
+    /**
+     * <code>optional string reducerName = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getReducerNameBytes();
+
+    /**
+     * <code>optional string inputFile = 3;</code>
+     */
+    java.lang.String getInputFile();
+    /**
+     * <code>optional string inputFile = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getInputFileBytes();
+
+    /**
+     * <code>optional string outputFile = 4;</code>
+     */
+    java.lang.String getOutputFile();
+    /**
+     * <code>optional string outputFile = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getOutputFileBytes();
+
+    /**
+     * <code>optional int32 numReduceTasks = 5;</code>
+     */
+    int getNumReduceTasks();
+  }
+  /**
+   * Protobuf type {@code JobSubmitRequest}
+   */
+  public  static final class JobSubmitRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:JobSubmitRequest)
+      JobSubmitRequestOrBuilder {
+    // Use JobSubmitRequest.newBuilder() to construct.
+    private JobSubmitRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private JobSubmitRequest() {
+      mapName_ = "";
+      reducerName_ = "";
+      inputFile_ = "";
+      outputFile_ = "";
+      numReduceTasks_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private JobSubmitRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              mapName_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              reducerName_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              inputFile_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              outputFile_ = s;
+              break;
+            }
+            case 40: {
+
+              numReduceTasks_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return HDFS.hdfs.internal_static_JobSubmitRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return HDFS.hdfs.internal_static_JobSubmitRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              HDFS.hdfs.JobSubmitRequest.class, HDFS.hdfs.JobSubmitRequest.Builder.class);
+    }
+
+    public static final int MAPNAME_FIELD_NUMBER = 1;
+    private volatile java.lang.Object mapName_;
+    /**
+     * <code>optional string mapName = 1;</code>
+     */
+    public java.lang.String getMapName() {
+      java.lang.Object ref = mapName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        mapName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string mapName = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMapNameBytes() {
+      java.lang.Object ref = mapName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        mapName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int REDUCERNAME_FIELD_NUMBER = 2;
+    private volatile java.lang.Object reducerName_;
+    /**
+     * <code>optional string reducerName = 2;</code>
+     */
+    public java.lang.String getReducerName() {
+      java.lang.Object ref = reducerName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        reducerName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string reducerName = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getReducerNameBytes() {
+      java.lang.Object ref = reducerName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        reducerName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int INPUTFILE_FIELD_NUMBER = 3;
+    private volatile java.lang.Object inputFile_;
+    /**
+     * <code>optional string inputFile = 3;</code>
+     */
+    public java.lang.String getInputFile() {
+      java.lang.Object ref = inputFile_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        inputFile_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string inputFile = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getInputFileBytes() {
+      java.lang.Object ref = inputFile_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        inputFile_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int OUTPUTFILE_FIELD_NUMBER = 4;
+    private volatile java.lang.Object outputFile_;
+    /**
+     * <code>optional string outputFile = 4;</code>
+     */
+    public java.lang.String getOutputFile() {
+      java.lang.Object ref = outputFile_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        outputFile_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string outputFile = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getOutputFileBytes() {
+      java.lang.Object ref = outputFile_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        outputFile_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NUMREDUCETASKS_FIELD_NUMBER = 5;
+    private int numReduceTasks_;
+    /**
+     * <code>optional int32 numReduceTasks = 5;</code>
+     */
+    public int getNumReduceTasks() {
+      return numReduceTasks_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getMapNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, mapName_);
+      }
+      if (!getReducerNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, reducerName_);
+      }
+      if (!getInputFileBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, inputFile_);
+      }
+      if (!getOutputFileBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, outputFile_);
+      }
+      if (numReduceTasks_ != 0) {
+        output.writeInt32(5, numReduceTasks_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getMapNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, mapName_);
+      }
+      if (!getReducerNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, reducerName_);
+      }
+      if (!getInputFileBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, inputFile_);
+      }
+      if (!getOutputFileBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, outputFile_);
+      }
+      if (numReduceTasks_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, numReduceTasks_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof HDFS.hdfs.JobSubmitRequest)) {
+        return super.equals(obj);
+      }
+      HDFS.hdfs.JobSubmitRequest other = (HDFS.hdfs.JobSubmitRequest) obj;
+
+      boolean result = true;
+      result = result && getMapName()
+          .equals(other.getMapName());
+      result = result && getReducerName()
+          .equals(other.getReducerName());
+      result = result && getInputFile()
+          .equals(other.getInputFile());
+      result = result && getOutputFile()
+          .equals(other.getOutputFile());
+      result = result && (getNumReduceTasks()
+          == other.getNumReduceTasks());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + MAPNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getMapName().hashCode();
+      hash = (37 * hash) + REDUCERNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getReducerName().hashCode();
+      hash = (37 * hash) + INPUTFILE_FIELD_NUMBER;
+      hash = (53 * hash) + getInputFile().hashCode();
+      hash = (37 * hash) + OUTPUTFILE_FIELD_NUMBER;
+      hash = (53 * hash) + getOutputFile().hashCode();
+      hash = (37 * hash) + NUMREDUCETASKS_FIELD_NUMBER;
+      hash = (53 * hash) + getNumReduceTasks();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static HDFS.hdfs.JobSubmitRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.JobSubmitRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobSubmitRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.JobSubmitRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobSubmitRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.JobSubmitRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobSubmitRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.JobSubmitRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobSubmitRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.JobSubmitRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(HDFS.hdfs.JobSubmitRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code JobSubmitRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:JobSubmitRequest)
+        HDFS.hdfs.JobSubmitRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return HDFS.hdfs.internal_static_JobSubmitRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return HDFS.hdfs.internal_static_JobSubmitRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                HDFS.hdfs.JobSubmitRequest.class, HDFS.hdfs.JobSubmitRequest.Builder.class);
+      }
+
+      // Construct using HDFS.hdfs.JobSubmitRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        mapName_ = "";
+
+        reducerName_ = "";
+
+        inputFile_ = "";
+
+        outputFile_ = "";
+
+        numReduceTasks_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return HDFS.hdfs.internal_static_JobSubmitRequest_descriptor;
+      }
+
+      public HDFS.hdfs.JobSubmitRequest getDefaultInstanceForType() {
+        return HDFS.hdfs.JobSubmitRequest.getDefaultInstance();
+      }
+
+      public HDFS.hdfs.JobSubmitRequest build() {
+        HDFS.hdfs.JobSubmitRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public HDFS.hdfs.JobSubmitRequest buildPartial() {
+        HDFS.hdfs.JobSubmitRequest result = new HDFS.hdfs.JobSubmitRequest(this);
+        result.mapName_ = mapName_;
+        result.reducerName_ = reducerName_;
+        result.inputFile_ = inputFile_;
+        result.outputFile_ = outputFile_;
+        result.numReduceTasks_ = numReduceTasks_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof HDFS.hdfs.JobSubmitRequest) {
+          return mergeFrom((HDFS.hdfs.JobSubmitRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(HDFS.hdfs.JobSubmitRequest other) {
+        if (other == HDFS.hdfs.JobSubmitRequest.getDefaultInstance()) return this;
+        if (!other.getMapName().isEmpty()) {
+          mapName_ = other.mapName_;
+          onChanged();
+        }
+        if (!other.getReducerName().isEmpty()) {
+          reducerName_ = other.reducerName_;
+          onChanged();
+        }
+        if (!other.getInputFile().isEmpty()) {
+          inputFile_ = other.inputFile_;
+          onChanged();
+        }
+        if (!other.getOutputFile().isEmpty()) {
+          outputFile_ = other.outputFile_;
+          onChanged();
+        }
+        if (other.getNumReduceTasks() != 0) {
+          setNumReduceTasks(other.getNumReduceTasks());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        HDFS.hdfs.JobSubmitRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (HDFS.hdfs.JobSubmitRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object mapName_ = "";
+      /**
+       * <code>optional string mapName = 1;</code>
+       */
+      public java.lang.String getMapName() {
+        java.lang.Object ref = mapName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          mapName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string mapName = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMapNameBytes() {
+        java.lang.Object ref = mapName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          mapName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string mapName = 1;</code>
+       */
+      public Builder setMapName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        mapName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string mapName = 1;</code>
+       */
+      public Builder clearMapName() {
+        
+        mapName_ = getDefaultInstance().getMapName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string mapName = 1;</code>
+       */
+      public Builder setMapNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        mapName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object reducerName_ = "";
+      /**
+       * <code>optional string reducerName = 2;</code>
+       */
+      public java.lang.String getReducerName() {
+        java.lang.Object ref = reducerName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          reducerName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string reducerName = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getReducerNameBytes() {
+        java.lang.Object ref = reducerName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          reducerName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string reducerName = 2;</code>
+       */
+      public Builder setReducerName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        reducerName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string reducerName = 2;</code>
+       */
+      public Builder clearReducerName() {
+        
+        reducerName_ = getDefaultInstance().getReducerName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string reducerName = 2;</code>
+       */
+      public Builder setReducerNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        reducerName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object inputFile_ = "";
+      /**
+       * <code>optional string inputFile = 3;</code>
+       */
+      public java.lang.String getInputFile() {
+        java.lang.Object ref = inputFile_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          inputFile_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string inputFile = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getInputFileBytes() {
+        java.lang.Object ref = inputFile_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          inputFile_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string inputFile = 3;</code>
+       */
+      public Builder setInputFile(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        inputFile_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string inputFile = 3;</code>
+       */
+      public Builder clearInputFile() {
+        
+        inputFile_ = getDefaultInstance().getInputFile();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string inputFile = 3;</code>
+       */
+      public Builder setInputFileBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        inputFile_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object outputFile_ = "";
+      /**
+       * <code>optional string outputFile = 4;</code>
+       */
+      public java.lang.String getOutputFile() {
+        java.lang.Object ref = outputFile_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          outputFile_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string outputFile = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getOutputFileBytes() {
+        java.lang.Object ref = outputFile_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          outputFile_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string outputFile = 4;</code>
+       */
+      public Builder setOutputFile(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        outputFile_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string outputFile = 4;</code>
+       */
+      public Builder clearOutputFile() {
+        
+        outputFile_ = getDefaultInstance().getOutputFile();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string outputFile = 4;</code>
+       */
+      public Builder setOutputFileBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        outputFile_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int numReduceTasks_ ;
+      /**
+       * <code>optional int32 numReduceTasks = 5;</code>
+       */
+      public int getNumReduceTasks() {
+        return numReduceTasks_;
+      }
+      /**
+       * <code>optional int32 numReduceTasks = 5;</code>
+       */
+      public Builder setNumReduceTasks(int value) {
+        
+        numReduceTasks_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 numReduceTasks = 5;</code>
+       */
+      public Builder clearNumReduceTasks() {
+        
+        numReduceTasks_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:JobSubmitRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:JobSubmitRequest)
+    private static final HDFS.hdfs.JobSubmitRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new HDFS.hdfs.JobSubmitRequest();
+    }
+
+    public static HDFS.hdfs.JobSubmitRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<JobSubmitRequest>
+        PARSER = new com.google.protobuf.AbstractParser<JobSubmitRequest>() {
+      public JobSubmitRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new JobSubmitRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<JobSubmitRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<JobSubmitRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public HDFS.hdfs.JobSubmitRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface JobSubmitResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:JobSubmitResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 status = 1;</code>
+     */
+    int getStatus();
+
+    /**
+     * <code>optional int32 jobId = 2;</code>
+     */
+    int getJobId();
+  }
+  /**
+   * Protobuf type {@code JobSubmitResponse}
+   */
+  public  static final class JobSubmitResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:JobSubmitResponse)
+      JobSubmitResponseOrBuilder {
+    // Use JobSubmitResponse.newBuilder() to construct.
+    private JobSubmitResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private JobSubmitResponse() {
+      status_ = 0;
+      jobId_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private JobSubmitResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              status_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              jobId_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return HDFS.hdfs.internal_static_JobSubmitResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return HDFS.hdfs.internal_static_JobSubmitResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              HDFS.hdfs.JobSubmitResponse.class, HDFS.hdfs.JobSubmitResponse.Builder.class);
+    }
+
+    public static final int STATUS_FIELD_NUMBER = 1;
+    private int status_;
+    /**
+     * <code>optional int32 status = 1;</code>
+     */
+    public int getStatus() {
+      return status_;
+    }
+
+    public static final int JOBID_FIELD_NUMBER = 2;
+    private int jobId_;
+    /**
+     * <code>optional int32 jobId = 2;</code>
+     */
+    public int getJobId() {
+      return jobId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (status_ != 0) {
+        output.writeInt32(1, status_);
+      }
+      if (jobId_ != 0) {
+        output.writeInt32(2, jobId_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (status_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, status_);
+      }
+      if (jobId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, jobId_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof HDFS.hdfs.JobSubmitResponse)) {
+        return super.equals(obj);
+      }
+      HDFS.hdfs.JobSubmitResponse other = (HDFS.hdfs.JobSubmitResponse) obj;
+
+      boolean result = true;
+      result = result && (getStatus()
+          == other.getStatus());
+      result = result && (getJobId()
+          == other.getJobId());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus();
+      hash = (37 * hash) + JOBID_FIELD_NUMBER;
+      hash = (53 * hash) + getJobId();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static HDFS.hdfs.JobSubmitResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.JobSubmitResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobSubmitResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.JobSubmitResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobSubmitResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.JobSubmitResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobSubmitResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.JobSubmitResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobSubmitResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.JobSubmitResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(HDFS.hdfs.JobSubmitResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code JobSubmitResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:JobSubmitResponse)
+        HDFS.hdfs.JobSubmitResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return HDFS.hdfs.internal_static_JobSubmitResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return HDFS.hdfs.internal_static_JobSubmitResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                HDFS.hdfs.JobSubmitResponse.class, HDFS.hdfs.JobSubmitResponse.Builder.class);
+      }
+
+      // Construct using HDFS.hdfs.JobSubmitResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        status_ = 0;
+
+        jobId_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return HDFS.hdfs.internal_static_JobSubmitResponse_descriptor;
+      }
+
+      public HDFS.hdfs.JobSubmitResponse getDefaultInstanceForType() {
+        return HDFS.hdfs.JobSubmitResponse.getDefaultInstance();
+      }
+
+      public HDFS.hdfs.JobSubmitResponse build() {
+        HDFS.hdfs.JobSubmitResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public HDFS.hdfs.JobSubmitResponse buildPartial() {
+        HDFS.hdfs.JobSubmitResponse result = new HDFS.hdfs.JobSubmitResponse(this);
+        result.status_ = status_;
+        result.jobId_ = jobId_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof HDFS.hdfs.JobSubmitResponse) {
+          return mergeFrom((HDFS.hdfs.JobSubmitResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(HDFS.hdfs.JobSubmitResponse other) {
+        if (other == HDFS.hdfs.JobSubmitResponse.getDefaultInstance()) return this;
+        if (other.getStatus() != 0) {
+          setStatus(other.getStatus());
+        }
+        if (other.getJobId() != 0) {
+          setJobId(other.getJobId());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        HDFS.hdfs.JobSubmitResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (HDFS.hdfs.JobSubmitResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int status_ ;
+      /**
+       * <code>optional int32 status = 1;</code>
+       */
+      public int getStatus() {
+        return status_;
+      }
+      /**
+       * <code>optional int32 status = 1;</code>
+       */
+      public Builder setStatus(int value) {
+        
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 status = 1;</code>
+       */
+      public Builder clearStatus() {
+        
+        status_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int jobId_ ;
+      /**
+       * <code>optional int32 jobId = 2;</code>
+       */
+      public int getJobId() {
+        return jobId_;
+      }
+      /**
+       * <code>optional int32 jobId = 2;</code>
+       */
+      public Builder setJobId(int value) {
+        
+        jobId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 jobId = 2;</code>
+       */
+      public Builder clearJobId() {
+        
+        jobId_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:JobSubmitResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:JobSubmitResponse)
+    private static final HDFS.hdfs.JobSubmitResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new HDFS.hdfs.JobSubmitResponse();
+    }
+
+    public static HDFS.hdfs.JobSubmitResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<JobSubmitResponse>
+        PARSER = new com.google.protobuf.AbstractParser<JobSubmitResponse>() {
+      public JobSubmitResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new JobSubmitResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<JobSubmitResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<JobSubmitResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public HDFS.hdfs.JobSubmitResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface JobStatusRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:JobStatusRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 jobId = 1;</code>
+     */
+    int getJobId();
+  }
+  /**
+   * Protobuf type {@code JobStatusRequest}
+   */
+  public  static final class JobStatusRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:JobStatusRequest)
+      JobStatusRequestOrBuilder {
+    // Use JobStatusRequest.newBuilder() to construct.
+    private JobStatusRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private JobStatusRequest() {
+      jobId_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private JobStatusRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              jobId_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return HDFS.hdfs.internal_static_JobStatusRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return HDFS.hdfs.internal_static_JobStatusRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              HDFS.hdfs.JobStatusRequest.class, HDFS.hdfs.JobStatusRequest.Builder.class);
+    }
+
+    public static final int JOBID_FIELD_NUMBER = 1;
+    private int jobId_;
+    /**
+     * <code>optional int32 jobId = 1;</code>
+     */
+    public int getJobId() {
+      return jobId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (jobId_ != 0) {
+        output.writeInt32(1, jobId_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (jobId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, jobId_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof HDFS.hdfs.JobStatusRequest)) {
+        return super.equals(obj);
+      }
+      HDFS.hdfs.JobStatusRequest other = (HDFS.hdfs.JobStatusRequest) obj;
+
+      boolean result = true;
+      result = result && (getJobId()
+          == other.getJobId());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + JOBID_FIELD_NUMBER;
+      hash = (53 * hash) + getJobId();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static HDFS.hdfs.JobStatusRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.JobStatusRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobStatusRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.JobStatusRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobStatusRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.JobStatusRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobStatusRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.JobStatusRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobStatusRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.JobStatusRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(HDFS.hdfs.JobStatusRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code JobStatusRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:JobStatusRequest)
+        HDFS.hdfs.JobStatusRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return HDFS.hdfs.internal_static_JobStatusRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return HDFS.hdfs.internal_static_JobStatusRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                HDFS.hdfs.JobStatusRequest.class, HDFS.hdfs.JobStatusRequest.Builder.class);
+      }
+
+      // Construct using HDFS.hdfs.JobStatusRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        jobId_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return HDFS.hdfs.internal_static_JobStatusRequest_descriptor;
+      }
+
+      public HDFS.hdfs.JobStatusRequest getDefaultInstanceForType() {
+        return HDFS.hdfs.JobStatusRequest.getDefaultInstance();
+      }
+
+      public HDFS.hdfs.JobStatusRequest build() {
+        HDFS.hdfs.JobStatusRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public HDFS.hdfs.JobStatusRequest buildPartial() {
+        HDFS.hdfs.JobStatusRequest result = new HDFS.hdfs.JobStatusRequest(this);
+        result.jobId_ = jobId_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof HDFS.hdfs.JobStatusRequest) {
+          return mergeFrom((HDFS.hdfs.JobStatusRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(HDFS.hdfs.JobStatusRequest other) {
+        if (other == HDFS.hdfs.JobStatusRequest.getDefaultInstance()) return this;
+        if (other.getJobId() != 0) {
+          setJobId(other.getJobId());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        HDFS.hdfs.JobStatusRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (HDFS.hdfs.JobStatusRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int jobId_ ;
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public int getJobId() {
+        return jobId_;
+      }
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public Builder setJobId(int value) {
+        
+        jobId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public Builder clearJobId() {
+        
+        jobId_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:JobStatusRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:JobStatusRequest)
+    private static final HDFS.hdfs.JobStatusRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new HDFS.hdfs.JobStatusRequest();
+    }
+
+    public static HDFS.hdfs.JobStatusRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<JobStatusRequest>
+        PARSER = new com.google.protobuf.AbstractParser<JobStatusRequest>() {
+      public JobStatusRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new JobStatusRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<JobStatusRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<JobStatusRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public HDFS.hdfs.JobStatusRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface JobStatusResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:JobStatusResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 status = 1;</code>
+     */
+    int getStatus();
+
+    /**
+     * <code>optional bool jobDone = 2;</code>
+     */
+    boolean getJobDone();
+
+    /**
+     * <code>optional int32 totalMapTasks = 3;</code>
+     */
+    int getTotalMapTasks();
+
+    /**
+     * <code>optional int32 numMapTasksStarted = 4;</code>
+     */
+    int getNumMapTasksStarted();
+
+    /**
+     * <code>optional int32 totalReduceTasks = 5;</code>
+     */
+    int getTotalReduceTasks();
+
+    /**
+     * <code>optional int32 numReduceTasksStarted = 6;</code>
+     */
+    int getNumReduceTasksStarted();
+  }
+  /**
+   * Protobuf type {@code JobStatusResponse}
+   */
+  public  static final class JobStatusResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:JobStatusResponse)
+      JobStatusResponseOrBuilder {
+    // Use JobStatusResponse.newBuilder() to construct.
+    private JobStatusResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private JobStatusResponse() {
+      status_ = 0;
+      jobDone_ = false;
+      totalMapTasks_ = 0;
+      numMapTasksStarted_ = 0;
+      totalReduceTasks_ = 0;
+      numReduceTasksStarted_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private JobStatusResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              status_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              jobDone_ = input.readBool();
+              break;
+            }
+            case 24: {
+
+              totalMapTasks_ = input.readInt32();
+              break;
+            }
+            case 32: {
+
+              numMapTasksStarted_ = input.readInt32();
+              break;
+            }
+            case 40: {
+
+              totalReduceTasks_ = input.readInt32();
+              break;
+            }
+            case 48: {
+
+              numReduceTasksStarted_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return HDFS.hdfs.internal_static_JobStatusResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return HDFS.hdfs.internal_static_JobStatusResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              HDFS.hdfs.JobStatusResponse.class, HDFS.hdfs.JobStatusResponse.Builder.class);
+    }
+
+    public static final int STATUS_FIELD_NUMBER = 1;
+    private int status_;
+    /**
+     * <code>optional int32 status = 1;</code>
+     */
+    public int getStatus() {
+      return status_;
+    }
+
+    public static final int JOBDONE_FIELD_NUMBER = 2;
+    private boolean jobDone_;
+    /**
+     * <code>optional bool jobDone = 2;</code>
+     */
+    public boolean getJobDone() {
+      return jobDone_;
+    }
+
+    public static final int TOTALMAPTASKS_FIELD_NUMBER = 3;
+    private int totalMapTasks_;
+    /**
+     * <code>optional int32 totalMapTasks = 3;</code>
+     */
+    public int getTotalMapTasks() {
+      return totalMapTasks_;
+    }
+
+    public static final int NUMMAPTASKSSTARTED_FIELD_NUMBER = 4;
+    private int numMapTasksStarted_;
+    /**
+     * <code>optional int32 numMapTasksStarted = 4;</code>
+     */
+    public int getNumMapTasksStarted() {
+      return numMapTasksStarted_;
+    }
+
+    public static final int TOTALREDUCETASKS_FIELD_NUMBER = 5;
+    private int totalReduceTasks_;
+    /**
+     * <code>optional int32 totalReduceTasks = 5;</code>
+     */
+    public int getTotalReduceTasks() {
+      return totalReduceTasks_;
+    }
+
+    public static final int NUMREDUCETASKSSTARTED_FIELD_NUMBER = 6;
+    private int numReduceTasksStarted_;
+    /**
+     * <code>optional int32 numReduceTasksStarted = 6;</code>
+     */
+    public int getNumReduceTasksStarted() {
+      return numReduceTasksStarted_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (status_ != 0) {
+        output.writeInt32(1, status_);
+      }
+      if (jobDone_ != false) {
+        output.writeBool(2, jobDone_);
+      }
+      if (totalMapTasks_ != 0) {
+        output.writeInt32(3, totalMapTasks_);
+      }
+      if (numMapTasksStarted_ != 0) {
+        output.writeInt32(4, numMapTasksStarted_);
+      }
+      if (totalReduceTasks_ != 0) {
+        output.writeInt32(5, totalReduceTasks_);
+      }
+      if (numReduceTasksStarted_ != 0) {
+        output.writeInt32(6, numReduceTasksStarted_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (status_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, status_);
+      }
+      if (jobDone_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, jobDone_);
+      }
+      if (totalMapTasks_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, totalMapTasks_);
+      }
+      if (numMapTasksStarted_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, numMapTasksStarted_);
+      }
+      if (totalReduceTasks_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, totalReduceTasks_);
+      }
+      if (numReduceTasksStarted_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, numReduceTasksStarted_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof HDFS.hdfs.JobStatusResponse)) {
+        return super.equals(obj);
+      }
+      HDFS.hdfs.JobStatusResponse other = (HDFS.hdfs.JobStatusResponse) obj;
+
+      boolean result = true;
+      result = result && (getStatus()
+          == other.getStatus());
+      result = result && (getJobDone()
+          == other.getJobDone());
+      result = result && (getTotalMapTasks()
+          == other.getTotalMapTasks());
+      result = result && (getNumMapTasksStarted()
+          == other.getNumMapTasksStarted());
+      result = result && (getTotalReduceTasks()
+          == other.getTotalReduceTasks());
+      result = result && (getNumReduceTasksStarted()
+          == other.getNumReduceTasksStarted());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus();
+      hash = (37 * hash) + JOBDONE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getJobDone());
+      hash = (37 * hash) + TOTALMAPTASKS_FIELD_NUMBER;
+      hash = (53 * hash) + getTotalMapTasks();
+      hash = (37 * hash) + NUMMAPTASKSSTARTED_FIELD_NUMBER;
+      hash = (53 * hash) + getNumMapTasksStarted();
+      hash = (37 * hash) + TOTALREDUCETASKS_FIELD_NUMBER;
+      hash = (53 * hash) + getTotalReduceTasks();
+      hash = (37 * hash) + NUMREDUCETASKSSTARTED_FIELD_NUMBER;
+      hash = (53 * hash) + getNumReduceTasksStarted();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static HDFS.hdfs.JobStatusResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.JobStatusResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobStatusResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.JobStatusResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobStatusResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.JobStatusResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobStatusResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.JobStatusResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.JobStatusResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.JobStatusResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(HDFS.hdfs.JobStatusResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code JobStatusResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:JobStatusResponse)
+        HDFS.hdfs.JobStatusResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return HDFS.hdfs.internal_static_JobStatusResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return HDFS.hdfs.internal_static_JobStatusResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                HDFS.hdfs.JobStatusResponse.class, HDFS.hdfs.JobStatusResponse.Builder.class);
+      }
+
+      // Construct using HDFS.hdfs.JobStatusResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        status_ = 0;
+
+        jobDone_ = false;
+
+        totalMapTasks_ = 0;
+
+        numMapTasksStarted_ = 0;
+
+        totalReduceTasks_ = 0;
+
+        numReduceTasksStarted_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return HDFS.hdfs.internal_static_JobStatusResponse_descriptor;
+      }
+
+      public HDFS.hdfs.JobStatusResponse getDefaultInstanceForType() {
+        return HDFS.hdfs.JobStatusResponse.getDefaultInstance();
+      }
+
+      public HDFS.hdfs.JobStatusResponse build() {
+        HDFS.hdfs.JobStatusResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public HDFS.hdfs.JobStatusResponse buildPartial() {
+        HDFS.hdfs.JobStatusResponse result = new HDFS.hdfs.JobStatusResponse(this);
+        result.status_ = status_;
+        result.jobDone_ = jobDone_;
+        result.totalMapTasks_ = totalMapTasks_;
+        result.numMapTasksStarted_ = numMapTasksStarted_;
+        result.totalReduceTasks_ = totalReduceTasks_;
+        result.numReduceTasksStarted_ = numReduceTasksStarted_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof HDFS.hdfs.JobStatusResponse) {
+          return mergeFrom((HDFS.hdfs.JobStatusResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(HDFS.hdfs.JobStatusResponse other) {
+        if (other == HDFS.hdfs.JobStatusResponse.getDefaultInstance()) return this;
+        if (other.getStatus() != 0) {
+          setStatus(other.getStatus());
+        }
+        if (other.getJobDone() != false) {
+          setJobDone(other.getJobDone());
+        }
+        if (other.getTotalMapTasks() != 0) {
+          setTotalMapTasks(other.getTotalMapTasks());
+        }
+        if (other.getNumMapTasksStarted() != 0) {
+          setNumMapTasksStarted(other.getNumMapTasksStarted());
+        }
+        if (other.getTotalReduceTasks() != 0) {
+          setTotalReduceTasks(other.getTotalReduceTasks());
+        }
+        if (other.getNumReduceTasksStarted() != 0) {
+          setNumReduceTasksStarted(other.getNumReduceTasksStarted());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        HDFS.hdfs.JobStatusResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (HDFS.hdfs.JobStatusResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int status_ ;
+      /**
+       * <code>optional int32 status = 1;</code>
+       */
+      public int getStatus() {
+        return status_;
+      }
+      /**
+       * <code>optional int32 status = 1;</code>
+       */
+      public Builder setStatus(int value) {
+        
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 status = 1;</code>
+       */
+      public Builder clearStatus() {
+        
+        status_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean jobDone_ ;
+      /**
+       * <code>optional bool jobDone = 2;</code>
+       */
+      public boolean getJobDone() {
+        return jobDone_;
+      }
+      /**
+       * <code>optional bool jobDone = 2;</code>
+       */
+      public Builder setJobDone(boolean value) {
+        
+        jobDone_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool jobDone = 2;</code>
+       */
+      public Builder clearJobDone() {
+        
+        jobDone_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int totalMapTasks_ ;
+      /**
+       * <code>optional int32 totalMapTasks = 3;</code>
+       */
+      public int getTotalMapTasks() {
+        return totalMapTasks_;
+      }
+      /**
+       * <code>optional int32 totalMapTasks = 3;</code>
+       */
+      public Builder setTotalMapTasks(int value) {
+        
+        totalMapTasks_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 totalMapTasks = 3;</code>
+       */
+      public Builder clearTotalMapTasks() {
+        
+        totalMapTasks_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int numMapTasksStarted_ ;
+      /**
+       * <code>optional int32 numMapTasksStarted = 4;</code>
+       */
+      public int getNumMapTasksStarted() {
+        return numMapTasksStarted_;
+      }
+      /**
+       * <code>optional int32 numMapTasksStarted = 4;</code>
+       */
+      public Builder setNumMapTasksStarted(int value) {
+        
+        numMapTasksStarted_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 numMapTasksStarted = 4;</code>
+       */
+      public Builder clearNumMapTasksStarted() {
+        
+        numMapTasksStarted_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int totalReduceTasks_ ;
+      /**
+       * <code>optional int32 totalReduceTasks = 5;</code>
+       */
+      public int getTotalReduceTasks() {
+        return totalReduceTasks_;
+      }
+      /**
+       * <code>optional int32 totalReduceTasks = 5;</code>
+       */
+      public Builder setTotalReduceTasks(int value) {
+        
+        totalReduceTasks_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 totalReduceTasks = 5;</code>
+       */
+      public Builder clearTotalReduceTasks() {
+        
+        totalReduceTasks_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int numReduceTasksStarted_ ;
+      /**
+       * <code>optional int32 numReduceTasksStarted = 6;</code>
+       */
+      public int getNumReduceTasksStarted() {
+        return numReduceTasksStarted_;
+      }
+      /**
+       * <code>optional int32 numReduceTasksStarted = 6;</code>
+       */
+      public Builder setNumReduceTasksStarted(int value) {
+        
+        numReduceTasksStarted_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 numReduceTasksStarted = 6;</code>
+       */
+      public Builder clearNumReduceTasksStarted() {
+        
+        numReduceTasksStarted_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:JobStatusResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:JobStatusResponse)
+    private static final HDFS.hdfs.JobStatusResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new HDFS.hdfs.JobStatusResponse();
+    }
+
+    public static HDFS.hdfs.JobStatusResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<JobStatusResponse>
+        PARSER = new com.google.protobuf.AbstractParser<JobStatusResponse>() {
+      public JobStatusResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new JobStatusResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<JobStatusResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<JobStatusResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public HDFS.hdfs.JobStatusResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface MapTaskStatusOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:MapTaskStatus)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 jobId = 1;</code>
+     */
+    int getJobId();
+
+    /**
+     * <code>optional int32 taskId = 2;</code>
+     */
+    int getTaskId();
+
+    /**
+     * <code>optional bool taskCompleted = 3;</code>
+     */
+    boolean getTaskCompleted();
+
+    /**
+     * <code>optional string mapOutputFile = 4;</code>
+     */
+    java.lang.String getMapOutputFile();
+    /**
+     * <code>optional string mapOutputFile = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getMapOutputFileBytes();
+  }
+  /**
+   * Protobuf type {@code MapTaskStatus}
+   */
+  public  static final class MapTaskStatus extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:MapTaskStatus)
+      MapTaskStatusOrBuilder {
+    // Use MapTaskStatus.newBuilder() to construct.
+    private MapTaskStatus(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private MapTaskStatus() {
+      jobId_ = 0;
+      taskId_ = 0;
+      taskCompleted_ = false;
+      mapOutputFile_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private MapTaskStatus(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              jobId_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              taskId_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              taskCompleted_ = input.readBool();
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              mapOutputFile_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return HDFS.hdfs.internal_static_MapTaskStatus_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return HDFS.hdfs.internal_static_MapTaskStatus_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              HDFS.hdfs.MapTaskStatus.class, HDFS.hdfs.MapTaskStatus.Builder.class);
+    }
+
+    public static final int JOBID_FIELD_NUMBER = 1;
+    private int jobId_;
+    /**
+     * <code>optional int32 jobId = 1;</code>
+     */
+    public int getJobId() {
+      return jobId_;
+    }
+
+    public static final int TASKID_FIELD_NUMBER = 2;
+    private int taskId_;
+    /**
+     * <code>optional int32 taskId = 2;</code>
+     */
+    public int getTaskId() {
+      return taskId_;
+    }
+
+    public static final int TASKCOMPLETED_FIELD_NUMBER = 3;
+    private boolean taskCompleted_;
+    /**
+     * <code>optional bool taskCompleted = 3;</code>
+     */
+    public boolean getTaskCompleted() {
+      return taskCompleted_;
+    }
+
+    public static final int MAPOUTPUTFILE_FIELD_NUMBER = 4;
+    private volatile java.lang.Object mapOutputFile_;
+    /**
+     * <code>optional string mapOutputFile = 4;</code>
+     */
+    public java.lang.String getMapOutputFile() {
+      java.lang.Object ref = mapOutputFile_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        mapOutputFile_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string mapOutputFile = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMapOutputFileBytes() {
+      java.lang.Object ref = mapOutputFile_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        mapOutputFile_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (jobId_ != 0) {
+        output.writeInt32(1, jobId_);
+      }
+      if (taskId_ != 0) {
+        output.writeInt32(2, taskId_);
+      }
+      if (taskCompleted_ != false) {
+        output.writeBool(3, taskCompleted_);
+      }
+      if (!getMapOutputFileBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, mapOutputFile_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (jobId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, jobId_);
+      }
+      if (taskId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, taskId_);
+      }
+      if (taskCompleted_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, taskCompleted_);
+      }
+      if (!getMapOutputFileBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, mapOutputFile_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof HDFS.hdfs.MapTaskStatus)) {
+        return super.equals(obj);
+      }
+      HDFS.hdfs.MapTaskStatus other = (HDFS.hdfs.MapTaskStatus) obj;
+
+      boolean result = true;
+      result = result && (getJobId()
+          == other.getJobId());
+      result = result && (getTaskId()
+          == other.getTaskId());
+      result = result && (getTaskCompleted()
+          == other.getTaskCompleted());
+      result = result && getMapOutputFile()
+          .equals(other.getMapOutputFile());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + JOBID_FIELD_NUMBER;
+      hash = (53 * hash) + getJobId();
+      hash = (37 * hash) + TASKID_FIELD_NUMBER;
+      hash = (53 * hash) + getTaskId();
+      hash = (37 * hash) + TASKCOMPLETED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getTaskCompleted());
+      hash = (37 * hash) + MAPOUTPUTFILE_FIELD_NUMBER;
+      hash = (53 * hash) + getMapOutputFile().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static HDFS.hdfs.MapTaskStatus parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.MapTaskStatus parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.MapTaskStatus parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.MapTaskStatus parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.MapTaskStatus parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.MapTaskStatus parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.MapTaskStatus parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.MapTaskStatus parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.MapTaskStatus parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.MapTaskStatus parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(HDFS.hdfs.MapTaskStatus prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code MapTaskStatus}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:MapTaskStatus)
+        HDFS.hdfs.MapTaskStatusOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return HDFS.hdfs.internal_static_MapTaskStatus_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return HDFS.hdfs.internal_static_MapTaskStatus_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                HDFS.hdfs.MapTaskStatus.class, HDFS.hdfs.MapTaskStatus.Builder.class);
+      }
+
+      // Construct using HDFS.hdfs.MapTaskStatus.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        jobId_ = 0;
+
+        taskId_ = 0;
+
+        taskCompleted_ = false;
+
+        mapOutputFile_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return HDFS.hdfs.internal_static_MapTaskStatus_descriptor;
+      }
+
+      public HDFS.hdfs.MapTaskStatus getDefaultInstanceForType() {
+        return HDFS.hdfs.MapTaskStatus.getDefaultInstance();
+      }
+
+      public HDFS.hdfs.MapTaskStatus build() {
+        HDFS.hdfs.MapTaskStatus result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public HDFS.hdfs.MapTaskStatus buildPartial() {
+        HDFS.hdfs.MapTaskStatus result = new HDFS.hdfs.MapTaskStatus(this);
+        result.jobId_ = jobId_;
+        result.taskId_ = taskId_;
+        result.taskCompleted_ = taskCompleted_;
+        result.mapOutputFile_ = mapOutputFile_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof HDFS.hdfs.MapTaskStatus) {
+          return mergeFrom((HDFS.hdfs.MapTaskStatus)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(HDFS.hdfs.MapTaskStatus other) {
+        if (other == HDFS.hdfs.MapTaskStatus.getDefaultInstance()) return this;
+        if (other.getJobId() != 0) {
+          setJobId(other.getJobId());
+        }
+        if (other.getTaskId() != 0) {
+          setTaskId(other.getTaskId());
+        }
+        if (other.getTaskCompleted() != false) {
+          setTaskCompleted(other.getTaskCompleted());
+        }
+        if (!other.getMapOutputFile().isEmpty()) {
+          mapOutputFile_ = other.mapOutputFile_;
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        HDFS.hdfs.MapTaskStatus parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (HDFS.hdfs.MapTaskStatus) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int jobId_ ;
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public int getJobId() {
+        return jobId_;
+      }
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public Builder setJobId(int value) {
+        
+        jobId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public Builder clearJobId() {
+        
+        jobId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int taskId_ ;
+      /**
+       * <code>optional int32 taskId = 2;</code>
+       */
+      public int getTaskId() {
+        return taskId_;
+      }
+      /**
+       * <code>optional int32 taskId = 2;</code>
+       */
+      public Builder setTaskId(int value) {
+        
+        taskId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 taskId = 2;</code>
+       */
+      public Builder clearTaskId() {
+        
+        taskId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean taskCompleted_ ;
+      /**
+       * <code>optional bool taskCompleted = 3;</code>
+       */
+      public boolean getTaskCompleted() {
+        return taskCompleted_;
+      }
+      /**
+       * <code>optional bool taskCompleted = 3;</code>
+       */
+      public Builder setTaskCompleted(boolean value) {
+        
+        taskCompleted_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool taskCompleted = 3;</code>
+       */
+      public Builder clearTaskCompleted() {
+        
+        taskCompleted_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object mapOutputFile_ = "";
+      /**
+       * <code>optional string mapOutputFile = 4;</code>
+       */
+      public java.lang.String getMapOutputFile() {
+        java.lang.Object ref = mapOutputFile_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          mapOutputFile_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string mapOutputFile = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMapOutputFileBytes() {
+        java.lang.Object ref = mapOutputFile_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          mapOutputFile_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string mapOutputFile = 4;</code>
+       */
+      public Builder setMapOutputFile(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        mapOutputFile_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string mapOutputFile = 4;</code>
+       */
+      public Builder clearMapOutputFile() {
+        
+        mapOutputFile_ = getDefaultInstance().getMapOutputFile();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string mapOutputFile = 4;</code>
+       */
+      public Builder setMapOutputFileBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        mapOutputFile_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:MapTaskStatus)
+    }
+
+    // @@protoc_insertion_point(class_scope:MapTaskStatus)
+    private static final HDFS.hdfs.MapTaskStatus DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new HDFS.hdfs.MapTaskStatus();
+    }
+
+    public static HDFS.hdfs.MapTaskStatus getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<MapTaskStatus>
+        PARSER = new com.google.protobuf.AbstractParser<MapTaskStatus>() {
+      public MapTaskStatus parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new MapTaskStatus(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<MapTaskStatus> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<MapTaskStatus> getParserForType() {
+      return PARSER;
+    }
+
+    public HDFS.hdfs.MapTaskStatus getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ReduceTaskStatusOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ReduceTaskStatus)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 jobId = 1;</code>
+     */
+    int getJobId();
+
+    /**
+     * <code>optional int32 taskId = 2;</code>
+     */
+    int getTaskId();
+
+    /**
+     * <code>optional bool taskCompleted = 3;</code>
+     */
+    boolean getTaskCompleted();
+  }
+  /**
+   * Protobuf type {@code ReduceTaskStatus}
+   */
+  public  static final class ReduceTaskStatus extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ReduceTaskStatus)
+      ReduceTaskStatusOrBuilder {
+    // Use ReduceTaskStatus.newBuilder() to construct.
+    private ReduceTaskStatus(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReduceTaskStatus() {
+      jobId_ = 0;
+      taskId_ = 0;
+      taskCompleted_ = false;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private ReduceTaskStatus(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              jobId_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              taskId_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              taskCompleted_ = input.readBool();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return HDFS.hdfs.internal_static_ReduceTaskStatus_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return HDFS.hdfs.internal_static_ReduceTaskStatus_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              HDFS.hdfs.ReduceTaskStatus.class, HDFS.hdfs.ReduceTaskStatus.Builder.class);
+    }
+
+    public static final int JOBID_FIELD_NUMBER = 1;
+    private int jobId_;
+    /**
+     * <code>optional int32 jobId = 1;</code>
+     */
+    public int getJobId() {
+      return jobId_;
+    }
+
+    public static final int TASKID_FIELD_NUMBER = 2;
+    private int taskId_;
+    /**
+     * <code>optional int32 taskId = 2;</code>
+     */
+    public int getTaskId() {
+      return taskId_;
+    }
+
+    public static final int TASKCOMPLETED_FIELD_NUMBER = 3;
+    private boolean taskCompleted_;
+    /**
+     * <code>optional bool taskCompleted = 3;</code>
+     */
+    public boolean getTaskCompleted() {
+      return taskCompleted_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (jobId_ != 0) {
+        output.writeInt32(1, jobId_);
+      }
+      if (taskId_ != 0) {
+        output.writeInt32(2, taskId_);
+      }
+      if (taskCompleted_ != false) {
+        output.writeBool(3, taskCompleted_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (jobId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, jobId_);
+      }
+      if (taskId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, taskId_);
+      }
+      if (taskCompleted_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, taskCompleted_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof HDFS.hdfs.ReduceTaskStatus)) {
+        return super.equals(obj);
+      }
+      HDFS.hdfs.ReduceTaskStatus other = (HDFS.hdfs.ReduceTaskStatus) obj;
+
+      boolean result = true;
+      result = result && (getJobId()
+          == other.getJobId());
+      result = result && (getTaskId()
+          == other.getTaskId());
+      result = result && (getTaskCompleted()
+          == other.getTaskCompleted());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + JOBID_FIELD_NUMBER;
+      hash = (53 * hash) + getJobId();
+      hash = (37 * hash) + TASKID_FIELD_NUMBER;
+      hash = (53 * hash) + getTaskId();
+      hash = (37 * hash) + TASKCOMPLETED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getTaskCompleted());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static HDFS.hdfs.ReduceTaskStatus parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.ReduceTaskStatus parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.ReduceTaskStatus parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.ReduceTaskStatus parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.ReduceTaskStatus parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.ReduceTaskStatus parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.ReduceTaskStatus parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.ReduceTaskStatus parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.ReduceTaskStatus parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.ReduceTaskStatus parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(HDFS.hdfs.ReduceTaskStatus prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ReduceTaskStatus}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ReduceTaskStatus)
+        HDFS.hdfs.ReduceTaskStatusOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return HDFS.hdfs.internal_static_ReduceTaskStatus_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return HDFS.hdfs.internal_static_ReduceTaskStatus_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                HDFS.hdfs.ReduceTaskStatus.class, HDFS.hdfs.ReduceTaskStatus.Builder.class);
+      }
+
+      // Construct using HDFS.hdfs.ReduceTaskStatus.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        jobId_ = 0;
+
+        taskId_ = 0;
+
+        taskCompleted_ = false;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return HDFS.hdfs.internal_static_ReduceTaskStatus_descriptor;
+      }
+
+      public HDFS.hdfs.ReduceTaskStatus getDefaultInstanceForType() {
+        return HDFS.hdfs.ReduceTaskStatus.getDefaultInstance();
+      }
+
+      public HDFS.hdfs.ReduceTaskStatus build() {
+        HDFS.hdfs.ReduceTaskStatus result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public HDFS.hdfs.ReduceTaskStatus buildPartial() {
+        HDFS.hdfs.ReduceTaskStatus result = new HDFS.hdfs.ReduceTaskStatus(this);
+        result.jobId_ = jobId_;
+        result.taskId_ = taskId_;
+        result.taskCompleted_ = taskCompleted_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof HDFS.hdfs.ReduceTaskStatus) {
+          return mergeFrom((HDFS.hdfs.ReduceTaskStatus)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(HDFS.hdfs.ReduceTaskStatus other) {
+        if (other == HDFS.hdfs.ReduceTaskStatus.getDefaultInstance()) return this;
+        if (other.getJobId() != 0) {
+          setJobId(other.getJobId());
+        }
+        if (other.getTaskId() != 0) {
+          setTaskId(other.getTaskId());
+        }
+        if (other.getTaskCompleted() != false) {
+          setTaskCompleted(other.getTaskCompleted());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        HDFS.hdfs.ReduceTaskStatus parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (HDFS.hdfs.ReduceTaskStatus) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int jobId_ ;
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public int getJobId() {
+        return jobId_;
+      }
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public Builder setJobId(int value) {
+        
+        jobId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public Builder clearJobId() {
+        
+        jobId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int taskId_ ;
+      /**
+       * <code>optional int32 taskId = 2;</code>
+       */
+      public int getTaskId() {
+        return taskId_;
+      }
+      /**
+       * <code>optional int32 taskId = 2;</code>
+       */
+      public Builder setTaskId(int value) {
+        
+        taskId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 taskId = 2;</code>
+       */
+      public Builder clearTaskId() {
+        
+        taskId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean taskCompleted_ ;
+      /**
+       * <code>optional bool taskCompleted = 3;</code>
+       */
+      public boolean getTaskCompleted() {
+        return taskCompleted_;
+      }
+      /**
+       * <code>optional bool taskCompleted = 3;</code>
+       */
+      public Builder setTaskCompleted(boolean value) {
+        
+        taskCompleted_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool taskCompleted = 3;</code>
+       */
+      public Builder clearTaskCompleted() {
+        
+        taskCompleted_ = false;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ReduceTaskStatus)
+    }
+
+    // @@protoc_insertion_point(class_scope:ReduceTaskStatus)
+    private static final HDFS.hdfs.ReduceTaskStatus DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new HDFS.hdfs.ReduceTaskStatus();
+    }
+
+    public static HDFS.hdfs.ReduceTaskStatus getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReduceTaskStatus>
+        PARSER = new com.google.protobuf.AbstractParser<ReduceTaskStatus>() {
+      public ReduceTaskStatus parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new ReduceTaskStatus(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReduceTaskStatus> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReduceTaskStatus> getParserForType() {
+      return PARSER;
+    }
+
+    public HDFS.hdfs.ReduceTaskStatus getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface HeartBeatRequestMapReduceOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:HeartBeatRequestMapReduce)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 taskTrackerId = 1;</code>
+     */
+    int getTaskTrackerId();
+
+    /**
+     * <code>optional int32 numMapSlotsFree = 2;</code>
+     */
+    int getNumMapSlotsFree();
+
+    /**
+     * <code>optional int32 numReduceSlotsFree = 3;</code>
+     */
+    int getNumReduceSlotsFree();
+
+    /**
+     * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+     */
+    java.util.List<HDFS.hdfs.MapTaskStatus> 
+        getMapStatusList();
+    /**
+     * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+     */
+    HDFS.hdfs.MapTaskStatus getMapStatus(int index);
+    /**
+     * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+     */
+    int getMapStatusCount();
+    /**
+     * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+     */
+    java.util.List<? extends HDFS.hdfs.MapTaskStatusOrBuilder> 
+        getMapStatusOrBuilderList();
+    /**
+     * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+     */
+    HDFS.hdfs.MapTaskStatusOrBuilder getMapStatusOrBuilder(
+        int index);
+
+    /**
+     * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+     */
+    java.util.List<HDFS.hdfs.ReduceTaskStatus> 
+        getReduceStatusList();
+    /**
+     * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+     */
+    HDFS.hdfs.ReduceTaskStatus getReduceStatus(int index);
+    /**
+     * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+     */
+    int getReduceStatusCount();
+    /**
+     * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+     */
+    java.util.List<? extends HDFS.hdfs.ReduceTaskStatusOrBuilder> 
+        getReduceStatusOrBuilderList();
+    /**
+     * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+     */
+    HDFS.hdfs.ReduceTaskStatusOrBuilder getReduceStatusOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code HeartBeatRequestMapReduce}
+   */
+  public  static final class HeartBeatRequestMapReduce extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:HeartBeatRequestMapReduce)
+      HeartBeatRequestMapReduceOrBuilder {
+    // Use HeartBeatRequestMapReduce.newBuilder() to construct.
+    private HeartBeatRequestMapReduce(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private HeartBeatRequestMapReduce() {
+      taskTrackerId_ = 0;
+      numMapSlotsFree_ = 0;
+      numReduceSlotsFree_ = 0;
+      mapStatus_ = java.util.Collections.emptyList();
+      reduceStatus_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private HeartBeatRequestMapReduce(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              taskTrackerId_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              numMapSlotsFree_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              numReduceSlotsFree_ = input.readInt32();
+              break;
+            }
+            case 34: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                mapStatus_ = new java.util.ArrayList<HDFS.hdfs.MapTaskStatus>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              mapStatus_.add(
+                  input.readMessage(HDFS.hdfs.MapTaskStatus.parser(), extensionRegistry));
+              break;
+            }
+            case 42: {
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                reduceStatus_ = new java.util.ArrayList<HDFS.hdfs.ReduceTaskStatus>();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              reduceStatus_.add(
+                  input.readMessage(HDFS.hdfs.ReduceTaskStatus.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          mapStatus_ = java.util.Collections.unmodifiableList(mapStatus_);
+        }
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          reduceStatus_ = java.util.Collections.unmodifiableList(reduceStatus_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return HDFS.hdfs.internal_static_HeartBeatRequestMapReduce_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return HDFS.hdfs.internal_static_HeartBeatRequestMapReduce_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              HDFS.hdfs.HeartBeatRequestMapReduce.class, HDFS.hdfs.HeartBeatRequestMapReduce.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int TASKTRACKERID_FIELD_NUMBER = 1;
+    private int taskTrackerId_;
+    /**
+     * <code>optional int32 taskTrackerId = 1;</code>
+     */
+    public int getTaskTrackerId() {
+      return taskTrackerId_;
+    }
+
+    public static final int NUMMAPSLOTSFREE_FIELD_NUMBER = 2;
+    private int numMapSlotsFree_;
+    /**
+     * <code>optional int32 numMapSlotsFree = 2;</code>
+     */
+    public int getNumMapSlotsFree() {
+      return numMapSlotsFree_;
+    }
+
+    public static final int NUMREDUCESLOTSFREE_FIELD_NUMBER = 3;
+    private int numReduceSlotsFree_;
+    /**
+     * <code>optional int32 numReduceSlotsFree = 3;</code>
+     */
+    public int getNumReduceSlotsFree() {
+      return numReduceSlotsFree_;
+    }
+
+    public static final int MAPSTATUS_FIELD_NUMBER = 4;
+    private java.util.List<HDFS.hdfs.MapTaskStatus> mapStatus_;
+    /**
+     * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+     */
+    public java.util.List<HDFS.hdfs.MapTaskStatus> getMapStatusList() {
+      return mapStatus_;
+    }
+    /**
+     * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+     */
+    public java.util.List<? extends HDFS.hdfs.MapTaskStatusOrBuilder> 
+        getMapStatusOrBuilderList() {
+      return mapStatus_;
+    }
+    /**
+     * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+     */
+    public int getMapStatusCount() {
+      return mapStatus_.size();
+    }
+    /**
+     * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+     */
+    public HDFS.hdfs.MapTaskStatus getMapStatus(int index) {
+      return mapStatus_.get(index);
+    }
+    /**
+     * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+     */
+    public HDFS.hdfs.MapTaskStatusOrBuilder getMapStatusOrBuilder(
+        int index) {
+      return mapStatus_.get(index);
+    }
+
+    public static final int REDUCESTATUS_FIELD_NUMBER = 5;
+    private java.util.List<HDFS.hdfs.ReduceTaskStatus> reduceStatus_;
+    /**
+     * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+     */
+    public java.util.List<HDFS.hdfs.ReduceTaskStatus> getReduceStatusList() {
+      return reduceStatus_;
+    }
+    /**
+     * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+     */
+    public java.util.List<? extends HDFS.hdfs.ReduceTaskStatusOrBuilder> 
+        getReduceStatusOrBuilderList() {
+      return reduceStatus_;
+    }
+    /**
+     * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+     */
+    public int getReduceStatusCount() {
+      return reduceStatus_.size();
+    }
+    /**
+     * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+     */
+    public HDFS.hdfs.ReduceTaskStatus getReduceStatus(int index) {
+      return reduceStatus_.get(index);
+    }
+    /**
+     * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+     */
+    public HDFS.hdfs.ReduceTaskStatusOrBuilder getReduceStatusOrBuilder(
+        int index) {
+      return reduceStatus_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (taskTrackerId_ != 0) {
+        output.writeInt32(1, taskTrackerId_);
+      }
+      if (numMapSlotsFree_ != 0) {
+        output.writeInt32(2, numMapSlotsFree_);
+      }
+      if (numReduceSlotsFree_ != 0) {
+        output.writeInt32(3, numReduceSlotsFree_);
+      }
+      for (int i = 0; i < mapStatus_.size(); i++) {
+        output.writeMessage(4, mapStatus_.get(i));
+      }
+      for (int i = 0; i < reduceStatus_.size(); i++) {
+        output.writeMessage(5, reduceStatus_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (taskTrackerId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, taskTrackerId_);
+      }
+      if (numMapSlotsFree_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, numMapSlotsFree_);
+      }
+      if (numReduceSlotsFree_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, numReduceSlotsFree_);
+      }
+      for (int i = 0; i < mapStatus_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, mapStatus_.get(i));
+      }
+      for (int i = 0; i < reduceStatus_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, reduceStatus_.get(i));
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof HDFS.hdfs.HeartBeatRequestMapReduce)) {
+        return super.equals(obj);
+      }
+      HDFS.hdfs.HeartBeatRequestMapReduce other = (HDFS.hdfs.HeartBeatRequestMapReduce) obj;
+
+      boolean result = true;
+      result = result && (getTaskTrackerId()
+          == other.getTaskTrackerId());
+      result = result && (getNumMapSlotsFree()
+          == other.getNumMapSlotsFree());
+      result = result && (getNumReduceSlotsFree()
+          == other.getNumReduceSlotsFree());
+      result = result && getMapStatusList()
+          .equals(other.getMapStatusList());
+      result = result && getReduceStatusList()
+          .equals(other.getReduceStatusList());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + TASKTRACKERID_FIELD_NUMBER;
+      hash = (53 * hash) + getTaskTrackerId();
+      hash = (37 * hash) + NUMMAPSLOTSFREE_FIELD_NUMBER;
+      hash = (53 * hash) + getNumMapSlotsFree();
+      hash = (37 * hash) + NUMREDUCESLOTSFREE_FIELD_NUMBER;
+      hash = (53 * hash) + getNumReduceSlotsFree();
+      if (getMapStatusCount() > 0) {
+        hash = (37 * hash) + MAPSTATUS_FIELD_NUMBER;
+        hash = (53 * hash) + getMapStatusList().hashCode();
+      }
+      if (getReduceStatusCount() > 0) {
+        hash = (37 * hash) + REDUCESTATUS_FIELD_NUMBER;
+        hash = (53 * hash) + getReduceStatusList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static HDFS.hdfs.HeartBeatRequestMapReduce parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.HeartBeatRequestMapReduce parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.HeartBeatRequestMapReduce parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.HeartBeatRequestMapReduce parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.HeartBeatRequestMapReduce parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.HeartBeatRequestMapReduce parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.HeartBeatRequestMapReduce parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.HeartBeatRequestMapReduce parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.HeartBeatRequestMapReduce parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.HeartBeatRequestMapReduce parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(HDFS.hdfs.HeartBeatRequestMapReduce prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code HeartBeatRequestMapReduce}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:HeartBeatRequestMapReduce)
+        HDFS.hdfs.HeartBeatRequestMapReduceOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return HDFS.hdfs.internal_static_HeartBeatRequestMapReduce_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return HDFS.hdfs.internal_static_HeartBeatRequestMapReduce_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                HDFS.hdfs.HeartBeatRequestMapReduce.class, HDFS.hdfs.HeartBeatRequestMapReduce.Builder.class);
+      }
+
+      // Construct using HDFS.hdfs.HeartBeatRequestMapReduce.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getMapStatusFieldBuilder();
+          getReduceStatusFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        taskTrackerId_ = 0;
+
+        numMapSlotsFree_ = 0;
+
+        numReduceSlotsFree_ = 0;
+
+        if (mapStatusBuilder_ == null) {
+          mapStatus_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          mapStatusBuilder_.clear();
+        }
+        if (reduceStatusBuilder_ == null) {
+          reduceStatus_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+        } else {
+          reduceStatusBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return HDFS.hdfs.internal_static_HeartBeatRequestMapReduce_descriptor;
+      }
+
+      public HDFS.hdfs.HeartBeatRequestMapReduce getDefaultInstanceForType() {
+        return HDFS.hdfs.HeartBeatRequestMapReduce.getDefaultInstance();
+      }
+
+      public HDFS.hdfs.HeartBeatRequestMapReduce build() {
+        HDFS.hdfs.HeartBeatRequestMapReduce result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public HDFS.hdfs.HeartBeatRequestMapReduce buildPartial() {
+        HDFS.hdfs.HeartBeatRequestMapReduce result = new HDFS.hdfs.HeartBeatRequestMapReduce(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.taskTrackerId_ = taskTrackerId_;
+        result.numMapSlotsFree_ = numMapSlotsFree_;
+        result.numReduceSlotsFree_ = numReduceSlotsFree_;
+        if (mapStatusBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            mapStatus_ = java.util.Collections.unmodifiableList(mapStatus_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
+          result.mapStatus_ = mapStatus_;
+        } else {
+          result.mapStatus_ = mapStatusBuilder_.build();
+        }
+        if (reduceStatusBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010)) {
+            reduceStatus_ = java.util.Collections.unmodifiableList(reduceStatus_);
+            bitField0_ = (bitField0_ & ~0x00000010);
+          }
+          result.reduceStatus_ = reduceStatus_;
+        } else {
+          result.reduceStatus_ = reduceStatusBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof HDFS.hdfs.HeartBeatRequestMapReduce) {
+          return mergeFrom((HDFS.hdfs.HeartBeatRequestMapReduce)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(HDFS.hdfs.HeartBeatRequestMapReduce other) {
+        if (other == HDFS.hdfs.HeartBeatRequestMapReduce.getDefaultInstance()) return this;
+        if (other.getTaskTrackerId() != 0) {
+          setTaskTrackerId(other.getTaskTrackerId());
+        }
+        if (other.getNumMapSlotsFree() != 0) {
+          setNumMapSlotsFree(other.getNumMapSlotsFree());
+        }
+        if (other.getNumReduceSlotsFree() != 0) {
+          setNumReduceSlotsFree(other.getNumReduceSlotsFree());
+        }
+        if (mapStatusBuilder_ == null) {
+          if (!other.mapStatus_.isEmpty()) {
+            if (mapStatus_.isEmpty()) {
+              mapStatus_ = other.mapStatus_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensureMapStatusIsMutable();
+              mapStatus_.addAll(other.mapStatus_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.mapStatus_.isEmpty()) {
+            if (mapStatusBuilder_.isEmpty()) {
+              mapStatusBuilder_.dispose();
+              mapStatusBuilder_ = null;
+              mapStatus_ = other.mapStatus_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              mapStatusBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getMapStatusFieldBuilder() : null;
+            } else {
+              mapStatusBuilder_.addAllMessages(other.mapStatus_);
+            }
+          }
+        }
+        if (reduceStatusBuilder_ == null) {
+          if (!other.reduceStatus_.isEmpty()) {
+            if (reduceStatus_.isEmpty()) {
+              reduceStatus_ = other.reduceStatus_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+            } else {
+              ensureReduceStatusIsMutable();
+              reduceStatus_.addAll(other.reduceStatus_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.reduceStatus_.isEmpty()) {
+            if (reduceStatusBuilder_.isEmpty()) {
+              reduceStatusBuilder_.dispose();
+              reduceStatusBuilder_ = null;
+              reduceStatus_ = other.reduceStatus_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+              reduceStatusBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getReduceStatusFieldBuilder() : null;
+            } else {
+              reduceStatusBuilder_.addAllMessages(other.reduceStatus_);
+            }
+          }
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        HDFS.hdfs.HeartBeatRequestMapReduce parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (HDFS.hdfs.HeartBeatRequestMapReduce) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int taskTrackerId_ ;
+      /**
+       * <code>optional int32 taskTrackerId = 1;</code>
+       */
+      public int getTaskTrackerId() {
+        return taskTrackerId_;
+      }
+      /**
+       * <code>optional int32 taskTrackerId = 1;</code>
+       */
+      public Builder setTaskTrackerId(int value) {
+        
+        taskTrackerId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 taskTrackerId = 1;</code>
+       */
+      public Builder clearTaskTrackerId() {
+        
+        taskTrackerId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int numMapSlotsFree_ ;
+      /**
+       * <code>optional int32 numMapSlotsFree = 2;</code>
+       */
+      public int getNumMapSlotsFree() {
+        return numMapSlotsFree_;
+      }
+      /**
+       * <code>optional int32 numMapSlotsFree = 2;</code>
+       */
+      public Builder setNumMapSlotsFree(int value) {
+        
+        numMapSlotsFree_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 numMapSlotsFree = 2;</code>
+       */
+      public Builder clearNumMapSlotsFree() {
+        
+        numMapSlotsFree_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int numReduceSlotsFree_ ;
+      /**
+       * <code>optional int32 numReduceSlotsFree = 3;</code>
+       */
+      public int getNumReduceSlotsFree() {
+        return numReduceSlotsFree_;
+      }
+      /**
+       * <code>optional int32 numReduceSlotsFree = 3;</code>
+       */
+      public Builder setNumReduceSlotsFree(int value) {
+        
+        numReduceSlotsFree_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 numReduceSlotsFree = 3;</code>
+       */
+      public Builder clearNumReduceSlotsFree() {
+        
+        numReduceSlotsFree_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<HDFS.hdfs.MapTaskStatus> mapStatus_ =
+        java.util.Collections.emptyList();
+      private void ensureMapStatusIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          mapStatus_ = new java.util.ArrayList<HDFS.hdfs.MapTaskStatus>(mapStatus_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          HDFS.hdfs.MapTaskStatus, HDFS.hdfs.MapTaskStatus.Builder, HDFS.hdfs.MapTaskStatusOrBuilder> mapStatusBuilder_;
+
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public java.util.List<HDFS.hdfs.MapTaskStatus> getMapStatusList() {
+        if (mapStatusBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(mapStatus_);
+        } else {
+          return mapStatusBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public int getMapStatusCount() {
+        if (mapStatusBuilder_ == null) {
+          return mapStatus_.size();
+        } else {
+          return mapStatusBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public HDFS.hdfs.MapTaskStatus getMapStatus(int index) {
+        if (mapStatusBuilder_ == null) {
+          return mapStatus_.get(index);
+        } else {
+          return mapStatusBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public Builder setMapStatus(
+          int index, HDFS.hdfs.MapTaskStatus value) {
+        if (mapStatusBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMapStatusIsMutable();
+          mapStatus_.set(index, value);
+          onChanged();
+        } else {
+          mapStatusBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public Builder setMapStatus(
+          int index, HDFS.hdfs.MapTaskStatus.Builder builderForValue) {
+        if (mapStatusBuilder_ == null) {
+          ensureMapStatusIsMutable();
+          mapStatus_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          mapStatusBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public Builder addMapStatus(HDFS.hdfs.MapTaskStatus value) {
+        if (mapStatusBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMapStatusIsMutable();
+          mapStatus_.add(value);
+          onChanged();
+        } else {
+          mapStatusBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public Builder addMapStatus(
+          int index, HDFS.hdfs.MapTaskStatus value) {
+        if (mapStatusBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMapStatusIsMutable();
+          mapStatus_.add(index, value);
+          onChanged();
+        } else {
+          mapStatusBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public Builder addMapStatus(
+          HDFS.hdfs.MapTaskStatus.Builder builderForValue) {
+        if (mapStatusBuilder_ == null) {
+          ensureMapStatusIsMutable();
+          mapStatus_.add(builderForValue.build());
+          onChanged();
+        } else {
+          mapStatusBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public Builder addMapStatus(
+          int index, HDFS.hdfs.MapTaskStatus.Builder builderForValue) {
+        if (mapStatusBuilder_ == null) {
+          ensureMapStatusIsMutable();
+          mapStatus_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          mapStatusBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public Builder addAllMapStatus(
+          java.lang.Iterable<? extends HDFS.hdfs.MapTaskStatus> values) {
+        if (mapStatusBuilder_ == null) {
+          ensureMapStatusIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, mapStatus_);
+          onChanged();
+        } else {
+          mapStatusBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public Builder clearMapStatus() {
+        if (mapStatusBuilder_ == null) {
+          mapStatus_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+          onChanged();
+        } else {
+          mapStatusBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public Builder removeMapStatus(int index) {
+        if (mapStatusBuilder_ == null) {
+          ensureMapStatusIsMutable();
+          mapStatus_.remove(index);
+          onChanged();
+        } else {
+          mapStatusBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public HDFS.hdfs.MapTaskStatus.Builder getMapStatusBuilder(
+          int index) {
+        return getMapStatusFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public HDFS.hdfs.MapTaskStatusOrBuilder getMapStatusOrBuilder(
+          int index) {
+        if (mapStatusBuilder_ == null) {
+          return mapStatus_.get(index);  } else {
+          return mapStatusBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public java.util.List<? extends HDFS.hdfs.MapTaskStatusOrBuilder> 
+           getMapStatusOrBuilderList() {
+        if (mapStatusBuilder_ != null) {
+          return mapStatusBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(mapStatus_);
+        }
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public HDFS.hdfs.MapTaskStatus.Builder addMapStatusBuilder() {
+        return getMapStatusFieldBuilder().addBuilder(
+            HDFS.hdfs.MapTaskStatus.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public HDFS.hdfs.MapTaskStatus.Builder addMapStatusBuilder(
+          int index) {
+        return getMapStatusFieldBuilder().addBuilder(
+            index, HDFS.hdfs.MapTaskStatus.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .MapTaskStatus mapStatus = 4;</code>
+       */
+      public java.util.List<HDFS.hdfs.MapTaskStatus.Builder> 
+           getMapStatusBuilderList() {
+        return getMapStatusFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          HDFS.hdfs.MapTaskStatus, HDFS.hdfs.MapTaskStatus.Builder, HDFS.hdfs.MapTaskStatusOrBuilder> 
+          getMapStatusFieldBuilder() {
+        if (mapStatusBuilder_ == null) {
+          mapStatusBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              HDFS.hdfs.MapTaskStatus, HDFS.hdfs.MapTaskStatus.Builder, HDFS.hdfs.MapTaskStatusOrBuilder>(
+                  mapStatus_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
+                  getParentForChildren(),
+                  isClean());
+          mapStatus_ = null;
+        }
+        return mapStatusBuilder_;
+      }
+
+      private java.util.List<HDFS.hdfs.ReduceTaskStatus> reduceStatus_ =
+        java.util.Collections.emptyList();
+      private void ensureReduceStatusIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          reduceStatus_ = new java.util.ArrayList<HDFS.hdfs.ReduceTaskStatus>(reduceStatus_);
+          bitField0_ |= 0x00000010;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          HDFS.hdfs.ReduceTaskStatus, HDFS.hdfs.ReduceTaskStatus.Builder, HDFS.hdfs.ReduceTaskStatusOrBuilder> reduceStatusBuilder_;
+
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public java.util.List<HDFS.hdfs.ReduceTaskStatus> getReduceStatusList() {
+        if (reduceStatusBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(reduceStatus_);
+        } else {
+          return reduceStatusBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public int getReduceStatusCount() {
+        if (reduceStatusBuilder_ == null) {
+          return reduceStatus_.size();
+        } else {
+          return reduceStatusBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public HDFS.hdfs.ReduceTaskStatus getReduceStatus(int index) {
+        if (reduceStatusBuilder_ == null) {
+          return reduceStatus_.get(index);
+        } else {
+          return reduceStatusBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public Builder setReduceStatus(
+          int index, HDFS.hdfs.ReduceTaskStatus value) {
+        if (reduceStatusBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReduceStatusIsMutable();
+          reduceStatus_.set(index, value);
+          onChanged();
+        } else {
+          reduceStatusBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public Builder setReduceStatus(
+          int index, HDFS.hdfs.ReduceTaskStatus.Builder builderForValue) {
+        if (reduceStatusBuilder_ == null) {
+          ensureReduceStatusIsMutable();
+          reduceStatus_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          reduceStatusBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public Builder addReduceStatus(HDFS.hdfs.ReduceTaskStatus value) {
+        if (reduceStatusBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReduceStatusIsMutable();
+          reduceStatus_.add(value);
+          onChanged();
+        } else {
+          reduceStatusBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public Builder addReduceStatus(
+          int index, HDFS.hdfs.ReduceTaskStatus value) {
+        if (reduceStatusBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReduceStatusIsMutable();
+          reduceStatus_.add(index, value);
+          onChanged();
+        } else {
+          reduceStatusBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public Builder addReduceStatus(
+          HDFS.hdfs.ReduceTaskStatus.Builder builderForValue) {
+        if (reduceStatusBuilder_ == null) {
+          ensureReduceStatusIsMutable();
+          reduceStatus_.add(builderForValue.build());
+          onChanged();
+        } else {
+          reduceStatusBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public Builder addReduceStatus(
+          int index, HDFS.hdfs.ReduceTaskStatus.Builder builderForValue) {
+        if (reduceStatusBuilder_ == null) {
+          ensureReduceStatusIsMutable();
+          reduceStatus_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          reduceStatusBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public Builder addAllReduceStatus(
+          java.lang.Iterable<? extends HDFS.hdfs.ReduceTaskStatus> values) {
+        if (reduceStatusBuilder_ == null) {
+          ensureReduceStatusIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, reduceStatus_);
+          onChanged();
+        } else {
+          reduceStatusBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public Builder clearReduceStatus() {
+        if (reduceStatusBuilder_ == null) {
+          reduceStatus_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+          onChanged();
+        } else {
+          reduceStatusBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public Builder removeReduceStatus(int index) {
+        if (reduceStatusBuilder_ == null) {
+          ensureReduceStatusIsMutable();
+          reduceStatus_.remove(index);
+          onChanged();
+        } else {
+          reduceStatusBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public HDFS.hdfs.ReduceTaskStatus.Builder getReduceStatusBuilder(
+          int index) {
+        return getReduceStatusFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public HDFS.hdfs.ReduceTaskStatusOrBuilder getReduceStatusOrBuilder(
+          int index) {
+        if (reduceStatusBuilder_ == null) {
+          return reduceStatus_.get(index);  } else {
+          return reduceStatusBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public java.util.List<? extends HDFS.hdfs.ReduceTaskStatusOrBuilder> 
+           getReduceStatusOrBuilderList() {
+        if (reduceStatusBuilder_ != null) {
+          return reduceStatusBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(reduceStatus_);
+        }
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public HDFS.hdfs.ReduceTaskStatus.Builder addReduceStatusBuilder() {
+        return getReduceStatusFieldBuilder().addBuilder(
+            HDFS.hdfs.ReduceTaskStatus.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public HDFS.hdfs.ReduceTaskStatus.Builder addReduceStatusBuilder(
+          int index) {
+        return getReduceStatusFieldBuilder().addBuilder(
+            index, HDFS.hdfs.ReduceTaskStatus.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ReduceTaskStatus reduceStatus = 5;</code>
+       */
+      public java.util.List<HDFS.hdfs.ReduceTaskStatus.Builder> 
+           getReduceStatusBuilderList() {
+        return getReduceStatusFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          HDFS.hdfs.ReduceTaskStatus, HDFS.hdfs.ReduceTaskStatus.Builder, HDFS.hdfs.ReduceTaskStatusOrBuilder> 
+          getReduceStatusFieldBuilder() {
+        if (reduceStatusBuilder_ == null) {
+          reduceStatusBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              HDFS.hdfs.ReduceTaskStatus, HDFS.hdfs.ReduceTaskStatus.Builder, HDFS.hdfs.ReduceTaskStatusOrBuilder>(
+                  reduceStatus_,
+                  ((bitField0_ & 0x00000010) == 0x00000010),
+                  getParentForChildren(),
+                  isClean());
+          reduceStatus_ = null;
+        }
+        return reduceStatusBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:HeartBeatRequestMapReduce)
+    }
+
+    // @@protoc_insertion_point(class_scope:HeartBeatRequestMapReduce)
+    private static final HDFS.hdfs.HeartBeatRequestMapReduce DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new HDFS.hdfs.HeartBeatRequestMapReduce();
+    }
+
+    public static HDFS.hdfs.HeartBeatRequestMapReduce getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<HeartBeatRequestMapReduce>
+        PARSER = new com.google.protobuf.AbstractParser<HeartBeatRequestMapReduce>() {
+      public HeartBeatRequestMapReduce parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new HeartBeatRequestMapReduce(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<HeartBeatRequestMapReduce> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<HeartBeatRequestMapReduce> getParserForType() {
+      return PARSER;
+    }
+
+    public HDFS.hdfs.HeartBeatRequestMapReduce getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface MapTaskInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:MapTaskInfo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 jobId = 1;</code>
+     */
+    int getJobId();
+
+    /**
+     * <code>optional int32 taskId = 2;</code>
+     */
+    int getTaskId();
+
+    /**
+     * <code>optional string mapName = 3;</code>
+     */
+    java.lang.String getMapName();
+    /**
+     * <code>optional string mapName = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getMapNameBytes();
+
+    /**
+     * <code>repeated .BlockLocations inputBlocks = 4;</code>
+     */
+    java.util.List<HDFS.hdfs.BlockLocations> 
+        getInputBlocksList();
+    /**
+     * <code>repeated .BlockLocations inputBlocks = 4;</code>
+     */
+    HDFS.hdfs.BlockLocations getInputBlocks(int index);
+    /**
+     * <code>repeated .BlockLocations inputBlocks = 4;</code>
+     */
+    int getInputBlocksCount();
+    /**
+     * <code>repeated .BlockLocations inputBlocks = 4;</code>
+     */
+    java.util.List<? extends HDFS.hdfs.BlockLocationsOrBuilder> 
+        getInputBlocksOrBuilderList();
+    /**
+     * <code>repeated .BlockLocations inputBlocks = 4;</code>
+     */
+    HDFS.hdfs.BlockLocationsOrBuilder getInputBlocksOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code MapTaskInfo}
+   */
+  public  static final class MapTaskInfo extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:MapTaskInfo)
+      MapTaskInfoOrBuilder {
+    // Use MapTaskInfo.newBuilder() to construct.
+    private MapTaskInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private MapTaskInfo() {
+      jobId_ = 0;
+      taskId_ = 0;
+      mapName_ = "";
+      inputBlocks_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private MapTaskInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              jobId_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              taskId_ = input.readInt32();
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              mapName_ = s;
+              break;
+            }
+            case 34: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                inputBlocks_ = new java.util.ArrayList<HDFS.hdfs.BlockLocations>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              inputBlocks_.add(
+                  input.readMessage(HDFS.hdfs.BlockLocations.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          inputBlocks_ = java.util.Collections.unmodifiableList(inputBlocks_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return HDFS.hdfs.internal_static_MapTaskInfo_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return HDFS.hdfs.internal_static_MapTaskInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              HDFS.hdfs.MapTaskInfo.class, HDFS.hdfs.MapTaskInfo.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int JOBID_FIELD_NUMBER = 1;
+    private int jobId_;
+    /**
+     * <code>optional int32 jobId = 1;</code>
+     */
+    public int getJobId() {
+      return jobId_;
+    }
+
+    public static final int TASKID_FIELD_NUMBER = 2;
+    private int taskId_;
+    /**
+     * <code>optional int32 taskId = 2;</code>
+     */
+    public int getTaskId() {
+      return taskId_;
+    }
+
+    public static final int MAPNAME_FIELD_NUMBER = 3;
+    private volatile java.lang.Object mapName_;
+    /**
+     * <code>optional string mapName = 3;</code>
+     */
+    public java.lang.String getMapName() {
+      java.lang.Object ref = mapName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        mapName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string mapName = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMapNameBytes() {
+      java.lang.Object ref = mapName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        mapName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int INPUTBLOCKS_FIELD_NUMBER = 4;
+    private java.util.List<HDFS.hdfs.BlockLocations> inputBlocks_;
+    /**
+     * <code>repeated .BlockLocations inputBlocks = 4;</code>
+     */
+    public java.util.List<HDFS.hdfs.BlockLocations> getInputBlocksList() {
+      return inputBlocks_;
+    }
+    /**
+     * <code>repeated .BlockLocations inputBlocks = 4;</code>
+     */
+    public java.util.List<? extends HDFS.hdfs.BlockLocationsOrBuilder> 
+        getInputBlocksOrBuilderList() {
+      return inputBlocks_;
+    }
+    /**
+     * <code>repeated .BlockLocations inputBlocks = 4;</code>
+     */
+    public int getInputBlocksCount() {
+      return inputBlocks_.size();
+    }
+    /**
+     * <code>repeated .BlockLocations inputBlocks = 4;</code>
+     */
+    public HDFS.hdfs.BlockLocations getInputBlocks(int index) {
+      return inputBlocks_.get(index);
+    }
+    /**
+     * <code>repeated .BlockLocations inputBlocks = 4;</code>
+     */
+    public HDFS.hdfs.BlockLocationsOrBuilder getInputBlocksOrBuilder(
+        int index) {
+      return inputBlocks_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (jobId_ != 0) {
+        output.writeInt32(1, jobId_);
+      }
+      if (taskId_ != 0) {
+        output.writeInt32(2, taskId_);
+      }
+      if (!getMapNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, mapName_);
+      }
+      for (int i = 0; i < inputBlocks_.size(); i++) {
+        output.writeMessage(4, inputBlocks_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (jobId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, jobId_);
+      }
+      if (taskId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, taskId_);
+      }
+      if (!getMapNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, mapName_);
+      }
+      for (int i = 0; i < inputBlocks_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, inputBlocks_.get(i));
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof HDFS.hdfs.MapTaskInfo)) {
+        return super.equals(obj);
+      }
+      HDFS.hdfs.MapTaskInfo other = (HDFS.hdfs.MapTaskInfo) obj;
+
+      boolean result = true;
+      result = result && (getJobId()
+          == other.getJobId());
+      result = result && (getTaskId()
+          == other.getTaskId());
+      result = result && getMapName()
+          .equals(other.getMapName());
+      result = result && getInputBlocksList()
+          .equals(other.getInputBlocksList());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + JOBID_FIELD_NUMBER;
+      hash = (53 * hash) + getJobId();
+      hash = (37 * hash) + TASKID_FIELD_NUMBER;
+      hash = (53 * hash) + getTaskId();
+      hash = (37 * hash) + MAPNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getMapName().hashCode();
+      if (getInputBlocksCount() > 0) {
+        hash = (37 * hash) + INPUTBLOCKS_FIELD_NUMBER;
+        hash = (53 * hash) + getInputBlocksList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static HDFS.hdfs.MapTaskInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.MapTaskInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.MapTaskInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.MapTaskInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.MapTaskInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.MapTaskInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.MapTaskInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.MapTaskInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.MapTaskInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.MapTaskInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(HDFS.hdfs.MapTaskInfo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code MapTaskInfo}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:MapTaskInfo)
+        HDFS.hdfs.MapTaskInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return HDFS.hdfs.internal_static_MapTaskInfo_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return HDFS.hdfs.internal_static_MapTaskInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                HDFS.hdfs.MapTaskInfo.class, HDFS.hdfs.MapTaskInfo.Builder.class);
+      }
+
+      // Construct using HDFS.hdfs.MapTaskInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getInputBlocksFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        jobId_ = 0;
+
+        taskId_ = 0;
+
+        mapName_ = "";
+
+        if (inputBlocksBuilder_ == null) {
+          inputBlocks_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          inputBlocksBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return HDFS.hdfs.internal_static_MapTaskInfo_descriptor;
+      }
+
+      public HDFS.hdfs.MapTaskInfo getDefaultInstanceForType() {
+        return HDFS.hdfs.MapTaskInfo.getDefaultInstance();
+      }
+
+      public HDFS.hdfs.MapTaskInfo build() {
+        HDFS.hdfs.MapTaskInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public HDFS.hdfs.MapTaskInfo buildPartial() {
+        HDFS.hdfs.MapTaskInfo result = new HDFS.hdfs.MapTaskInfo(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.jobId_ = jobId_;
+        result.taskId_ = taskId_;
+        result.mapName_ = mapName_;
+        if (inputBlocksBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            inputBlocks_ = java.util.Collections.unmodifiableList(inputBlocks_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
+          result.inputBlocks_ = inputBlocks_;
+        } else {
+          result.inputBlocks_ = inputBlocksBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof HDFS.hdfs.MapTaskInfo) {
+          return mergeFrom((HDFS.hdfs.MapTaskInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(HDFS.hdfs.MapTaskInfo other) {
+        if (other == HDFS.hdfs.MapTaskInfo.getDefaultInstance()) return this;
+        if (other.getJobId() != 0) {
+          setJobId(other.getJobId());
+        }
+        if (other.getTaskId() != 0) {
+          setTaskId(other.getTaskId());
+        }
+        if (!other.getMapName().isEmpty()) {
+          mapName_ = other.mapName_;
+          onChanged();
+        }
+        if (inputBlocksBuilder_ == null) {
+          if (!other.inputBlocks_.isEmpty()) {
+            if (inputBlocks_.isEmpty()) {
+              inputBlocks_ = other.inputBlocks_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensureInputBlocksIsMutable();
+              inputBlocks_.addAll(other.inputBlocks_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.inputBlocks_.isEmpty()) {
+            if (inputBlocksBuilder_.isEmpty()) {
+              inputBlocksBuilder_.dispose();
+              inputBlocksBuilder_ = null;
+              inputBlocks_ = other.inputBlocks_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              inputBlocksBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getInputBlocksFieldBuilder() : null;
+            } else {
+              inputBlocksBuilder_.addAllMessages(other.inputBlocks_);
+            }
+          }
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        HDFS.hdfs.MapTaskInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (HDFS.hdfs.MapTaskInfo) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int jobId_ ;
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public int getJobId() {
+        return jobId_;
+      }
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public Builder setJobId(int value) {
+        
+        jobId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public Builder clearJobId() {
+        
+        jobId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int taskId_ ;
+      /**
+       * <code>optional int32 taskId = 2;</code>
+       */
+      public int getTaskId() {
+        return taskId_;
+      }
+      /**
+       * <code>optional int32 taskId = 2;</code>
+       */
+      public Builder setTaskId(int value) {
+        
+        taskId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 taskId = 2;</code>
+       */
+      public Builder clearTaskId() {
+        
+        taskId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object mapName_ = "";
+      /**
+       * <code>optional string mapName = 3;</code>
+       */
+      public java.lang.String getMapName() {
+        java.lang.Object ref = mapName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          mapName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string mapName = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMapNameBytes() {
+        java.lang.Object ref = mapName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          mapName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string mapName = 3;</code>
+       */
+      public Builder setMapName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        mapName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string mapName = 3;</code>
+       */
+      public Builder clearMapName() {
+        
+        mapName_ = getDefaultInstance().getMapName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string mapName = 3;</code>
+       */
+      public Builder setMapNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        mapName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<HDFS.hdfs.BlockLocations> inputBlocks_ =
+        java.util.Collections.emptyList();
+      private void ensureInputBlocksIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          inputBlocks_ = new java.util.ArrayList<HDFS.hdfs.BlockLocations>(inputBlocks_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          HDFS.hdfs.BlockLocations, HDFS.hdfs.BlockLocations.Builder, HDFS.hdfs.BlockLocationsOrBuilder> inputBlocksBuilder_;
+
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public java.util.List<HDFS.hdfs.BlockLocations> getInputBlocksList() {
+        if (inputBlocksBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(inputBlocks_);
+        } else {
+          return inputBlocksBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public int getInputBlocksCount() {
+        if (inputBlocksBuilder_ == null) {
+          return inputBlocks_.size();
+        } else {
+          return inputBlocksBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public HDFS.hdfs.BlockLocations getInputBlocks(int index) {
+        if (inputBlocksBuilder_ == null) {
+          return inputBlocks_.get(index);
+        } else {
+          return inputBlocksBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public Builder setInputBlocks(
+          int index, HDFS.hdfs.BlockLocations value) {
+        if (inputBlocksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureInputBlocksIsMutable();
+          inputBlocks_.set(index, value);
+          onChanged();
+        } else {
+          inputBlocksBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public Builder setInputBlocks(
+          int index, HDFS.hdfs.BlockLocations.Builder builderForValue) {
+        if (inputBlocksBuilder_ == null) {
+          ensureInputBlocksIsMutable();
+          inputBlocks_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          inputBlocksBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public Builder addInputBlocks(HDFS.hdfs.BlockLocations value) {
+        if (inputBlocksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureInputBlocksIsMutable();
+          inputBlocks_.add(value);
+          onChanged();
+        } else {
+          inputBlocksBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public Builder addInputBlocks(
+          int index, HDFS.hdfs.BlockLocations value) {
+        if (inputBlocksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureInputBlocksIsMutable();
+          inputBlocks_.add(index, value);
+          onChanged();
+        } else {
+          inputBlocksBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public Builder addInputBlocks(
+          HDFS.hdfs.BlockLocations.Builder builderForValue) {
+        if (inputBlocksBuilder_ == null) {
+          ensureInputBlocksIsMutable();
+          inputBlocks_.add(builderForValue.build());
+          onChanged();
+        } else {
+          inputBlocksBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public Builder addInputBlocks(
+          int index, HDFS.hdfs.BlockLocations.Builder builderForValue) {
+        if (inputBlocksBuilder_ == null) {
+          ensureInputBlocksIsMutable();
+          inputBlocks_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          inputBlocksBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public Builder addAllInputBlocks(
+          java.lang.Iterable<? extends HDFS.hdfs.BlockLocations> values) {
+        if (inputBlocksBuilder_ == null) {
+          ensureInputBlocksIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, inputBlocks_);
+          onChanged();
+        } else {
+          inputBlocksBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public Builder clearInputBlocks() {
+        if (inputBlocksBuilder_ == null) {
+          inputBlocks_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+          onChanged();
+        } else {
+          inputBlocksBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public Builder removeInputBlocks(int index) {
+        if (inputBlocksBuilder_ == null) {
+          ensureInputBlocksIsMutable();
+          inputBlocks_.remove(index);
+          onChanged();
+        } else {
+          inputBlocksBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public HDFS.hdfs.BlockLocations.Builder getInputBlocksBuilder(
+          int index) {
+        return getInputBlocksFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public HDFS.hdfs.BlockLocationsOrBuilder getInputBlocksOrBuilder(
+          int index) {
+        if (inputBlocksBuilder_ == null) {
+          return inputBlocks_.get(index);  } else {
+          return inputBlocksBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public java.util.List<? extends HDFS.hdfs.BlockLocationsOrBuilder> 
+           getInputBlocksOrBuilderList() {
+        if (inputBlocksBuilder_ != null) {
+          return inputBlocksBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(inputBlocks_);
+        }
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public HDFS.hdfs.BlockLocations.Builder addInputBlocksBuilder() {
+        return getInputBlocksFieldBuilder().addBuilder(
+            HDFS.hdfs.BlockLocations.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public HDFS.hdfs.BlockLocations.Builder addInputBlocksBuilder(
+          int index) {
+        return getInputBlocksFieldBuilder().addBuilder(
+            index, HDFS.hdfs.BlockLocations.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .BlockLocations inputBlocks = 4;</code>
+       */
+      public java.util.List<HDFS.hdfs.BlockLocations.Builder> 
+           getInputBlocksBuilderList() {
+        return getInputBlocksFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          HDFS.hdfs.BlockLocations, HDFS.hdfs.BlockLocations.Builder, HDFS.hdfs.BlockLocationsOrBuilder> 
+          getInputBlocksFieldBuilder() {
+        if (inputBlocksBuilder_ == null) {
+          inputBlocksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              HDFS.hdfs.BlockLocations, HDFS.hdfs.BlockLocations.Builder, HDFS.hdfs.BlockLocationsOrBuilder>(
+                  inputBlocks_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
+                  getParentForChildren(),
+                  isClean());
+          inputBlocks_ = null;
+        }
+        return inputBlocksBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:MapTaskInfo)
+    }
+
+    // @@protoc_insertion_point(class_scope:MapTaskInfo)
+    private static final HDFS.hdfs.MapTaskInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new HDFS.hdfs.MapTaskInfo();
+    }
+
+    public static HDFS.hdfs.MapTaskInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<MapTaskInfo>
+        PARSER = new com.google.protobuf.AbstractParser<MapTaskInfo>() {
+      public MapTaskInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new MapTaskInfo(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<MapTaskInfo> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<MapTaskInfo> getParserForType() {
+      return PARSER;
+    }
+
+    public HDFS.hdfs.MapTaskInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ReducerTaskInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ReducerTaskInfo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 jobId = 1;</code>
+     */
+    int getJobId();
+
+    /**
+     * <code>optional int32 taskId = 2;</code>
+     */
+    int getTaskId();
+
+    /**
+     * <code>optional string reducerName = 3;</code>
+     */
+    java.lang.String getReducerName();
+    /**
+     * <code>optional string reducerName = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getReducerNameBytes();
+
+    /**
+     * <code>repeated string mapOutputFiles = 4;</code>
+     */
+    java.util.List<java.lang.String>
+        getMapOutputFilesList();
+    /**
+     * <code>repeated string mapOutputFiles = 4;</code>
+     */
+    int getMapOutputFilesCount();
+    /**
+     * <code>repeated string mapOutputFiles = 4;</code>
+     */
+    java.lang.String getMapOutputFiles(int index);
+    /**
+     * <code>repeated string mapOutputFiles = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getMapOutputFilesBytes(int index);
+
+    /**
+     * <code>optional string outputFile = 5;</code>
+     */
+    java.lang.String getOutputFile();
+    /**
+     * <code>optional string outputFile = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getOutputFileBytes();
+  }
+  /**
+   * Protobuf type {@code ReducerTaskInfo}
+   */
+  public  static final class ReducerTaskInfo extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ReducerTaskInfo)
+      ReducerTaskInfoOrBuilder {
+    // Use ReducerTaskInfo.newBuilder() to construct.
+    private ReducerTaskInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReducerTaskInfo() {
+      jobId_ = 0;
+      taskId_ = 0;
+      reducerName_ = "";
+      mapOutputFiles_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      outputFile_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private ReducerTaskInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              jobId_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              taskId_ = input.readInt32();
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              reducerName_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                mapOutputFiles_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              mapOutputFiles_.add(s);
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              outputFile_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          mapOutputFiles_ = mapOutputFiles_.getUnmodifiableView();
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return HDFS.hdfs.internal_static_ReducerTaskInfo_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return HDFS.hdfs.internal_static_ReducerTaskInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              HDFS.hdfs.ReducerTaskInfo.class, HDFS.hdfs.ReducerTaskInfo.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int JOBID_FIELD_NUMBER = 1;
+    private int jobId_;
+    /**
+     * <code>optional int32 jobId = 1;</code>
+     */
+    public int getJobId() {
+      return jobId_;
+    }
+
+    public static final int TASKID_FIELD_NUMBER = 2;
+    private int taskId_;
+    /**
+     * <code>optional int32 taskId = 2;</code>
+     */
+    public int getTaskId() {
+      return taskId_;
+    }
+
+    public static final int REDUCERNAME_FIELD_NUMBER = 3;
+    private volatile java.lang.Object reducerName_;
+    /**
+     * <code>optional string reducerName = 3;</code>
+     */
+    public java.lang.String getReducerName() {
+      java.lang.Object ref = reducerName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        reducerName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string reducerName = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getReducerNameBytes() {
+      java.lang.Object ref = reducerName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        reducerName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MAPOUTPUTFILES_FIELD_NUMBER = 4;
+    private com.google.protobuf.LazyStringList mapOutputFiles_;
+    /**
+     * <code>repeated string mapOutputFiles = 4;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getMapOutputFilesList() {
+      return mapOutputFiles_;
+    }
+    /**
+     * <code>repeated string mapOutputFiles = 4;</code>
+     */
+    public int getMapOutputFilesCount() {
+      return mapOutputFiles_.size();
+    }
+    /**
+     * <code>repeated string mapOutputFiles = 4;</code>
+     */
+    public java.lang.String getMapOutputFiles(int index) {
+      return mapOutputFiles_.get(index);
+    }
+    /**
+     * <code>repeated string mapOutputFiles = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMapOutputFilesBytes(int index) {
+      return mapOutputFiles_.getByteString(index);
+    }
+
+    public static final int OUTPUTFILE_FIELD_NUMBER = 5;
+    private volatile java.lang.Object outputFile_;
+    /**
+     * <code>optional string outputFile = 5;</code>
+     */
+    public java.lang.String getOutputFile() {
+      java.lang.Object ref = outputFile_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        outputFile_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string outputFile = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getOutputFileBytes() {
+      java.lang.Object ref = outputFile_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        outputFile_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (jobId_ != 0) {
+        output.writeInt32(1, jobId_);
+      }
+      if (taskId_ != 0) {
+        output.writeInt32(2, taskId_);
+      }
+      if (!getReducerNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, reducerName_);
+      }
+      for (int i = 0; i < mapOutputFiles_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, mapOutputFiles_.getRaw(i));
+      }
+      if (!getOutputFileBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, outputFile_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (jobId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, jobId_);
+      }
+      if (taskId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, taskId_);
+      }
+      if (!getReducerNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, reducerName_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < mapOutputFiles_.size(); i++) {
+          dataSize += computeStringSizeNoTag(mapOutputFiles_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getMapOutputFilesList().size();
+      }
+      if (!getOutputFileBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, outputFile_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof HDFS.hdfs.ReducerTaskInfo)) {
+        return super.equals(obj);
+      }
+      HDFS.hdfs.ReducerTaskInfo other = (HDFS.hdfs.ReducerTaskInfo) obj;
+
+      boolean result = true;
+      result = result && (getJobId()
+          == other.getJobId());
+      result = result && (getTaskId()
+          == other.getTaskId());
+      result = result && getReducerName()
+          .equals(other.getReducerName());
+      result = result && getMapOutputFilesList()
+          .equals(other.getMapOutputFilesList());
+      result = result && getOutputFile()
+          .equals(other.getOutputFile());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + JOBID_FIELD_NUMBER;
+      hash = (53 * hash) + getJobId();
+      hash = (37 * hash) + TASKID_FIELD_NUMBER;
+      hash = (53 * hash) + getTaskId();
+      hash = (37 * hash) + REDUCERNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getReducerName().hashCode();
+      if (getMapOutputFilesCount() > 0) {
+        hash = (37 * hash) + MAPOUTPUTFILES_FIELD_NUMBER;
+        hash = (53 * hash) + getMapOutputFilesList().hashCode();
+      }
+      hash = (37 * hash) + OUTPUTFILE_FIELD_NUMBER;
+      hash = (53 * hash) + getOutputFile().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static HDFS.hdfs.ReducerTaskInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.ReducerTaskInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.ReducerTaskInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.ReducerTaskInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.ReducerTaskInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.ReducerTaskInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.ReducerTaskInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.ReducerTaskInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.ReducerTaskInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.ReducerTaskInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(HDFS.hdfs.ReducerTaskInfo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ReducerTaskInfo}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ReducerTaskInfo)
+        HDFS.hdfs.ReducerTaskInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return HDFS.hdfs.internal_static_ReducerTaskInfo_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return HDFS.hdfs.internal_static_ReducerTaskInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                HDFS.hdfs.ReducerTaskInfo.class, HDFS.hdfs.ReducerTaskInfo.Builder.class);
+      }
+
+      // Construct using HDFS.hdfs.ReducerTaskInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        jobId_ = 0;
+
+        taskId_ = 0;
+
+        reducerName_ = "";
+
+        mapOutputFiles_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        outputFile_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return HDFS.hdfs.internal_static_ReducerTaskInfo_descriptor;
+      }
+
+      public HDFS.hdfs.ReducerTaskInfo getDefaultInstanceForType() {
+        return HDFS.hdfs.ReducerTaskInfo.getDefaultInstance();
+      }
+
+      public HDFS.hdfs.ReducerTaskInfo build() {
+        HDFS.hdfs.ReducerTaskInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public HDFS.hdfs.ReducerTaskInfo buildPartial() {
+        HDFS.hdfs.ReducerTaskInfo result = new HDFS.hdfs.ReducerTaskInfo(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.jobId_ = jobId_;
+        result.taskId_ = taskId_;
+        result.reducerName_ = reducerName_;
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          mapOutputFiles_ = mapOutputFiles_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        }
+        result.mapOutputFiles_ = mapOutputFiles_;
+        result.outputFile_ = outputFile_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof HDFS.hdfs.ReducerTaskInfo) {
+          return mergeFrom((HDFS.hdfs.ReducerTaskInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(HDFS.hdfs.ReducerTaskInfo other) {
+        if (other == HDFS.hdfs.ReducerTaskInfo.getDefaultInstance()) return this;
+        if (other.getJobId() != 0) {
+          setJobId(other.getJobId());
+        }
+        if (other.getTaskId() != 0) {
+          setTaskId(other.getTaskId());
+        }
+        if (!other.getReducerName().isEmpty()) {
+          reducerName_ = other.reducerName_;
+          onChanged();
+        }
+        if (!other.mapOutputFiles_.isEmpty()) {
+          if (mapOutputFiles_.isEmpty()) {
+            mapOutputFiles_ = other.mapOutputFiles_;
+            bitField0_ = (bitField0_ & ~0x00000008);
+          } else {
+            ensureMapOutputFilesIsMutable();
+            mapOutputFiles_.addAll(other.mapOutputFiles_);
+          }
+          onChanged();
+        }
+        if (!other.getOutputFile().isEmpty()) {
+          outputFile_ = other.outputFile_;
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        HDFS.hdfs.ReducerTaskInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (HDFS.hdfs.ReducerTaskInfo) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int jobId_ ;
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public int getJobId() {
+        return jobId_;
+      }
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public Builder setJobId(int value) {
+        
+        jobId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 jobId = 1;</code>
+       */
+      public Builder clearJobId() {
+        
+        jobId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int taskId_ ;
+      /**
+       * <code>optional int32 taskId = 2;</code>
+       */
+      public int getTaskId() {
+        return taskId_;
+      }
+      /**
+       * <code>optional int32 taskId = 2;</code>
+       */
+      public Builder setTaskId(int value) {
+        
+        taskId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 taskId = 2;</code>
+       */
+      public Builder clearTaskId() {
+        
+        taskId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object reducerName_ = "";
+      /**
+       * <code>optional string reducerName = 3;</code>
+       */
+      public java.lang.String getReducerName() {
+        java.lang.Object ref = reducerName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          reducerName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string reducerName = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getReducerNameBytes() {
+        java.lang.Object ref = reducerName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          reducerName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string reducerName = 3;</code>
+       */
+      public Builder setReducerName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        reducerName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string reducerName = 3;</code>
+       */
+      public Builder clearReducerName() {
+        
+        reducerName_ = getDefaultInstance().getReducerName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string reducerName = 3;</code>
+       */
+      public Builder setReducerNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        reducerName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringList mapOutputFiles_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureMapOutputFilesIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          mapOutputFiles_ = new com.google.protobuf.LazyStringArrayList(mapOutputFiles_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+      /**
+       * <code>repeated string mapOutputFiles = 4;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getMapOutputFilesList() {
+        return mapOutputFiles_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string mapOutputFiles = 4;</code>
+       */
+      public int getMapOutputFilesCount() {
+        return mapOutputFiles_.size();
+      }
+      /**
+       * <code>repeated string mapOutputFiles = 4;</code>
+       */
+      public java.lang.String getMapOutputFiles(int index) {
+        return mapOutputFiles_.get(index);
+      }
+      /**
+       * <code>repeated string mapOutputFiles = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMapOutputFilesBytes(int index) {
+        return mapOutputFiles_.getByteString(index);
+      }
+      /**
+       * <code>repeated string mapOutputFiles = 4;</code>
+       */
+      public Builder setMapOutputFiles(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureMapOutputFilesIsMutable();
+        mapOutputFiles_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string mapOutputFiles = 4;</code>
+       */
+      public Builder addMapOutputFiles(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureMapOutputFilesIsMutable();
+        mapOutputFiles_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string mapOutputFiles = 4;</code>
+       */
+      public Builder addAllMapOutputFiles(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureMapOutputFilesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, mapOutputFiles_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string mapOutputFiles = 4;</code>
+       */
+      public Builder clearMapOutputFiles() {
+        mapOutputFiles_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string mapOutputFiles = 4;</code>
+       */
+      public Builder addMapOutputFilesBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureMapOutputFilesIsMutable();
+        mapOutputFiles_.add(value);
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object outputFile_ = "";
+      /**
+       * <code>optional string outputFile = 5;</code>
+       */
+      public java.lang.String getOutputFile() {
+        java.lang.Object ref = outputFile_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          outputFile_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string outputFile = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getOutputFileBytes() {
+        java.lang.Object ref = outputFile_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          outputFile_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string outputFile = 5;</code>
+       */
+      public Builder setOutputFile(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        outputFile_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string outputFile = 5;</code>
+       */
+      public Builder clearOutputFile() {
+        
+        outputFile_ = getDefaultInstance().getOutputFile();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string outputFile = 5;</code>
+       */
+      public Builder setOutputFileBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        outputFile_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ReducerTaskInfo)
+    }
+
+    // @@protoc_insertion_point(class_scope:ReducerTaskInfo)
+    private static final HDFS.hdfs.ReducerTaskInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new HDFS.hdfs.ReducerTaskInfo();
+    }
+
+    public static HDFS.hdfs.ReducerTaskInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReducerTaskInfo>
+        PARSER = new com.google.protobuf.AbstractParser<ReducerTaskInfo>() {
+      public ReducerTaskInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new ReducerTaskInfo(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReducerTaskInfo> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReducerTaskInfo> getParserForType() {
+      return PARSER;
+    }
+
+    public HDFS.hdfs.ReducerTaskInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface HeartBeatResponseMapReduceOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:HeartBeatResponseMapReduce)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 status = 1;</code>
+     */
+    int getStatus();
+
+    /**
+     * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+     */
+    java.util.List<HDFS.hdfs.MapTaskInfo> 
+        getMapTasksList();
+    /**
+     * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+     */
+    HDFS.hdfs.MapTaskInfo getMapTasks(int index);
+    /**
+     * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+     */
+    int getMapTasksCount();
+    /**
+     * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+     */
+    java.util.List<? extends HDFS.hdfs.MapTaskInfoOrBuilder> 
+        getMapTasksOrBuilderList();
+    /**
+     * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+     */
+    HDFS.hdfs.MapTaskInfoOrBuilder getMapTasksOrBuilder(
+        int index);
+
+    /**
+     * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+     */
+    java.util.List<HDFS.hdfs.ReducerTaskInfo> 
+        getReduceTasksList();
+    /**
+     * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+     */
+    HDFS.hdfs.ReducerTaskInfo getReduceTasks(int index);
+    /**
+     * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+     */
+    int getReduceTasksCount();
+    /**
+     * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+     */
+    java.util.List<? extends HDFS.hdfs.ReducerTaskInfoOrBuilder> 
+        getReduceTasksOrBuilderList();
+    /**
+     * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+     */
+    HDFS.hdfs.ReducerTaskInfoOrBuilder getReduceTasksOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code HeartBeatResponseMapReduce}
+   */
+  public  static final class HeartBeatResponseMapReduce extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:HeartBeatResponseMapReduce)
+      HeartBeatResponseMapReduceOrBuilder {
+    // Use HeartBeatResponseMapReduce.newBuilder() to construct.
+    private HeartBeatResponseMapReduce(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private HeartBeatResponseMapReduce() {
+      status_ = 0;
+      mapTasks_ = java.util.Collections.emptyList();
+      reduceTasks_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private HeartBeatResponseMapReduce(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              status_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                mapTasks_ = new java.util.ArrayList<HDFS.hdfs.MapTaskInfo>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              mapTasks_.add(
+                  input.readMessage(HDFS.hdfs.MapTaskInfo.parser(), extensionRegistry));
+              break;
+            }
+            case 26: {
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                reduceTasks_ = new java.util.ArrayList<HDFS.hdfs.ReducerTaskInfo>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              reduceTasks_.add(
+                  input.readMessage(HDFS.hdfs.ReducerTaskInfo.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          mapTasks_ = java.util.Collections.unmodifiableList(mapTasks_);
+        }
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          reduceTasks_ = java.util.Collections.unmodifiableList(reduceTasks_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return HDFS.hdfs.internal_static_HeartBeatResponseMapReduce_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return HDFS.hdfs.internal_static_HeartBeatResponseMapReduce_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              HDFS.hdfs.HeartBeatResponseMapReduce.class, HDFS.hdfs.HeartBeatResponseMapReduce.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int STATUS_FIELD_NUMBER = 1;
+    private int status_;
+    /**
+     * <code>optional int32 status = 1;</code>
+     */
+    public int getStatus() {
+      return status_;
+    }
+
+    public static final int MAPTASKS_FIELD_NUMBER = 2;
+    private java.util.List<HDFS.hdfs.MapTaskInfo> mapTasks_;
+    /**
+     * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+     */
+    public java.util.List<HDFS.hdfs.MapTaskInfo> getMapTasksList() {
+      return mapTasks_;
+    }
+    /**
+     * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+     */
+    public java.util.List<? extends HDFS.hdfs.MapTaskInfoOrBuilder> 
+        getMapTasksOrBuilderList() {
+      return mapTasks_;
+    }
+    /**
+     * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+     */
+    public int getMapTasksCount() {
+      return mapTasks_.size();
+    }
+    /**
+     * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+     */
+    public HDFS.hdfs.MapTaskInfo getMapTasks(int index) {
+      return mapTasks_.get(index);
+    }
+    /**
+     * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+     */
+    public HDFS.hdfs.MapTaskInfoOrBuilder getMapTasksOrBuilder(
+        int index) {
+      return mapTasks_.get(index);
+    }
+
+    public static final int REDUCETASKS_FIELD_NUMBER = 3;
+    private java.util.List<HDFS.hdfs.ReducerTaskInfo> reduceTasks_;
+    /**
+     * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+     */
+    public java.util.List<HDFS.hdfs.ReducerTaskInfo> getReduceTasksList() {
+      return reduceTasks_;
+    }
+    /**
+     * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+     */
+    public java.util.List<? extends HDFS.hdfs.ReducerTaskInfoOrBuilder> 
+        getReduceTasksOrBuilderList() {
+      return reduceTasks_;
+    }
+    /**
+     * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+     */
+    public int getReduceTasksCount() {
+      return reduceTasks_.size();
+    }
+    /**
+     * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+     */
+    public HDFS.hdfs.ReducerTaskInfo getReduceTasks(int index) {
+      return reduceTasks_.get(index);
+    }
+    /**
+     * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+     */
+    public HDFS.hdfs.ReducerTaskInfoOrBuilder getReduceTasksOrBuilder(
+        int index) {
+      return reduceTasks_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (status_ != 0) {
+        output.writeInt32(1, status_);
+      }
+      for (int i = 0; i < mapTasks_.size(); i++) {
+        output.writeMessage(2, mapTasks_.get(i));
+      }
+      for (int i = 0; i < reduceTasks_.size(); i++) {
+        output.writeMessage(3, reduceTasks_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (status_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, status_);
+      }
+      for (int i = 0; i < mapTasks_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, mapTasks_.get(i));
+      }
+      for (int i = 0; i < reduceTasks_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, reduceTasks_.get(i));
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof HDFS.hdfs.HeartBeatResponseMapReduce)) {
+        return super.equals(obj);
+      }
+      HDFS.hdfs.HeartBeatResponseMapReduce other = (HDFS.hdfs.HeartBeatResponseMapReduce) obj;
+
+      boolean result = true;
+      result = result && (getStatus()
+          == other.getStatus());
+      result = result && getMapTasksList()
+          .equals(other.getMapTasksList());
+      result = result && getReduceTasksList()
+          .equals(other.getReduceTasksList());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus();
+      if (getMapTasksCount() > 0) {
+        hash = (37 * hash) + MAPTASKS_FIELD_NUMBER;
+        hash = (53 * hash) + getMapTasksList().hashCode();
+      }
+      if (getReduceTasksCount() > 0) {
+        hash = (37 * hash) + REDUCETASKS_FIELD_NUMBER;
+        hash = (53 * hash) + getReduceTasksList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static HDFS.hdfs.HeartBeatResponseMapReduce parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.HeartBeatResponseMapReduce parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.HeartBeatResponseMapReduce parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static HDFS.hdfs.HeartBeatResponseMapReduce parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static HDFS.hdfs.HeartBeatResponseMapReduce parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.HeartBeatResponseMapReduce parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.HeartBeatResponseMapReduce parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.HeartBeatResponseMapReduce parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static HDFS.hdfs.HeartBeatResponseMapReduce parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static HDFS.hdfs.HeartBeatResponseMapReduce parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(HDFS.hdfs.HeartBeatResponseMapReduce prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code HeartBeatResponseMapReduce}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:HeartBeatResponseMapReduce)
+        HDFS.hdfs.HeartBeatResponseMapReduceOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return HDFS.hdfs.internal_static_HeartBeatResponseMapReduce_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return HDFS.hdfs.internal_static_HeartBeatResponseMapReduce_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                HDFS.hdfs.HeartBeatResponseMapReduce.class, HDFS.hdfs.HeartBeatResponseMapReduce.Builder.class);
+      }
+
+      // Construct using HDFS.hdfs.HeartBeatResponseMapReduce.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getMapTasksFieldBuilder();
+          getReduceTasksFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        status_ = 0;
+
+        if (mapTasksBuilder_ == null) {
+          mapTasks_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          mapTasksBuilder_.clear();
+        }
+        if (reduceTasksBuilder_ == null) {
+          reduceTasks_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        } else {
+          reduceTasksBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return HDFS.hdfs.internal_static_HeartBeatResponseMapReduce_descriptor;
+      }
+
+      public HDFS.hdfs.HeartBeatResponseMapReduce getDefaultInstanceForType() {
+        return HDFS.hdfs.HeartBeatResponseMapReduce.getDefaultInstance();
+      }
+
+      public HDFS.hdfs.HeartBeatResponseMapReduce build() {
+        HDFS.hdfs.HeartBeatResponseMapReduce result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public HDFS.hdfs.HeartBeatResponseMapReduce buildPartial() {
+        HDFS.hdfs.HeartBeatResponseMapReduce result = new HDFS.hdfs.HeartBeatResponseMapReduce(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.status_ = status_;
+        if (mapTasksBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            mapTasks_ = java.util.Collections.unmodifiableList(mapTasks_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.mapTasks_ = mapTasks_;
+        } else {
+          result.mapTasks_ = mapTasksBuilder_.build();
+        }
+        if (reduceTasksBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            reduceTasks_ = java.util.Collections.unmodifiableList(reduceTasks_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.reduceTasks_ = reduceTasks_;
+        } else {
+          result.reduceTasks_ = reduceTasksBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof HDFS.hdfs.HeartBeatResponseMapReduce) {
+          return mergeFrom((HDFS.hdfs.HeartBeatResponseMapReduce)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(HDFS.hdfs.HeartBeatResponseMapReduce other) {
+        if (other == HDFS.hdfs.HeartBeatResponseMapReduce.getDefaultInstance()) return this;
+        if (other.getStatus() != 0) {
+          setStatus(other.getStatus());
+        }
+        if (mapTasksBuilder_ == null) {
+          if (!other.mapTasks_.isEmpty()) {
+            if (mapTasks_.isEmpty()) {
+              mapTasks_ = other.mapTasks_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureMapTasksIsMutable();
+              mapTasks_.addAll(other.mapTasks_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.mapTasks_.isEmpty()) {
+            if (mapTasksBuilder_.isEmpty()) {
+              mapTasksBuilder_.dispose();
+              mapTasksBuilder_ = null;
+              mapTasks_ = other.mapTasks_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              mapTasksBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getMapTasksFieldBuilder() : null;
+            } else {
+              mapTasksBuilder_.addAllMessages(other.mapTasks_);
+            }
+          }
+        }
+        if (reduceTasksBuilder_ == null) {
+          if (!other.reduceTasks_.isEmpty()) {
+            if (reduceTasks_.isEmpty()) {
+              reduceTasks_ = other.reduceTasks_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureReduceTasksIsMutable();
+              reduceTasks_.addAll(other.reduceTasks_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.reduceTasks_.isEmpty()) {
+            if (reduceTasksBuilder_.isEmpty()) {
+              reduceTasksBuilder_.dispose();
+              reduceTasksBuilder_ = null;
+              reduceTasks_ = other.reduceTasks_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              reduceTasksBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getReduceTasksFieldBuilder() : null;
+            } else {
+              reduceTasksBuilder_.addAllMessages(other.reduceTasks_);
+            }
+          }
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        HDFS.hdfs.HeartBeatResponseMapReduce parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (HDFS.hdfs.HeartBeatResponseMapReduce) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int status_ ;
+      /**
+       * <code>optional int32 status = 1;</code>
+       */
+      public int getStatus() {
+        return status_;
+      }
+      /**
+       * <code>optional int32 status = 1;</code>
+       */
+      public Builder setStatus(int value) {
+        
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 status = 1;</code>
+       */
+      public Builder clearStatus() {
+        
+        status_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<HDFS.hdfs.MapTaskInfo> mapTasks_ =
+        java.util.Collections.emptyList();
+      private void ensureMapTasksIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          mapTasks_ = new java.util.ArrayList<HDFS.hdfs.MapTaskInfo>(mapTasks_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          HDFS.hdfs.MapTaskInfo, HDFS.hdfs.MapTaskInfo.Builder, HDFS.hdfs.MapTaskInfoOrBuilder> mapTasksBuilder_;
+
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public java.util.List<HDFS.hdfs.MapTaskInfo> getMapTasksList() {
+        if (mapTasksBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(mapTasks_);
+        } else {
+          return mapTasksBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public int getMapTasksCount() {
+        if (mapTasksBuilder_ == null) {
+          return mapTasks_.size();
+        } else {
+          return mapTasksBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public HDFS.hdfs.MapTaskInfo getMapTasks(int index) {
+        if (mapTasksBuilder_ == null) {
+          return mapTasks_.get(index);
+        } else {
+          return mapTasksBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public Builder setMapTasks(
+          int index, HDFS.hdfs.MapTaskInfo value) {
+        if (mapTasksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMapTasksIsMutable();
+          mapTasks_.set(index, value);
+          onChanged();
+        } else {
+          mapTasksBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public Builder setMapTasks(
+          int index, HDFS.hdfs.MapTaskInfo.Builder builderForValue) {
+        if (mapTasksBuilder_ == null) {
+          ensureMapTasksIsMutable();
+          mapTasks_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          mapTasksBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public Builder addMapTasks(HDFS.hdfs.MapTaskInfo value) {
+        if (mapTasksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMapTasksIsMutable();
+          mapTasks_.add(value);
+          onChanged();
+        } else {
+          mapTasksBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public Builder addMapTasks(
+          int index, HDFS.hdfs.MapTaskInfo value) {
+        if (mapTasksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMapTasksIsMutable();
+          mapTasks_.add(index, value);
+          onChanged();
+        } else {
+          mapTasksBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public Builder addMapTasks(
+          HDFS.hdfs.MapTaskInfo.Builder builderForValue) {
+        if (mapTasksBuilder_ == null) {
+          ensureMapTasksIsMutable();
+          mapTasks_.add(builderForValue.build());
+          onChanged();
+        } else {
+          mapTasksBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public Builder addMapTasks(
+          int index, HDFS.hdfs.MapTaskInfo.Builder builderForValue) {
+        if (mapTasksBuilder_ == null) {
+          ensureMapTasksIsMutable();
+          mapTasks_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          mapTasksBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public Builder addAllMapTasks(
+          java.lang.Iterable<? extends HDFS.hdfs.MapTaskInfo> values) {
+        if (mapTasksBuilder_ == null) {
+          ensureMapTasksIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, mapTasks_);
+          onChanged();
+        } else {
+          mapTasksBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public Builder clearMapTasks() {
+        if (mapTasksBuilder_ == null) {
+          mapTasks_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          mapTasksBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public Builder removeMapTasks(int index) {
+        if (mapTasksBuilder_ == null) {
+          ensureMapTasksIsMutable();
+          mapTasks_.remove(index);
+          onChanged();
+        } else {
+          mapTasksBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public HDFS.hdfs.MapTaskInfo.Builder getMapTasksBuilder(
+          int index) {
+        return getMapTasksFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public HDFS.hdfs.MapTaskInfoOrBuilder getMapTasksOrBuilder(
+          int index) {
+        if (mapTasksBuilder_ == null) {
+          return mapTasks_.get(index);  } else {
+          return mapTasksBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public java.util.List<? extends HDFS.hdfs.MapTaskInfoOrBuilder> 
+           getMapTasksOrBuilderList() {
+        if (mapTasksBuilder_ != null) {
+          return mapTasksBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(mapTasks_);
+        }
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public HDFS.hdfs.MapTaskInfo.Builder addMapTasksBuilder() {
+        return getMapTasksFieldBuilder().addBuilder(
+            HDFS.hdfs.MapTaskInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public HDFS.hdfs.MapTaskInfo.Builder addMapTasksBuilder(
+          int index) {
+        return getMapTasksFieldBuilder().addBuilder(
+            index, HDFS.hdfs.MapTaskInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .MapTaskInfo mapTasks = 2;</code>
+       */
+      public java.util.List<HDFS.hdfs.MapTaskInfo.Builder> 
+           getMapTasksBuilderList() {
+        return getMapTasksFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          HDFS.hdfs.MapTaskInfo, HDFS.hdfs.MapTaskInfo.Builder, HDFS.hdfs.MapTaskInfoOrBuilder> 
+          getMapTasksFieldBuilder() {
+        if (mapTasksBuilder_ == null) {
+          mapTasksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              HDFS.hdfs.MapTaskInfo, HDFS.hdfs.MapTaskInfo.Builder, HDFS.hdfs.MapTaskInfoOrBuilder>(
+                  mapTasks_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          mapTasks_ = null;
+        }
+        return mapTasksBuilder_;
+      }
+
+      private java.util.List<HDFS.hdfs.ReducerTaskInfo> reduceTasks_ =
+        java.util.Collections.emptyList();
+      private void ensureReduceTasksIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          reduceTasks_ = new java.util.ArrayList<HDFS.hdfs.ReducerTaskInfo>(reduceTasks_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          HDFS.hdfs.ReducerTaskInfo, HDFS.hdfs.ReducerTaskInfo.Builder, HDFS.hdfs.ReducerTaskInfoOrBuilder> reduceTasksBuilder_;
+
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public java.util.List<HDFS.hdfs.ReducerTaskInfo> getReduceTasksList() {
+        if (reduceTasksBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(reduceTasks_);
+        } else {
+          return reduceTasksBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public int getReduceTasksCount() {
+        if (reduceTasksBuilder_ == null) {
+          return reduceTasks_.size();
+        } else {
+          return reduceTasksBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public HDFS.hdfs.ReducerTaskInfo getReduceTasks(int index) {
+        if (reduceTasksBuilder_ == null) {
+          return reduceTasks_.get(index);
+        } else {
+          return reduceTasksBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public Builder setReduceTasks(
+          int index, HDFS.hdfs.ReducerTaskInfo value) {
+        if (reduceTasksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReduceTasksIsMutable();
+          reduceTasks_.set(index, value);
+          onChanged();
+        } else {
+          reduceTasksBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public Builder setReduceTasks(
+          int index, HDFS.hdfs.ReducerTaskInfo.Builder builderForValue) {
+        if (reduceTasksBuilder_ == null) {
+          ensureReduceTasksIsMutable();
+          reduceTasks_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          reduceTasksBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public Builder addReduceTasks(HDFS.hdfs.ReducerTaskInfo value) {
+        if (reduceTasksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReduceTasksIsMutable();
+          reduceTasks_.add(value);
+          onChanged();
+        } else {
+          reduceTasksBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public Builder addReduceTasks(
+          int index, HDFS.hdfs.ReducerTaskInfo value) {
+        if (reduceTasksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReduceTasksIsMutable();
+          reduceTasks_.add(index, value);
+          onChanged();
+        } else {
+          reduceTasksBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public Builder addReduceTasks(
+          HDFS.hdfs.ReducerTaskInfo.Builder builderForValue) {
+        if (reduceTasksBuilder_ == null) {
+          ensureReduceTasksIsMutable();
+          reduceTasks_.add(builderForValue.build());
+          onChanged();
+        } else {
+          reduceTasksBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public Builder addReduceTasks(
+          int index, HDFS.hdfs.ReducerTaskInfo.Builder builderForValue) {
+        if (reduceTasksBuilder_ == null) {
+          ensureReduceTasksIsMutable();
+          reduceTasks_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          reduceTasksBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public Builder addAllReduceTasks(
+          java.lang.Iterable<? extends HDFS.hdfs.ReducerTaskInfo> values) {
+        if (reduceTasksBuilder_ == null) {
+          ensureReduceTasksIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, reduceTasks_);
+          onChanged();
+        } else {
+          reduceTasksBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public Builder clearReduceTasks() {
+        if (reduceTasksBuilder_ == null) {
+          reduceTasks_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          reduceTasksBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public Builder removeReduceTasks(int index) {
+        if (reduceTasksBuilder_ == null) {
+          ensureReduceTasksIsMutable();
+          reduceTasks_.remove(index);
+          onChanged();
+        } else {
+          reduceTasksBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public HDFS.hdfs.ReducerTaskInfo.Builder getReduceTasksBuilder(
+          int index) {
+        return getReduceTasksFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public HDFS.hdfs.ReducerTaskInfoOrBuilder getReduceTasksOrBuilder(
+          int index) {
+        if (reduceTasksBuilder_ == null) {
+          return reduceTasks_.get(index);  } else {
+          return reduceTasksBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public java.util.List<? extends HDFS.hdfs.ReducerTaskInfoOrBuilder> 
+           getReduceTasksOrBuilderList() {
+        if (reduceTasksBuilder_ != null) {
+          return reduceTasksBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(reduceTasks_);
+        }
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public HDFS.hdfs.ReducerTaskInfo.Builder addReduceTasksBuilder() {
+        return getReduceTasksFieldBuilder().addBuilder(
+            HDFS.hdfs.ReducerTaskInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public HDFS.hdfs.ReducerTaskInfo.Builder addReduceTasksBuilder(
+          int index) {
+        return getReduceTasksFieldBuilder().addBuilder(
+            index, HDFS.hdfs.ReducerTaskInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ReducerTaskInfo reduceTasks = 3;</code>
+       */
+      public java.util.List<HDFS.hdfs.ReducerTaskInfo.Builder> 
+           getReduceTasksBuilderList() {
+        return getReduceTasksFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          HDFS.hdfs.ReducerTaskInfo, HDFS.hdfs.ReducerTaskInfo.Builder, HDFS.hdfs.ReducerTaskInfoOrBuilder> 
+          getReduceTasksFieldBuilder() {
+        if (reduceTasksBuilder_ == null) {
+          reduceTasksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              HDFS.hdfs.ReducerTaskInfo, HDFS.hdfs.ReducerTaskInfo.Builder, HDFS.hdfs.ReducerTaskInfoOrBuilder>(
+                  reduceTasks_,
+                  ((bitField0_ & 0x00000004) == 0x00000004),
+                  getParentForChildren(),
+                  isClean());
+          reduceTasks_ = null;
+        }
+        return reduceTasksBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:HeartBeatResponseMapReduce)
+    }
+
+    // @@protoc_insertion_point(class_scope:HeartBeatResponseMapReduce)
+    private static final HDFS.hdfs.HeartBeatResponseMapReduce DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new HDFS.hdfs.HeartBeatResponseMapReduce();
+    }
+
+    public static HDFS.hdfs.HeartBeatResponseMapReduce getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<HeartBeatResponseMapReduce>
+        PARSER = new com.google.protobuf.AbstractParser<HeartBeatResponseMapReduce>() {
+      public HeartBeatResponseMapReduce parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new HeartBeatResponseMapReduce(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<HeartBeatResponseMapReduce> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<HeartBeatResponseMapReduce> getParserForType() {
+      return PARSER;
+    }
+
+    public HDFS.hdfs.HeartBeatResponseMapReduce getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface BlockLocationsOrBuilder extends
       // @@protoc_insertion_point(interface_extends:BlockLocations)
       com.google.protobuf.MessageOrBuilder {
@@ -11701,6 +20016,56 @@ public final class hdfs {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_DataNodeLocation_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_JobSubmitRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_JobSubmitRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_JobSubmitResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_JobSubmitResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_JobStatusRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_JobStatusRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_JobStatusResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_JobStatusResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_MapTaskStatus_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_MapTaskStatus_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ReduceTaskStatus_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ReduceTaskStatus_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_HeartBeatRequestMapReduce_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_HeartBeatRequestMapReduce_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_MapTaskInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_MapTaskInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ReducerTaskInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ReducerTaskInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_HeartBeatResponseMapReduce_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_HeartBeatResponseMapReduce_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_BlockLocations_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -11783,25 +20148,51 @@ public final class hdfs {
       "Info\030\001 \001(\0132\017.BlockLocations\022\014\n\004data\030\002 \003(" +
       "\014\022\021\n\tReplicate\030\003 \001(\010\"$\n\022WriteBlockRespon" +
       "se\022\016\n\006status\030\001 \001(\005\",\n\020DataNodeLocation\022\n" +
-      "\n\002ip\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\"K\n\016BlockLocatio",
-      "ns\022\023\n\013blockNumber\030\001 \001(\005\022$\n\tlocations\030\002 \003" +
-      "(\0132\021.DataNodeLocation\")\n\024BlockLocationRe" +
-      "quest\022\021\n\tblockNums\030\001 \003(\005\"P\n\025BlockLocatio" +
-      "nResponse\022\016\n\006status\030\001 \001(\005\022\'\n\016blockLocati" +
-      "ons\030\002 \003(\0132\017.BlockLocations\"$\n\022AssignBloc" +
-      "kRequest\022\016\n\006handle\030\001 \001(\005\"H\n\023AssignBlockR" +
-      "esponse\022\016\n\006status\030\001 \001(\005\022!\n\010newBlock\030\002 \001(" +
-      "\0132\017.BlockLocations\"#\n\020ListFilesRequest\022\017" +
-      "\n\007dirName\030\001 \001(\t\"6\n\021ListFilesResponse\022\016\n\006" +
-      "status\030\001 \001(\005\022\021\n\tfileNames\030\002 \003(\t\"\'\n\020ReadB",
-      "lockRequest\022\023\n\013blockNumber\030\001 \001(\005\"1\n\021Read" +
-      "BlockResponse\022\016\n\006status\030\001 \001(\005\022\014\n\004data\030\002 " +
-      "\003(\014\"[\n\022BlockReportRequest\022\n\n\002id\030\001 \001(\005\022#\n" +
-      "\010location\030\002 \001(\0132\021.DataNodeLocation\022\024\n\014bl" +
-      "ockNumbers\030\003 \003(\005\"%\n\023BlockReportResponse\022" +
-      "\016\n\006status\030\001 \003(\005\"\036\n\020HeartBeatRequest\022\n\n\002i" +
-      "d\030\001 \001(\005\"#\n\021HeartBeatResponse\022\016\n\006status\030\001" +
-      " \001(\005B\014\n\004HDFSB\004hdfsb\006proto3"
+      "\n\002ip\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\"w\n\020JobSubmitReq",
+      "uest\022\017\n\007mapName\030\001 \001(\t\022\023\n\013reducerName\030\002 \001" +
+      "(\t\022\021\n\tinputFile\030\003 \001(\t\022\022\n\noutputFile\030\004 \001(" +
+      "\t\022\026\n\016numReduceTasks\030\005 \001(\005\"2\n\021JobSubmitRe" +
+      "sponse\022\016\n\006status\030\001 \001(\005\022\r\n\005jobId\030\002 \001(\005\"!\n" +
+      "\020JobStatusRequest\022\r\n\005jobId\030\001 \001(\005\"\240\001\n\021Job" +
+      "StatusResponse\022\016\n\006status\030\001 \001(\005\022\017\n\007jobDon" +
+      "e\030\002 \001(\010\022\025\n\rtotalMapTasks\030\003 \001(\005\022\032\n\022numMap" +
+      "TasksStarted\030\004 \001(\005\022\030\n\020totalReduceTasks\030\005" +
+      " \001(\005\022\035\n\025numReduceTasksStarted\030\006 \001(\005\"\\\n\rM" +
+      "apTaskStatus\022\r\n\005jobId\030\001 \001(\005\022\016\n\006taskId\030\002 ",
+      "\001(\005\022\025\n\rtaskCompleted\030\003 \001(\010\022\025\n\rmapOutputF" +
+      "ile\030\004 \001(\t\"H\n\020ReduceTaskStatus\022\r\n\005jobId\030\001" +
+      " \001(\005\022\016\n\006taskId\030\002 \001(\005\022\025\n\rtaskCompleted\030\003 " +
+      "\001(\010\"\263\001\n\031HeartBeatRequestMapReduce\022\025\n\rtas" +
+      "kTrackerId\030\001 \001(\005\022\027\n\017numMapSlotsFree\030\002 \001(" +
+      "\005\022\032\n\022numReduceSlotsFree\030\003 \001(\005\022!\n\tmapStat" +
+      "us\030\004 \003(\0132\016.MapTaskStatus\022\'\n\014reduceStatus" +
+      "\030\005 \003(\0132\021.ReduceTaskStatus\"c\n\013MapTaskInfo" +
+      "\022\r\n\005jobId\030\001 \001(\005\022\016\n\006taskId\030\002 \001(\005\022\017\n\007mapNa" +
+      "me\030\003 \001(\t\022$\n\013inputBlocks\030\004 \003(\0132\017.BlockLoc",
+      "ations\"q\n\017ReducerTaskInfo\022\r\n\005jobId\030\001 \001(\005" +
+      "\022\016\n\006taskId\030\002 \001(\005\022\023\n\013reducerName\030\003 \001(\t\022\026\n" +
+      "\016mapOutputFiles\030\004 \003(\t\022\022\n\noutputFile\030\005 \001(" +
+      "\t\"s\n\032HeartBeatResponseMapReduce\022\016\n\006statu" +
+      "s\030\001 \001(\005\022\036\n\010mapTasks\030\002 \003(\0132\014.MapTaskInfo\022" +
+      "%\n\013reduceTasks\030\003 \003(\0132\020.ReducerTaskInfo\"K" +
+      "\n\016BlockLocations\022\023\n\013blockNumber\030\001 \001(\005\022$\n" +
+      "\tlocations\030\002 \003(\0132\021.DataNodeLocation\")\n\024B" +
+      "lockLocationRequest\022\021\n\tblockNums\030\001 \003(\005\"P" +
+      "\n\025BlockLocationResponse\022\016\n\006status\030\001 \001(\005\022",
+      "\'\n\016blockLocations\030\002 \003(\0132\017.BlockLocations" +
+      "\"$\n\022AssignBlockRequest\022\016\n\006handle\030\001 \001(\005\"H" +
+      "\n\023AssignBlockResponse\022\016\n\006status\030\001 \001(\005\022!\n" +
+      "\010newBlock\030\002 \001(\0132\017.BlockLocations\"#\n\020List" +
+      "FilesRequest\022\017\n\007dirName\030\001 \001(\t\"6\n\021ListFil" +
+      "esResponse\022\016\n\006status\030\001 \001(\005\022\021\n\tfileNames\030" +
+      "\002 \003(\t\"\'\n\020ReadBlockRequest\022\023\n\013blockNumber" +
+      "\030\001 \001(\005\"1\n\021ReadBlockResponse\022\016\n\006status\030\001 " +
+      "\001(\005\022\014\n\004data\030\002 \003(\014\"[\n\022BlockReportRequest\022" +
+      "\n\n\002id\030\001 \001(\005\022#\n\010location\030\002 \001(\0132\021.DataNode",
+      "Location\022\024\n\014blockNumbers\030\003 \003(\005\"%\n\023BlockR" +
+      "eportResponse\022\016\n\006status\030\001 \003(\005\"\036\n\020HeartBe" +
+      "atRequest\022\n\n\002id\030\001 \001(\005\"#\n\021HeartBeatRespon" +
+      "se\022\016\n\006status\030\001 \001(\005B\014\n\004HDFSB\004hdfsb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -11857,80 +20248,140 @@ public final class hdfs {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_DataNodeLocation_descriptor,
         new java.lang.String[] { "Ip", "Port", });
-    internal_static_BlockLocations_descriptor =
+    internal_static_JobSubmitRequest_descriptor =
       getDescriptor().getMessageTypes().get(7);
+    internal_static_JobSubmitRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_JobSubmitRequest_descriptor,
+        new java.lang.String[] { "MapName", "ReducerName", "InputFile", "OutputFile", "NumReduceTasks", });
+    internal_static_JobSubmitResponse_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_JobSubmitResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_JobSubmitResponse_descriptor,
+        new java.lang.String[] { "Status", "JobId", });
+    internal_static_JobStatusRequest_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_JobStatusRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_JobStatusRequest_descriptor,
+        new java.lang.String[] { "JobId", });
+    internal_static_JobStatusResponse_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_JobStatusResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_JobStatusResponse_descriptor,
+        new java.lang.String[] { "Status", "JobDone", "TotalMapTasks", "NumMapTasksStarted", "TotalReduceTasks", "NumReduceTasksStarted", });
+    internal_static_MapTaskStatus_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_MapTaskStatus_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_MapTaskStatus_descriptor,
+        new java.lang.String[] { "JobId", "TaskId", "TaskCompleted", "MapOutputFile", });
+    internal_static_ReduceTaskStatus_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_ReduceTaskStatus_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ReduceTaskStatus_descriptor,
+        new java.lang.String[] { "JobId", "TaskId", "TaskCompleted", });
+    internal_static_HeartBeatRequestMapReduce_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_HeartBeatRequestMapReduce_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_HeartBeatRequestMapReduce_descriptor,
+        new java.lang.String[] { "TaskTrackerId", "NumMapSlotsFree", "NumReduceSlotsFree", "MapStatus", "ReduceStatus", });
+    internal_static_MapTaskInfo_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_MapTaskInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_MapTaskInfo_descriptor,
+        new java.lang.String[] { "JobId", "TaskId", "MapName", "InputBlocks", });
+    internal_static_ReducerTaskInfo_descriptor =
+      getDescriptor().getMessageTypes().get(15);
+    internal_static_ReducerTaskInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ReducerTaskInfo_descriptor,
+        new java.lang.String[] { "JobId", "TaskId", "ReducerName", "MapOutputFiles", "OutputFile", });
+    internal_static_HeartBeatResponseMapReduce_descriptor =
+      getDescriptor().getMessageTypes().get(16);
+    internal_static_HeartBeatResponseMapReduce_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_HeartBeatResponseMapReduce_descriptor,
+        new java.lang.String[] { "Status", "MapTasks", "ReduceTasks", });
+    internal_static_BlockLocations_descriptor =
+      getDescriptor().getMessageTypes().get(17);
     internal_static_BlockLocations_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BlockLocations_descriptor,
         new java.lang.String[] { "BlockNumber", "Locations", });
     internal_static_BlockLocationRequest_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_BlockLocationRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BlockLocationRequest_descriptor,
         new java.lang.String[] { "BlockNums", });
     internal_static_BlockLocationResponse_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_BlockLocationResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BlockLocationResponse_descriptor,
         new java.lang.String[] { "Status", "BlockLocations", });
     internal_static_AssignBlockRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_AssignBlockRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_AssignBlockRequest_descriptor,
         new java.lang.String[] { "Handle", });
     internal_static_AssignBlockResponse_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_AssignBlockResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_AssignBlockResponse_descriptor,
         new java.lang.String[] { "Status", "NewBlock", });
     internal_static_ListFilesRequest_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(22);
     internal_static_ListFilesRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ListFilesRequest_descriptor,
         new java.lang.String[] { "DirName", });
     internal_static_ListFilesResponse_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(23);
     internal_static_ListFilesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ListFilesResponse_descriptor,
         new java.lang.String[] { "Status", "FileNames", });
     internal_static_ReadBlockRequest_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_ReadBlockRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ReadBlockRequest_descriptor,
         new java.lang.String[] { "BlockNumber", });
     internal_static_ReadBlockResponse_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_ReadBlockResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ReadBlockResponse_descriptor,
         new java.lang.String[] { "Status", "Data", });
     internal_static_BlockReportRequest_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(26);
     internal_static_BlockReportRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BlockReportRequest_descriptor,
         new java.lang.String[] { "Id", "Location", "BlockNumbers", });
     internal_static_BlockReportResponse_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(27);
     internal_static_BlockReportResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BlockReportResponse_descriptor,
         new java.lang.String[] { "Status", });
     internal_static_HeartBeatRequest_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_HeartBeatRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_HeartBeatRequest_descriptor,
         new java.lang.String[] { "Id", });
     internal_static_HeartBeatResponse_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_HeartBeatResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_HeartBeatResponse_descriptor,
