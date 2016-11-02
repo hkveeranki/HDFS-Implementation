@@ -32,6 +32,16 @@ public class TaskTracker {
         }
     }
 
+    static private void map_executor(byte[] info) {
+        /* this method performs the map task assigned */
+
+
+    }
+
+    static private void reduce_executor(byte[] info) {
+        /* this method performs the reduce task assigned */
+    }
+
     private static class HeartbeatHandler extends Thread {
         /* Handles the heart beat */
         private int id;

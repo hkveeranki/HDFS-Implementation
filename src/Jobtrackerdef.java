@@ -1,5 +1,6 @@
+import java.rmi.Remote;
 
-public interface Jobtrackerdef {
+public interface Jobtrackerdef extends Remote {
 
     /* JobSubmitResponse jobSubmit(JobSubmitRequest) */
     byte[] jobSubmit(byte[] inp);
