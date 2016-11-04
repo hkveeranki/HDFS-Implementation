@@ -38,6 +38,8 @@ public class TaskTracker {
         hdfs.MapExecutorRequest.Builder request = hdfs.MapExecutorRequest.parseFrom(info);
         hdfs.MapTaskInfo map_info = request.getMapInfo();
         List<hdfs.BlockLocations> block_locs = map_info.getInputBlocksList();
+        int jobId = map_info.getJobId();
+        int taskId = map_info.getTaskId();
         for(int j = 0; j < block_locs.size(); j++){
             DataNodeLocation dnLoc = block_locs[j].getLocationsList()[0];
             int blockNum = block_locs[j].getBlockNumber();
@@ -49,8 +51,6 @@ public class TaskTracker {
             if (read_resp != null) {
                 hdfs.ReadBlockResponse readBlockResponse = hdfs.ReadBlockResponse.parseFrom(read_resp);
                 ByteString data = readBlockResponse.getData(0);
-                int jobId = map_info.getJobId();
-                int taskId = map_info.getTaskId();
                 String mapName = map_info.getMapName();
                 Class mapper = Class.forName(mapName); // Is this correct?
                 // Use the thread pool to execute this task here
@@ -60,6 +60,17 @@ public class TaskTracker {
 
     static private void reduce_executor(byte[] info) {
         /* this method performs the reduce task assigned */
+        hdfs.ReduceExecutorRequest.Builder request = hdfs.ReduceExecutorRequest.parseFrom(info);
+        hdfs.ReducerTaskInfo reduce_info = request.getReduceInfo();
+        List<String> map_output_files = reduce_info.getMapOutputFilesList();
+        String out_file = reduce_info.getOutputFile();
+        int jobId = map_info.getJobId();
+        int taskId = map_info.getTaskId();
+        for(int j = 0; j < map_output_files.size(); j++){
+            String reducerName = reduce_info.getReducerName();
+            Class reducer = Class.forName(reducerName); // Is this correct?
+            // Use the thread pool to execute this task here
+        }
     }
 
     private static class HeartbeatHandler extends Thread {
@@ -84,13 +95,19 @@ public class TaskTracker {
                     System.err.println("Sent HeartBeat from Task Tracker " + id);
                     hdfs.HeartBeatResponseMapReduce.Builder response = hdfs.HeartBeatResponseMapReduce.parseFrom(resp);
                     List<hdfs.MapTaskInfo> map_infos response.getMapTasksList();
+                    List<hdfs.ReducerTaskInfo> reduce_infos response.getReduceTasksList();
                     for (int i = 0; i < map_infos.size(); i++){
                         hdfs.MapTaskInfo map_info = map_infos.get(i);
                         hdfs.MapExecutorRequest.Builder map_exec_request = hdfs.MapExecutorRequest.newBuilder();
                         map_exec_request.setMapInfo(map_info);
                         map_executor(map_exec_request.build().toByteArray());
                     }
-
+                    for (int i = 0; i < reduce_infos.size(); i++){
+                        hdfs.ReduceTaskInfo reduce_info = reduce_infos.get(i);
+                        hdfs.ReduceExecutorRequest.Builder reduce_exec_request = hdfs.ReduceExecutorRequest.newBuilder();
+                        reduce_exec_request.setReduceInfo(reduce_info);
+                        reduce_executor(reduce_exec_request.build().toByteArray());
+                    }
                     Thread.sleep(10000); /* Sleep for 10 Seconds */
                 }
             } catch (InterruptedException e) {

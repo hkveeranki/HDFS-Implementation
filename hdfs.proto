@@ -108,6 +108,10 @@ message MapExecutorRequest {
     MapTaskInfo mapInfo = 1;
 }
 
+message ReduceExecutorRequest {
+    ReducerTaskInfo reduceInfo = 1;
+}
+
 message BlockLocations {
     int32 blockNumber = 1;
     repeated DataNodeLocation locations = 2;
