@@ -13,6 +13,7 @@ public class TaskTracker {
     private static int reduce_capacity = 2;
     private static ThreadPoolExecutor map_pool;
     private static ThreadPoolExecutor reduce_pool;
+    static Namenodedef namenode_stub;
 
     public TaskTracker() {
     }
@@ -34,8 +35,27 @@ public class TaskTracker {
 
     static private void map_executor(byte[] info) {
         /* this method performs the map task assigned */
-
-
+        hdfs.MapExecutorRequest.Builder request = hdfs.MapExecutorRequest.parseFrom(info);
+        hdfs.MapTaskInfo map_info = request.getMapInfo();
+        List<hdfs.BlockLocations> block_locs = map_info.getInputBlocksList();
+        for(int j = 0; j < block_locs.size(); j++){
+            DataNodeLocation dnLoc = block_locs[j].getLocationsList()[0];
+            int blockNum = block_locs[j].getBlockNumber();
+            Registry registry = LocateRegistry.getRegistry(dnLoc.getIp(), dnLoc.getPort());
+            Datanodedef datanode_stub = (Datanodedef) registry.lookup("DataNode");
+            hdfs.ReadBlockRequest.Builder read_req = hdfs.ReadBlockRequest.newBuilder();
+            read_req.setBlockNumber(blockNum);
+            byte[] read_resp = datanode_stub.readBlock(read_req.build().toByteArray());
+            if (read_resp != null) {
+                hdfs.ReadBlockResponse readBlockResponse = hdfs.ReadBlockResponse.parseFrom(read_resp);
+                ByteString data = readBlockResponse.getData(0);
+                int jobId = map_info.getJobId();
+                int taskId = map_info.getTaskId();
+                String mapName = map_info.getMapName();
+                Class mapper = Class.forName(mapName); // Is this correct?
+                // Use the thread pool to execute this task here
+            }
+        }
     }
 
     static private void reduce_executor(byte[] info) {
@@ -59,8 +79,18 @@ public class TaskTracker {
                     request.setNumMapSlotsFree(map_capacity - map_pool.getActiveCount());
                     request.setNumReduceSlotsFree(reduce_capacity - reduce_pool.getActiveCount());
                     /* Need to set the status as well */
-                    jobtracker_stub.heartBeat(request.build().toByteArray());
+
+                    byte[] resp = jobtracker_stub.heartBeat(request.build().toByteArray());
                     System.err.println("Sent HeartBeat from Task Tracker " + id);
+                    hdfs.HeartBeatResponseMapReduce.Builder response = hdfs.HeartBeatResponseMapReduce.parseFrom(resp);
+                    List<hdfs.MapTaskInfo> map_infos response.getMapTasksList();
+                    for (int i = 0; i < map_infos.size(); i++){
+                        hdfs.MapTaskInfo map_info = map_infos.get(i);
+                        hdfs.MapExecutorRequest.Builder map_exec_request = hdfs.MapExecutorRequest.newBuilder();
+                        map_exec_request.setMapInfo(map_info);
+                        map_executor(map_exec_request.build().toByteArray());
+                    }
+
                     Thread.sleep(10000); /* Sleep for 10 Seconds */
                 }
             } catch (InterruptedException e) {
