@@ -1,0 +1,146 @@
+!SESSION 2016-11-03 21:21:12.507 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_IN
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:24:35.343
+!MESSAGE System property http.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:24:35.346
+!MESSAGE System property http.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:24:35.346
+!MESSAGE System property https.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:24:35.346
+!MESSAGE System property https.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:24:35.347
+!MESSAGE System property https.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:24:35.347
+!MESSAGE System property https.proxyPort is not set but should be 8080.
+!SESSION 2016-11-03 21:26:41.611 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_IN
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:26:48.619
+!MESSAGE System property http.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:26:48.624
+!MESSAGE System property http.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:26:48.627
+!MESSAGE System property https.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:26:48.627
+!MESSAGE System property https.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:26:48.629
+!MESSAGE System property https.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:26:48.629
+!MESSAGE System property https.proxyPort is not set but should be 8080.
+!SESSION 2016-11-03 21:27:07.606 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_IN
+Command-line arguments:  -data /home/vishalapr/IIIT Courses/DistributedSystems/HDFS-Implementation/ -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:27:10.020
+!MESSAGE System property http.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:27:10.024
+!MESSAGE System property http.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:27:10.025
+!MESSAGE System property https.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:27:10.025
+!MESSAGE System property https.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:27:10.026
+!MESSAGE System property https.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:27:10.026
+!MESSAGE System property https.proxyPort is not set but should be 8080.
+!SESSION 2016-11-03 21:27:24.473 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_IN
+Command-line arguments:  -data /home/vishalapr/IIIT Courses/DistributedSystems/HDFS-Implementation/ -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:27:26.891
+!MESSAGE System property http.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:27:26.895
+!MESSAGE System property http.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:27:26.896
+!MESSAGE System property https.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:27:26.896
+!MESSAGE System property https.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:27:26.901
+!MESSAGE System property https.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:27:26.901
+!MESSAGE System property https.proxyPort is not set but should be 8080.
+!SESSION 2016-11-03 21:29:24.241 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_IN
+Framework arguments:  HDFS-Implementation/
+Command-line arguments:  -os linux -ws gtk -arch x86_64 HDFS-Implementation/
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:29:31.861
+!MESSAGE System property http.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:29:31.865
+!MESSAGE System property http.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:29:31.868
+!MESSAGE System property https.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:29:31.869
+!MESSAGE System property https.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:29:31.870
+!MESSAGE System property https.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:29:31.870
+!MESSAGE System property https.proxyPort is not set but should be 8080.
+!SESSION 2016-11-03 21:29:44.241 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_IN
+Framework arguments:  HDFS-Implementation/
+Command-line arguments:  -os linux -ws gtk -arch x86_64 HDFS-Implementation/
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:29:54.298
+!MESSAGE System property http.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:29:54.302
+!MESSAGE System property http.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:29:54.302
+!MESSAGE System property https.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:29:54.306
+!MESSAGE System property https.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:29:54.307
+!MESSAGE System property https.proxyHost is not set but should be proxy.iiit.ac.in.
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-03 21:29:54.308
+!MESSAGE System property https.proxyPort is not set but should be 8080.
