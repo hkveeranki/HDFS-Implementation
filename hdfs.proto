@@ -1,4 +1,4 @@
-syntax="proto3";
+syntax = "proto3";
 option java_outer_classname = "hdfs";
 option java_package = "HDFS";
 message OpenFileRequest {
@@ -32,7 +32,7 @@ message WriteBlockResponse {
 }
 
 message DataNodeLocation {
-    string ip = 1	;
+    string ip = 1;
     int32 port = 2;
 }
 
@@ -87,7 +87,7 @@ message MapTaskInfo {
     int32 jobId = 1;
     int32 taskId = 2;
     string mapName = 3;
-    repeated BlockLocations inputBlocks = 4;
+    BlockLocations inputBlocks = 4;
 }
 
 message ReducerTaskInfo {

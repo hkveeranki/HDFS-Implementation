@@ -80,14 +80,14 @@ public class Namenode implements Namenodedef {
             hdfs.BlockLocationRequest request = hdfs.BlockLocationRequest.parseFrom(inp);
             hdfs.BlockLocationResponse.Builder response = hdfs.BlockLocationResponse.newBuilder().setStatus(1);
             List<Integer> blocks = request.getBlockNumsList();
-            for (int i = 0; i < blocks.size(); i++) {
-                int curBlock = blocks.get(i);
+            for (Integer block : blocks) {
+                int curBlock = block;
                 hdfs.BlockLocations.Builder blockLoc = hdfs.BlockLocations.newBuilder();
                 blockLoc.setBlockNumber(curBlock);
                 ArrayList<Integer> datanodes = map_block_datanode.get(curBlock);
-                for (int j = 0; j < datanodes.size(); j++) {
+                for (Integer datanode : datanodes) {
                     hdfs.DataNodeLocation.Builder dataNodeLoc = hdfs.DataNodeLocation.newBuilder();
-                    dataNodeLoc.setIp(datanode_ip[datanodes.get(j)]);
+                    dataNodeLoc.setIp(datanode_ip[datanode]);
                     dataNodeLoc.setPort(1099);
                     blockLoc.addLocations(dataNodeLoc.build());
                 }

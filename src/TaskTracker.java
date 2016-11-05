@@ -2,12 +2,13 @@ import HDFS.hdfs;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import java.io.IOException;
+import java.io.PrintStream;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -27,11 +28,15 @@ public class TaskTracker {
     static public void main(String args[]) {
         try {
             String host = "127.0.0.1";
+            String namenode_host = "127.0.0.1";
+            int namenode_port = 1099;
             int port = 1099;
             map_pool = (ThreadPoolExecutor) Executors.newFixedThreadPool(map_capacity);
             reduce_pool = (ThreadPoolExecutor) Executors.newFixedThreadPool(reduce_capacity);
             Registry registry = LocateRegistry.getRegistry(host, port);
             jobtracker_stub = (Jobtrackerdef) registry.lookup("JobTracker");
+            Registry reg = LocateRegistry.getRegistry(namenode_host, namenode_port);
+            namenode_stub = (Namenodedef) reg.lookup("NameNode");
             int id = Integer.valueOf(args[0]);
             map_statuses = new HashMap<>();
             reduce_statuses = new HashMap<>();
@@ -41,38 +46,148 @@ public class TaskTracker {
         }
     }
 
+
+    static private String read_from_hdfs(String file_name) {
+        String read_data = "";
+        PrintStream err = new PrintStream(System.err);
+        hdfs.OpenFileRequest.Builder openFileRequest = hdfs.OpenFileRequest.newBuilder();
+        openFileRequest.setForRead(true);
+        openFileRequest.setFileName(file_name);
+        try {
+            byte[] openFileResponseBytes = namenode_stub.openFile(openFileRequest.build().toByteArray());
+            if (openFileResponseBytes != null) {
+                hdfs.OpenFileResponse response = hdfs.OpenFileResponse.parseFrom(openFileResponseBytes);
+                int block_count = response.getBlockNumsCount();
+                hdfs.BlockLocationRequest.Builder blockLocationRequest = hdfs.BlockLocationRequest.newBuilder();
+                blockLocationRequest.addAllBlockNums(response.getBlockNumsList());
+                byte[] resp_bytes = namenode_stub.getBlockLocations(blockLocationRequest.build().toByteArray());
+                if (resp_bytes != null) {
+                    Random generator = new Random();
+                    hdfs.BlockLocationResponse resp = hdfs.BlockLocationResponse.parseFrom(resp_bytes);
+                    List<Integer> blocks = response.getBlockNumsList();
+                    for (int i = 0; i < block_count; i++) {
+                        hdfs.BlockLocations loc = resp.getBlockLocations(i);
+                        int loc_ind = generator.nextInt(2);
+                        hdfs.DataNodeLocation dnLocation = loc.getLocations(loc_ind);
+                        Registry registry = LocateRegistry.getRegistry(dnLocation.getIp(), dnLocation.getPort());
+                        Datanodedef datanode_stub = (Datanodedef) registry.lookup("DataNode");
+                        hdfs.ReadBlockRequest.Builder read_req = hdfs.ReadBlockRequest.newBuilder();
+                        read_req.setBlockNumber(blocks.get(i));
+                        byte[] read_resp = datanode_stub.readBlock(read_req.build().toByteArray());
+                        if (read_resp != null) {
+                            hdfs.ReadBlockResponse readBlockResponse = hdfs.ReadBlockResponse.parseFrom(read_resp);
+                            ByteString data = readBlockResponse.getData(0);
+                            read_data += data.toString();
+                        } else {
+                            err.println("Error Getting read from DataNode: " + dnLocation.getIp());
+                        }
+                    }
+                } else {
+                    err.println("Unable to get the Block Locations");
+                }
+            } else {
+                err.println("OpenFile Request failed at NameNode");
+            }
+        } catch (IOException | NotBoundException e) {
+            e.printStackTrace();
+        }
+        return read_data;
+    }
+
+    static private boolean write_to_hdfs(String file_name, String data) {
+        int block_size = 16384;
+        try {
+            hdfs.OpenFileRequest.Builder request = hdfs.OpenFileRequest.newBuilder();
+            request.setForRead(false);
+            request.setFileName(file_name);
+            byte[] open_resp = namenode_stub.openFile(request.build().toByteArray());
+            if (open_resp != null) {
+                hdfs.OpenFileResponse response = hdfs.OpenFileResponse.parseFrom(open_resp);
+                int handle = response.getHandle();
+                hdfs.AssignBlockRequest.Builder assignBlockRequest = hdfs.AssignBlockRequest.newBuilder();
+                assignBlockRequest.setHandle(handle);
+                byte[] byte_data = data.getBytes();
+                int len = byte_data.length;
+                int i = 0, bytes_read;
+                while (len > 0) {
+                    /* Split the data into block size chunks and then write it correspondingly */
+                    byte[] read_bytes;
+                    if (len >= block_size) {
+                        read_bytes = Arrays.copyOfRange(byte_data, i, i + block_size);
+                        i += block_size;
+                        len -= block_size;
+                        bytes_read = block_size;
+                    } else {
+                        read_bytes = Arrays.copyOfRange(byte_data, i, i + len);
+                        i += len;
+                        bytes_read = len;
+                        len = 0;
+                    }
+                    byte[] resp = namenode_stub.assignBlock(assignBlockRequest.build().toByteArray());
+                    if (resp != null) {
+                        hdfs.AssignBlockResponse blockResponse = hdfs.AssignBlockResponse.parseFrom(resp);
+                        hdfs.BlockLocations loc = blockResponse.getNewBlock();
+                        Registry reg = LocateRegistry.getRegistry(loc.getLocations(0).getIp(), loc.getLocations(0).getPort());
+                        Datanodedef datanode_stub = (Datanodedef) reg.lookup("DataNode");
+                        hdfs.WriteBlockRequest.Builder writeBlockRequest = hdfs.WriteBlockRequest.newBuilder().setReplicate(true);
+                        writeBlockRequest.addData(ByteString.copyFrom(Arrays.copyOfRange(read_bytes, 0, bytes_read)));
+                        writeBlockRequest.setBlockInfo(loc);
+                        resp = datanode_stub.writeBlock(writeBlockRequest.build().toByteArray());
+                        if (resp == null) {
+                            System.err.println("Write Block Failed");
+                        } else {
+                            return true;
+                        }
+                    } else {
+                        System.err.println("Assign block Failed");
+                    }
+                }
+            }
+        } catch (RemoteException | InvalidProtocolBufferException | NotBoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
+
     static private void map_executor(byte[] info) {
         /* this method performs the map task assigned */
         /* Each thread from the map_pool runs this function */
         try {
             hdfs.MapTaskInfo map_info = hdfs.MapTaskInfo.parseFrom(info);
-            List<hdfs.BlockLocations> block_locs = map_info.getInputBlocksList();
+            hdfs.BlockLocations block_loc = map_info.getInputBlocks();
             int jobId = map_info.getJobId();
             int taskId = map_info.getTaskId();
             String out_file = "map_" + Integer.toString(jobId) + "_" + Integer.toString(taskId);
-            for (hdfs.BlockLocations block_loc : block_locs) {
-            /* Randomly select a datanode for the given block to use */
-                hdfs.DataNodeLocation dnLoc = block_loc.getLocationsList().get(0);
-                int blockNum = block_loc.getBlockNumber();
-                Registry registry = LocateRegistry.getRegistry(dnLoc.getIp(), dnLoc.getPort());
-                Datanodedef datanode_stub = (Datanodedef) registry.lookup("DataNode");
-                hdfs.ReadBlockRequest.Builder read_req = hdfs.ReadBlockRequest.newBuilder();
-                read_req.setBlockNumber(blockNum);
-                byte[] read_resp = datanode_stub.readBlock(read_req.build().toByteArray());
-                if (read_resp != null) {
-                    hdfs.ReadBlockResponse readBlockResponse = hdfs.ReadBlockResponse.parseFrom(read_resp);
-                    ByteString data = readBlockResponse.getData(0);
-                    String mapName = map_info.getMapName();
-                    Class mapper = Class.forName(mapName);
+            hdfs.DataNodeLocation dnLoc = block_loc.getLocationsList().get(0);
+            int blockNum = block_loc.getBlockNumber();
+            Registry registry = LocateRegistry.getRegistry(dnLoc.getIp(), dnLoc.getPort());
+            Datanodedef datanode_stub = (Datanodedef) registry.lookup("DataNode");
+            hdfs.ReadBlockRequest.Builder read_req = hdfs.ReadBlockRequest.newBuilder();
+            read_req.setBlockNumber(blockNum);
+            byte[] read_resp = datanode_stub.readBlock(read_req.build().toByteArray());
+            if (read_resp != null) {
+                String mapName = map_info.getMapName();
+                Mapper mymap = (Mapper) Class.forName(mapName).newInstance();
+                hdfs.ReadBlockResponse readBlockResponse = hdfs.ReadBlockResponse.parseFrom(read_resp);
+                ByteString data = readBlockResponse.getData(0);
+                String input = data.toString();
+                String out_data = "";
+                Scanner scanner = new Scanner(input);
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    out_data += mymap.map(line);
+                }
+                scanner.close();
+                if (write_to_hdfs(out_file, out_data)) {
+                    /* Set the status only when write is successfull */
+                    hdfs.MapTaskStatus.Builder map_stat = map_statuses.get(out_file).toBuilder();
+                    map_stat.setTaskCompleted(true);
+                    map_statuses.put(out_file, map_stat.build());
+                    System.out.println(map_statuses.get(out_file).getTaskCompleted());// Testing Remove after confirmed
                 }
             }
-            hdfs.MapTaskStatus.Builder map_stat = hdfs.MapTaskStatus.newBuilder();
-            map_stat.setJobId(map_info.getJobId());
-            map_stat.setTaskId(map_info.getTaskId());
-            map_stat.setTaskCompleted(true);
-            map_stat.setMapOutputFile(out_file);
-            map_statuses.put(out_file, map_stat.build());
-        } catch (InvalidProtocolBufferException | ClassNotFoundException | NotBoundException | RemoteException e) {
+        } catch (InvalidProtocolBufferException | ClassNotFoundException | NotBoundException | RemoteException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }
@@ -87,19 +202,29 @@ public class TaskTracker {
             int jobId = reduce_info.getJobId();
             int taskId = reduce_info.getTaskId();
             String idx = "reduce_" + Integer.toString(jobId) + "_" + Integer.toString(taskId);
-            for (int j = 0; j < map_output_files.size(); j++) {
+            String out_data = "";
+            for (String map_output_file : map_output_files) {
                 String reducerName = reduce_info.getReducerName();
-                Class reducer = Class.forName(reducerName);
+                Reducer reducer = (Reducer) Class.forName(reducerName).newInstance();
+                String input = read_from_hdfs(map_output_file);
+                Scanner scanner = new Scanner(input);
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    out_data += reducer.reduce(line);
+                }
+                scanner.close();
             }
-            hdfs.ReduceTaskStatus.Builder reduce_stat = hdfs.ReduceTaskStatus.newBuilder();
-            reduce_stat.setJobId(jobId);
-            reduce_stat.setTaskId(taskId);
-            reduce_stat.setTaskCompleted(true);
-            reduce_statuses.put(idx, reduce_stat.build());
-        } catch (InvalidProtocolBufferException | ClassNotFoundException e) {
+            if (write_to_hdfs(out_file, out_data)) {
+                /* Set the status only when write is successfull */
+                hdfs.ReduceTaskStatus.Builder reduce_stat = hdfs.ReduceTaskStatus.newBuilder();
+                reduce_stat.setJobId(jobId);
+                reduce_stat.setTaskId(taskId);
+                reduce_stat.setTaskCompleted(true);
+                reduce_statuses.put(idx, reduce_stat.build());
+            }
+        } catch (InvalidProtocolBufferException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
-
     }
 
     private static class HeartbeatHandler extends Thread {

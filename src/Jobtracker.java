@@ -15,7 +15,7 @@ public class Jobtracker implements Jobtrackerdef {
     Queue<Integer> reduce_queue; /* Job Queue */
     static Namenodedef namenode_stub;
 
-    Jobtracker() {
+    public Jobtracker() {
         num_jobs = 0;
         jobs = new HashMap<>();
         map_queue = new LinkedList<>();
@@ -103,7 +103,7 @@ public class Jobtracker implements Jobtrackerdef {
         return null;
     }
 
-    static void assign_reducers(jobstatus job_status, int id) {
+    static void assign_reducers(jobstatus job_status) {
         if (job_status.total_reduce < job_status.total_map) {
             /* Caluclate the number of maps needed for reducers */
             int factor = job_status.total_map / job_status.total_reduce + 1;
@@ -140,7 +140,7 @@ public class Jobtracker implements Jobtrackerdef {
                     status.started_map++;
                     int task_id = status.started_map;
                     hdfs.MapTaskInfo.Builder task = hdfs.MapTaskInfo.newBuilder();
-                    task.addInputBlocks(status.map_status.get(task_id).loc_info);
+                    task.setInputBlocks(status.map_status.get(task_id).loc_info);
                     task.setJobId(job);
                     task.setTaskId(task_id);
                     task.setMapName(status.mapname);
@@ -188,7 +188,7 @@ public class Jobtracker implements Jobtrackerdef {
                     }
                 }
                 if (is_done) {
-                    assign_reducers(job_status, job_id);
+                    assign_reducers(job_status);
                 }
             });
             List<hdfs.ReduceTaskStatus> reduce_statuses = request.getReduceStatusList();
