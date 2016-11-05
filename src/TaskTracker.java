@@ -35,8 +35,7 @@ public class TaskTracker {
 
     static private void map_executor(byte[] info) {
         /* this method performs the map task assigned */
-        hdfs.MapExecutorRequest.Builder request = hdfs.MapExecutorRequest.parseFrom(info);
-        hdfs.MapTaskInfo map_info = request.getMapInfo();
+        hdfs.MapTaskInfo map_info = hdfs.MapTaskInfo.parseFrom(info);
         List<hdfs.BlockLocations> block_locs = map_info.getInputBlocksList();
         int jobId = map_info.getJobId();
         int taskId = map_info.getTaskId();
@@ -60,8 +59,7 @@ public class TaskTracker {
 
     static private void reduce_executor(byte[] info) {
         /* this method performs the reduce task assigned */
-        hdfs.ReduceExecutorRequest.Builder request = hdfs.ReduceExecutorRequest.parseFrom(info);
-        hdfs.ReducerTaskInfo reduce_info = request.getReduceInfo();
+        hdfs.ReducerTaskInfo reduce_info = hdfs.ReducerTaskInfo.parseFrom(info);
         List<String> map_output_files = reduce_info.getMapOutputFilesList();
         String out_file = reduce_info.getOutputFile();
         int jobId = map_info.getJobId();
@@ -98,15 +96,11 @@ public class TaskTracker {
                     List<hdfs.ReducerTaskInfo> reduce_infos response.getReduceTasksList();
                     for (int i = 0; i < map_infos.size(); i++){
                         hdfs.MapTaskInfo map_info = map_infos.get(i);
-                        hdfs.MapExecutorRequest.Builder map_exec_request = hdfs.MapExecutorRequest.newBuilder();
-                        map_exec_request.setMapInfo(map_info);
-                        map_executor(map_exec_request.build().toByteArray());
+                        map_executor(map_info.toByteArray());
                     }
                     for (int i = 0; i < reduce_infos.size(); i++){
                         hdfs.ReduceTaskInfo reduce_info = reduce_infos.get(i);
-                        hdfs.ReduceExecutorRequest.Builder reduce_exec_request = hdfs.ReduceExecutorRequest.newBuilder();
-                        reduce_exec_request.setReduceInfo(reduce_info);
-                        reduce_executor(reduce_exec_request.build().toByteArray());
+                        reduce_executor(reduce_info.toByteArray());
                     }
                     Thread.sleep(10000); /* Sleep for 10 Seconds */
                 }
