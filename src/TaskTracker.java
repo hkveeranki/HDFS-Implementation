@@ -1,9 +1,13 @@
 import HDFS.hdfs;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -29,6 +33,8 @@ public class TaskTracker {
             Registry registry = LocateRegistry.getRegistry(host, port);
             jobtracker_stub = (Jobtrackerdef) registry.lookup("JobTracker");
             int id = Integer.valueOf(args[0]);
+            map_statuses = new HashMap<>();
+            reduce_statuses = new HashMap<>();
             new HeartbeatHandler(id).run();
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
@@ -38,55 +44,62 @@ public class TaskTracker {
     static private void map_executor(byte[] info) {
         /* this method performs the map task assigned */
         /* Each thread from the map_pool runs this function */
-        hdfs.MapTaskInfo map_info = hdfs.MapTaskInfo.parseFrom(info);
-        List<hdfs.BlockLocations> block_locs = map_info.getInputBlocksList();
-        int jobId = map_info.getJobId();
-        int taskId = map_info.getTaskId();
-        String out_file = "map_" + map_info.getJobId().toString() + "_" + map_info.getTaskId().toString();
-        for(int j = 0; j < block_locs.size(); j++){
+        try {
+            hdfs.MapTaskInfo map_info = hdfs.MapTaskInfo.parseFrom(info);
+            List<hdfs.BlockLocations> block_locs = map_info.getInputBlocksList();
+            int jobId = map_info.getJobId();
+            int taskId = map_info.getTaskId();
+            String out_file = "map_" + Integer.toString(jobId) + "_" + Integer.toString(taskId);
+            for (hdfs.BlockLocations block_loc : block_locs) {
             /* Randomly select a datanode for the given block to use */
-            DataNodeLocation dnLoc = block_locs[j].getLocationsList()[0];
-            int blockNum = block_locs[j].getBlockNumber();
-            Registry registry = LocateRegistry.getRegistry(dnLoc.getIp(), dnLoc.getPort());
-            Datanodedef datanode_stub = (Datanodedef) registry.lookup("DataNode");
-            hdfs.ReadBlockRequest.Builder read_req = hdfs.ReadBlockRequest.newBuilder();
-            read_req.setBlockNumber(blockNum);
-            byte[] read_resp = datanode_stub.readBlock(read_req.build().toByteArray());
-            if (read_resp != null) {
-                hdfs.ReadBlockResponse readBlockResponse = hdfs.ReadBlockResponse.parseFrom(read_resp);
-                ByteString data = readBlockResponse.getData(0);
-                String mapName = map_info.getMapName();
-                Class mapper = Class.forName(mapName); // Is this correct?
-
+                hdfs.DataNodeLocation dnLoc = block_loc.getLocationsList().get(0);
+                int blockNum = block_loc.getBlockNumber();
+                Registry registry = LocateRegistry.getRegistry(dnLoc.getIp(), dnLoc.getPort());
+                Datanodedef datanode_stub = (Datanodedef) registry.lookup("DataNode");
+                hdfs.ReadBlockRequest.Builder read_req = hdfs.ReadBlockRequest.newBuilder();
+                read_req.setBlockNumber(blockNum);
+                byte[] read_resp = datanode_stub.readBlock(read_req.build().toByteArray());
+                if (read_resp != null) {
+                    hdfs.ReadBlockResponse readBlockResponse = hdfs.ReadBlockResponse.parseFrom(read_resp);
+                    ByteString data = readBlockResponse.getData(0);
+                    String mapName = map_info.getMapName();
+                    Class mapper = Class.forName(mapName);
+                }
             }
+            hdfs.MapTaskStatus.Builder map_stat = hdfs.MapTaskStatus.newBuilder();
+            map_stat.setJobId(map_info.getJobId());
+            map_stat.setTaskId(map_info.getTaskId());
+            map_stat.setTaskCompleted(true);
+            map_stat.setMapOutputFile(out_file);
+            map_statuses.put(out_file, map_stat.build());
+        } catch (InvalidProtocolBufferException | ClassNotFoundException | NotBoundException | RemoteException e) {
+            e.printStackTrace();
         }
-        hdfs.MapTaskStatus.Builder map_stat = hdfs.MapTaskStatus.newBuilder();
-        map_stat.setJobId(map_info.getJobId());
-        map_stat.setTaskId(map_info.getTaskId());
-        map_stat.setTaskCompleted(true);
-        map_stat.setMapOutputFile(out_file);
-        map_statuses.put(out_file, map_stat.build());
     }
 
     static private void reduce_executor(byte[] info) {
         /* this method performs the reduce task assigned */
         /* Each thread from the reduce_pool runs this function */
-        hdfs.ReducerTaskInfo reduce_info = hdfs.ReducerTaskInfo.parseFrom(info);
-        List<String> map_output_files = reduce_info.getMapOutputFilesList();
-        String out_file = reduce_info.getOutputFile();
-        int jobId = map_info.getJobId();
-        int taskId = map_info.getTaskId();
-        String idx = "reduce_" + jobId.toString() + "_" + taskId.toString();
-        for(int j = 0; j < map_output_files.size(); j++){
-            String reducerName = reduce_info.getReducerName();
-            Class reducer = Class.forName(reducerName); // Is this correct?
-
+        try {
+            hdfs.ReducerTaskInfo reduce_info = hdfs.ReducerTaskInfo.parseFrom(info);
+            List<String> map_output_files = reduce_info.getMapOutputFilesList();
+            String out_file = reduce_info.getOutputFile();
+            int jobId = reduce_info.getJobId();
+            int taskId = reduce_info.getTaskId();
+            String idx = "reduce_" + Integer.toString(jobId) + "_" + Integer.toString(taskId);
+            for (int j = 0; j < map_output_files.size(); j++) {
+                String reducerName = reduce_info.getReducerName();
+                Class reducer = Class.forName(reducerName);
+            }
+            hdfs.ReduceTaskStatus.Builder reduce_stat = hdfs.ReduceTaskStatus.newBuilder();
+            reduce_stat.setJobId(jobId);
+            reduce_stat.setTaskId(taskId);
+            reduce_stat.setTaskCompleted(true);
+            reduce_statuses.put(idx, reduce_stat.build());
+        } catch (InvalidProtocolBufferException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
-        hdfs.ReduceTaskStatus.Builder reduce_stat = hdfs.ReduceTaskStatus.newBuilder();
-        reduce_stat.setJobId(jobId);
-        reduce_stat.setTaskId(taskId);
-        reduce_stat.setTaskCompleted(true);
-        reduce_statuses.put(idx, reduce_stat.build());
+
     }
 
     private static class HeartbeatHandler extends Thread {
@@ -110,7 +123,7 @@ public class TaskTracker {
                         String key = entry.getKey();
                         hdfs.MapTaskStatus map_status = entry.getValue();
                         request.addMapStatus(map_status);
-                        if(map_status.getTaskCompleted() == true){
+                        if (map_status.getTaskCompleted()) {
                             map_statuses.remove(key);
                         }
                     }
@@ -118,40 +131,39 @@ public class TaskTracker {
                         String key = entry.getKey();
                         hdfs.ReduceTaskStatus reduce_status = entry.getValue();
                         request.addReduceStatus(reduce_status);
-                        if(reduce_statuses.getTaskCompleted() == true){
+                        if (reduce_status.getTaskCompleted()) {
                             reduce_statuses.remove(key);
                         }
                     }
                     /* Get response and act on it */
                     byte[] resp = jobtracker_stub.heartBeat(request.build().toByteArray());
                     System.err.println("Sent HeartBeat from Task Tracker " + id);
-                    hdfs.HeartBeatResponseMapReduce.Builder response = hdfs.HeartBeatResponseMapReduce.parseFrom(resp);
-                    List<hdfs.MapTaskInfo> map_infos response.getMapTasksList();
-                    List<hdfs.ReducerTaskInfo> reduce_infos response.getReduceTasksList();
-                    for (int i = 0; i < map_infos.size(); i++){
-                        hdfs.MapTaskInfo map_info = map_infos.get(i);
+                    hdfs.HeartBeatResponseMapReduce response = hdfs.HeartBeatResponseMapReduce.parseFrom(resp);
+                    List<hdfs.MapTaskInfo> map_infos = response.getMapTasksList();
+                    List<hdfs.ReducerTaskInfo> reduce_infos = response.getReduceTasksList();
+                    for (hdfs.MapTaskInfo map_info : map_infos) {
                         hdfs.MapTaskStatus.Builder map_stat = hdfs.MapTaskStatus.newBuilder();
                         map_stat.setJobId(map_info.getJobId());
                         map_stat.setTaskId(map_info.getTaskId());
                         map_stat.setTaskCompleted(false);
-                        String out_file = "map_" + map_info.getJobId().toString() + "_" + map_info.getTaskId().toString();
+                        String out_file = "map_" + String.valueOf(map_info.getJobId()) + "_" + String.valueOf(map_info.getTaskId());
                         map_stat.setMapOutputFile(out_file);
                         map_statuses.put(out_file, map_stat.build());
                         map_executor(map_info.toByteArray());
                     }
-                    for (int i = 0; i < reduce_infos.size(); i++){
-                        hdfs.ReduceTaskInfo reduce_info = reduce_infos.get(i);
+                    for (hdfs.ReducerTaskInfo reduce_info : reduce_infos) {
                         hdfs.ReduceTaskStatus.Builder reduce_stat = hdfs.ReduceTaskStatus.newBuilder();
                         reduce_stat.setJobId(reduce_info.getJobId());
                         reduce_stat.setTaskId(reduce_info.getTaskId());
                         reduce_stat.setTaskCompleted(false);
-                        String idx = "reduce" + reduce_info.getJobId().toString() + "_" + reduce_info.getTaskId().toString();
+                        String idx = "reduce" + String.valueOf(reduce_info.getJobId()) + "_" +
+                                String.valueOf(reduce_info.getTaskId());
                         reduce_statuses.put(idx, reduce_stat.build());
                         reduce_executor(reduce_info.toByteArray());
                     }
                     Thread.sleep(10000); /* Sleep for 10 Seconds */
                 }
-            } catch (InterruptedException e) {
+            } catch (InterruptedException | InvalidProtocolBufferException e) {
                 e.printStackTrace();
             }
         }
