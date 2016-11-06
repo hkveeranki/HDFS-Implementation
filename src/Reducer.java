@@ -1,7 +1,9 @@
 
 public class Reducer implements Reducerdef {
-    @Override
     public String reduce(String query) {
-        return null;
+        if(query != null && query.contains(":true")) {
+            return query.split(":")[0];
+        }
+        return "";
     }
 }

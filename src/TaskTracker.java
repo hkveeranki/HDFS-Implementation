@@ -41,6 +41,8 @@ public class TaskTracker {
             reduce_statuses = new HashMap<>();
             helper = new Helper(namenode_stub);
             new HeartbeatHandler(id).run();
+            map_pool.shutdown();
+            reduce_pool.shutdown();
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
@@ -170,7 +172,7 @@ public class TaskTracker {
                         String out_file = "map_" + String.valueOf(map_info.getJobId()) + "_" + String.valueOf(map_info.getTaskId());
                         map_stat.setMapOutputFile(out_file);
                         map_statuses.put(out_file, map_stat.build());
-                        map_executor(map_info.toByteArray());
+                        map_pool.execute(map_executor(map_info.toByteArray()));
                     }
                     for (hdfs.ReducerTaskInfo reduce_info : reduce_infos) {
                         hdfs.ReduceTaskStatus.Builder reduce_stat = hdfs.ReduceTaskStatus.newBuilder();
@@ -180,7 +182,7 @@ public class TaskTracker {
                         String idx = "reduce" + String.valueOf(reduce_info.getJobId()) + "_" +
                                 String.valueOf(reduce_info.getTaskId());
                         reduce_statuses.put(idx, reduce_stat.build());
-                        reduce_executor(reduce_info.toByteArray());
+                        reduce_pool.execute(reduce_executor(reduce_info.toByteArray()));
                     }
                     Thread.sleep(10000); /* Sleep for 10 Seconds */
                 }
