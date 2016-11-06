@@ -11,15 +11,18 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-
 public class Client {
 
     public static void main(String[] args) throws RemoteException, NotBoundException {
         String namenode_ip = "127.0.0.1";
+        String jobtracker_ip = "127.0.0.1";
         int block_size = 16384; /* 16 KB */
         Registry reg = LocateRegistry.getRegistry(namenode_ip);
+        Registry reg2 = LocateRegistry.getRegistry(jobtracker_ip);
         Namenodedef namenode_stub = (Namenodedef) reg.lookup("NameNode");
+        Jobtrackerdef jobtracker_stub = (Jobtrackerdef) reg2.lookup("JobTracker");
         Scanner in = new Scanner(System.in);
+        Helper helper = new Helper(namenode_stub);
         String command, file_name;
         PrintStream err = new PrintStream(System.err);
         label:
@@ -134,6 +137,21 @@ public class Client {
                     } catch (Exception ignored) {
 
                     }
+                    break;
+                case "job":
+                    String command = in.nextLine();
+                    String[] params = command.split(" ");
+                    hdfs.JobSubmitRequest.Builder job_request = hdfs.JobSubmitRequest.newBuilder();
+                    job_request.setMapName(params[0]);
+                    job_request.setReducerName(params[1]);
+                    job_request.setInputFile(params[2]);
+                    job_request.setOutputFile(params[3]);
+                    job_request.setNumReduceTasks(Integer.valueOf(params[4]));
+
+                    String regex = params[5];
+                    helper.write_to_hdfs("job.xml", regex);
+
+                    jobtracker_stub.jobSubmit(job_request.build().toByteArray());
                     break;
                 case "exit":
                 /* We are done Exit the client */
