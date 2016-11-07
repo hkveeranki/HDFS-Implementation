@@ -93,7 +93,7 @@ public class Datanode implements Datanodedef {
         int myid = Integer.valueOf(args[0]);
         Datanode obj = new Datanode();
         try {
-            Registry reg = LocateRegistry.getRegistry();
+            Registry reg = LocateRegistry.getRegistry("0.0.0.0", 1099);
             Datanodedef stub = (Datanodedef) UnicastRemoteObject.exportObject(obj, 0);
             reg.rebind("DataNode", stub);
         } catch (RemoteException e) {
