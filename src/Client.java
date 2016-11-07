@@ -141,6 +141,7 @@ public class Client {
                 case "job":
                     /* Submit a Job */
                     try {
+                        /* Submit a Job */
                         String line = in.nextLine();
                         String[] params = line.split(" ");
                         hdfs.JobSubmitRequest.Builder job_request = hdfs.JobSubmitRequest.newBuilder();
@@ -153,7 +154,33 @@ public class Client {
                         String regex = params[5];
                         helper.write_to_hdfs("job.xml", regex);
 
-                        jobtracker_stub.jobSubmit(job_request.build().toByteArray());
+                        hdfs.JobSubmitResponse job_resp = hdfs.JobSubmitResponse.parseFrom(jobtracker_stub.jobSubmit(job_request.build().toByteArray()));
+                        int status = job_resp.getStatus();
+                        int jobId = job_resp.getJobId();
+
+                        hdfs.JobStatusRequest.Builder job_stat_req = hdfs.JobStatusRequest.newBuilder();
+                        job_stat_req.setJobId(jobId);
+
+                        hdfs.JobStatusResponse job_stat_resp = hdfs.JobStatusResponse.parseFrom(jobtracker_stub.getJobStatus(job_stat_req.build().toByteArray()));
+                        while(job_stat_resp.getStatus() != 4){
+                            int status = job_stat_resp.getStatus();
+                            if(status == 0){
+                                err.println("Mappers not yet assigned");
+                            }
+                            if(status == 1){
+                                err.println("Map phase done");
+                            }
+                            if(status == 2){
+                                err.println("Nothing here");
+                            }
+                            if(status == 3){
+                                err.println("Reducers assigned");
+                            }
+                            if(status == 4){
+                                err.println("Job Completed!");
+                            }
+                            job_stat_resp = hdfs.JobStatusResponse.parseFrom(jobtracker_stub.getJobStatus(job_stat_req.build().toByteArray()));
+                        }
                     }
                     catch (RemoteException e){
                         e.printStackTrace();
