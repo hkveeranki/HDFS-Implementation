@@ -224,7 +224,7 @@ public class Namenode implements Namenodedef {
         try {
             Namenode obj = new Namenode();
             Namenodedef stub = (Namenodedef) UnicastRemoteObject.exportObject(obj, 0);
-            Registry reg = LocateRegistry.getRegistry();
+            Registry reg = LocateRegistry.getRegistry("0.0.0.0", 1099);
             reg.rebind("NameNode", stub);
         } catch (RemoteException e) {
             e.printStackTrace();
