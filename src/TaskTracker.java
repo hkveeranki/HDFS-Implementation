@@ -203,7 +203,7 @@ public class TaskTracker {
                     }
                     Thread.sleep(10000); /* Sleep for 10 Seconds */
                 }
-            } catch (InterruptedException | InvalidProtocolBufferException e) {
+            } catch (InterruptedException | InvalidProtocolBufferException | RemoteException e) {
                 e.printStackTrace();
             }
         }

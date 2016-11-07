@@ -207,14 +207,14 @@ public class Jobtracker implements Jobtrackerdef {
         return null;
     }
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
 
         Jobtracker job_tracker = new Jobtracker();
         try {
             Jobtrackerdef stub = (Jobtrackerdef) UnicastRemoteObject.exportObject(job_tracker, 0);
             Registry reg = LocateRegistry.getRegistry();
             reg.rebind("JobTracker", stub);
-            String namenode_host = "127.0.0.1";
+            String namenode_host = "10.1.39.155";
             int namenode_ip = 1099;
             Registry registry = LocateRegistry.getRegistry(namenode_host, namenode_ip);
             namenode_stub = (Namenodedef) registry.lookup("NameNode");

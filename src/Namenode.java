@@ -21,7 +21,7 @@ public class Namenode implements Namenodedef {
     private static HashMap<Integer, ArrayList<Integer>> map_block_datanode;
     private static int block_number;
     private int file_number;
-    private static String[] datanode_ip = {"127.0.0.1", "127.0.0.1", "127.0.0.1"};
+    private static String[] datanode_ip = {"10.1.39.172", "10.1.39.154"};
 
     private Namenode() {
         file_number = 0;

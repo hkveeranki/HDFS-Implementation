@@ -140,19 +140,24 @@ public class Client {
                     break;
                 case "job":
                     /* Submit a Job */
-                    String line = in.nextLine();
-                    String[] params = line.split(" ");
-                    hdfs.JobSubmitRequest.Builder job_request = hdfs.JobSubmitRequest.newBuilder();
-                    job_request.setMapName(params[0]);
-                    job_request.setReducerName(params[1]);
-                    job_request.setInputFile(params[2]);
-                    job_request.setOutputFile(params[3]);
-                    job_request.setNumReduceTasks(Integer.valueOf(params[4]));
+                    try {
+                        String line = in.nextLine();
+                        String[] params = line.split(" ");
+                        hdfs.JobSubmitRequest.Builder job_request = hdfs.JobSubmitRequest.newBuilder();
+                        job_request.setMapName(params[0]);
+                        job_request.setReducerName(params[1]);
+                        job_request.setInputFile(params[2]);
+                        job_request.setOutputFile(params[3]);
+                        job_request.setNumReduceTasks(Integer.valueOf(params[4]));
 
-                    String regex = params[5];
-                    helper.write_to_hdfs("job.xml", regex);
+                        String regex = params[5];
+                        helper.write_to_hdfs("job.xml", regex);
 
-                    jobtracker_stub.jobSubmit(job_request.build().toByteArray());
+                        jobtracker_stub.jobSubmit(job_request.build().toByteArray());
+                    }
+                    catch (RemoteException e){
+                        e.printStackTrace();
+                    }
                     break;
                 case "exit":
                 /* We are done Exit the client */
