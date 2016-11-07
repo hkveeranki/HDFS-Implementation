@@ -1,5 +1,6 @@
 import HDFS.hdfs;
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.io.*;
 import java.rmi.NotBoundException;
@@ -162,27 +163,26 @@ public class Client {
                         job_stat_req.setJobId(jobId);
 
                         hdfs.JobStatusResponse job_stat_resp = hdfs.JobStatusResponse.parseFrom(jobtracker_stub.getJobStatus(job_stat_req.build().toByteArray()));
-                        while(job_stat_resp.getStatus() != 4){
-                            int status = job_stat_resp.getStatus();
-                            if(status == 0){
+                        while (job_stat_resp.getStatus() != 4) {
+                            status = job_stat_resp.getStatus();
+                            if (status == 0) {
                                 err.println("Mappers not yet assigned");
                             }
-                            if(status == 1){
+                            if (status == 1) {
                                 err.println("Map phase done");
                             }
-                            if(status == 2){
+                            if (status == 2) {
                                 err.println("Nothing here");
                             }
-                            if(status == 3){
+                            if (status == 3) {
                                 err.println("Reducers assigned");
                             }
-                            if(status == 4){
+                            if (status == 4) {
                                 err.println("Job Completed!");
                             }
                             job_stat_resp = hdfs.JobStatusResponse.parseFrom(jobtracker_stub.getJobStatus(job_stat_req.build().toByteArray()));
                         }
-                    }
-                    catch (RemoteException e){
+                    } catch (RemoteException | InvalidProtocolBufferException e) {
                         e.printStackTrace();
                     }
                     break;
