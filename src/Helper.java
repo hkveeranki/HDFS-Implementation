@@ -64,6 +64,7 @@ public class Helper {
         } catch (IOException | NotBoundException e) {
             e.printStackTrace();
         }
+        System.err.println("Done Read");
         return read_data;
     }
 
@@ -109,6 +110,7 @@ public class Helper {
                         if (resp == null) {
                             System.err.println("Write Block Failed");
                         } else {
+                            System.err.println("Done Write");
                             return true;
                         }
                     } else {

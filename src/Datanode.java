@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public class Datanode implements Datanodedef {
-    private static String namenode_ip = "127.0.0.1";
+    private static String namenode_ip = "10.1.39.155";
 
     private Datanode() {
     }
@@ -82,6 +82,7 @@ public class Datanode implements Datanodedef {
 
     public static void main(String[] args) {
         PrintStream err = new PrintStream(System.err);
+        System.setProperty("java.rmi.server.hostname", "10.1.39.172");
         if (args.length < 1) {
             err.println("Need Data Node ID as an argument");
             System.exit(-1);
@@ -121,6 +122,7 @@ public class Datanode implements Datanodedef {
                     hdfs.HeartBeatRequest.Builder request = hdfs.HeartBeatRequest.newBuilder();
                     request.setId(id);
                     Registry reg = LocateRegistry.getRegistry(namenode_ip);
+                    System.err.println(Arrays.toString(reg.list()));
                     Namenodedef stub = (Namenodedef) reg.lookup("NameNode");
                     stub.heartBeat(request.build().toByteArray());
                     System.err.println("Sent HeartBeat from Node " + id);

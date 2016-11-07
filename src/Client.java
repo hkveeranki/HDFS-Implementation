@@ -15,8 +15,8 @@ import java.util.Scanner;
 public class Client {
 
     public static void main(String[] args) throws RemoteException, NotBoundException {
-        String namenode_ip = "127.0.0.1";
-        String jobtracker_ip = "127.0.0.1";
+        String namenode_ip = "10.1.39.155";
+        String jobtracker_ip = "10.1.39.155";
         int block_size = 16384; /* 16 KB */
         Registry reg = LocateRegistry.getRegistry(namenode_ip);
         Registry reg2 = LocateRegistry.getRegistry(jobtracker_ip);
@@ -146,42 +146,38 @@ public class Client {
                         String line = in.nextLine();
                         String[] params = line.split(" ");
                         hdfs.JobSubmitRequest.Builder job_request = hdfs.JobSubmitRequest.newBuilder();
-                        job_request.setMapName(params[0]);
-                        job_request.setReducerName(params[1]);
-                        job_request.setInputFile(params[2]);
-                        job_request.setOutputFile(params[3]);
-                        job_request.setNumReduceTasks(Integer.valueOf(params[4]));
+                        job_request.setMapName(params[1]);
+                        job_request.setReducerName(params[2]);
+                        job_request.setInputFile(params[3]);
+                        job_request.setOutputFile(params[4]);
+                        job_request.setNumReduceTasks(Integer.valueOf(params[5]));
 
-                        String regex = params[5];
+                        String regex = params[6];
                         helper.write_to_hdfs("job.xml", regex);
 
                         hdfs.JobSubmitResponse job_resp = hdfs.JobSubmitResponse.parseFrom(jobtracker_stub.jobSubmit(job_request.build().toByteArray()));
+                        
                         int status = job_resp.getStatus();
                         int jobId = job_resp.getJobId();
+
+                        err.println(jobId);
 
                         hdfs.JobStatusRequest.Builder job_stat_req = hdfs.JobStatusRequest.newBuilder();
                         job_stat_req.setJobId(jobId);
 
                         hdfs.JobStatusResponse job_stat_resp = hdfs.JobStatusResponse.parseFrom(jobtracker_stub.getJobStatus(job_stat_req.build().toByteArray()));
-                        while (job_stat_resp.getStatus() != 4) {
+                        while (job_stat_resp.getStatus() != 1) {
                             status = job_stat_resp.getStatus();
                             if (status == 0) {
-                                err.println("Mappers not yet assigned");
-                            }
-                            if (status == 1) {
-                                err.println("Map phase done");
-                            }
-                            if (status == 2) {
-                                err.println("Nothing here");
-                            }
-                            if (status == 3) {
-                                err.println("Reducers assigned");
-                            }
-                            if (status == 4) {
-                                err.println("Job Completed!");
+                                err.println("Please wait - 0");
+                                err.println(job_stat_resp.getTotalMapTasks());
+                                err.println(job_stat_resp.getNumMapTasksStarted());
+                                err.println(job_stat_resp.getTotalReduceTasks());
+                                err.println(job_stat_resp.getNumReduceTasksStarted());    
                             }
                             job_stat_resp = hdfs.JobStatusResponse.parseFrom(jobtracker_stub.getJobStatus(job_stat_req.build().toByteArray()));
                         }
+                        err.println("Done! - 1");
                     } catch (RemoteException | InvalidProtocolBufferException e) {
                         e.printStackTrace();
                     }

@@ -27,8 +27,8 @@ public class TaskTracker {
 
     static public void main(String args[]) {
         try {
-            String host = "127.0.0.1";
-            String namenode_host = "127.0.0.1";
+            String host = "10.1.39.155";
+            String namenode_host = "10.1.39.155";
             int namenode_port = 1099;
             int port = 1099;
             map_pool = (ThreadPoolExecutor) Executors.newFixedThreadPool(map_capacity);
@@ -78,10 +78,12 @@ public class TaskTracker {
                     ByteString data = readBlockResponse.getData(0);
                     String input = data.toString();
                     String out_data = "";
+                    System.err.println("Mapper out data is: ");
                     Scanner scanner = new Scanner(input);
                     while (scanner.hasNextLine()) {
                         String line = scanner.nextLine();
                         out_data += mymap.map(line);
+                        System.err.println(out_data)
                     }
                     scanner.close();
                     if (helper.write_to_hdfs(out_file, out_data)) {
@@ -115,6 +117,7 @@ public class TaskTracker {
                 int taskId = reduce_info.getTaskId();
                 String idx = "reduce_" + Integer.toString(jobId) + "_" + Integer.toString(taskId);
                 String out_data = "";
+                System.err.println("Reducer out data is: ");
                 for (String map_output_file : map_output_files) {
                     String reducerName = reduce_info.getReducerName();
                     Reducer reducer = (Reducer) Class.forName(reducerName).newInstance();
@@ -123,6 +126,7 @@ public class TaskTracker {
                     while (scanner.hasNextLine()) {
                         String line = scanner.nextLine();
                         out_data += reducer.reduce(line);
+                        System.err.println(out_data);
                     }
                     scanner.close();
                 }
