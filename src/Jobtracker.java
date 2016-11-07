@@ -43,6 +43,7 @@ public class Jobtracker implements Jobtrackerdef {
                 /* Get the Block Locations for all */
                 hdfs.BlockLocationRequest.Builder blockLocationRequest = hdfs.BlockLocationRequest.newBuilder();
                 blockLocationRequest.addAllBlockNums(resp.getBlockNumsList());
+                System.err.println(resp.getBlockNumsList());
                 byte[] resp_bytes = namenode_stub.getBlockLocations(blockLocationRequest.build().toByteArray());
                 if (resp_bytes != null) {
                     /* get the blocks and assign each block a map_info in map_status */
@@ -71,30 +72,30 @@ public class Jobtracker implements Jobtrackerdef {
             hdfs.JobStatusRequest request = hdfs.JobStatusRequest.parseFrom(inp);
             hdfs.JobStatusResponse.Builder response = hdfs.JobStatusResponse.newBuilder();
             int job_id = request.getJobId();
-            if (map_queue.contains(job_id)) {
-                response.setStatus(0); /* Not Yet finished assigning Maps */
-            } else if (reduce_queue.contains(job_id)) {
-                /* Map Phase is done */
-                response.setStatus(1);
-            } else {
-                /* Reduce are assigned so check for status */
-                jobstatus status = jobs.get(job_id);
+            jobstatus status = jobs.get(job_id);
+            if (!status.status) {
                 boolean is_done = true;
-                if (!status.status) {
-                    for (int i = 1; i <= status.total_reduce; i++) {
-                        if (!status.reduce_status.get(i).status) {
-                            is_done = false;
-                            break;
-                        }
+                for (int i = 1; i <= status.total_reduce; i++) {
+                    if (status.reduce_status.get(i) == null || !status.reduce_status.get(i).status) {
+                        is_done = false;
+                        break;
                     }
-                    if (is_done) {
-                        /* Set the status to done */
-                        status.status = true;
-                        response.setStatus(4);
-                    } else response.setStatus(3);
-                } else {
-                    response.setStatus(4);
                 }
+                if (is_done) {
+                        /* Set the status to done */
+                    status.status = true;
+                    response.setStatus(1);
+                    response.setTotalMapTasks(status.total_map);
+                    response.setTotalReduceTasks(status.total_reduce);
+                    response.setNumMapTasksStarted(status.started_map);
+                    response.setTotalReduceTasks(status.started_reduce);
+                } else {
+                    response.setStatus(0);
+
+                }
+
+            } else {
+                response.setStatus(1);
             }
             return response.build().toByteArray();
         } catch (InvalidProtocolBufferException e) {
@@ -139,6 +140,7 @@ public class Jobtracker implements Jobtrackerdef {
                     /* There are map tasks pending so assign them*/
                     status.started_map++;
                     int task_id = status.started_map;
+                    System.err.println("Assigned map");
                     hdfs.MapTaskInfo.Builder task = hdfs.MapTaskInfo.newBuilder();
                     task.setInputBlocks(status.map_status.get(task_id).loc_info);
                     task.setJobId(job);
@@ -150,6 +152,7 @@ public class Jobtracker implements Jobtrackerdef {
                     /* All are assigned so remove it from queue */
                     map_queue.remove();
                 }
+                jobs.put(job, status);
             }
             if (reduce_queue.size() > 0) {
                 int job = map_queue.element();
@@ -161,9 +164,11 @@ public class Jobtracker implements Jobtrackerdef {
                     hdfs.ReducerTaskInfo.Builder task = hdfs.ReducerTaskInfo.newBuilder();
                     task.setJobId(job);
                     task.setTaskId(task_id);
+                    System.err.println("Assigned Reduced");
                     task.addAllMapOutputFiles(status.reduce_status.get(task_id).output_files);
                     reduce_slots--;
                 }
+                jobs.put(job, status);
                 if (status.started_reduce == status.total_reduce) {
                     /* All are assigned so remove it from queue */
                     reduce_queue.remove();
@@ -211,6 +216,7 @@ public class Jobtracker implements Jobtrackerdef {
 
         Jobtracker job_tracker = new Jobtracker();
         try {
+            System.setProperty("java.rmi.server.hostname", "10.1.39.155");
             Jobtrackerdef stub = (Jobtrackerdef) UnicastRemoteObject.exportObject(job_tracker, 0);
             Registry reg = LocateRegistry.getRegistry("0.0.0.0", 1099);
             reg.rebind("JobTracker", stub);

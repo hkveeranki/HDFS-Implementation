@@ -36,6 +36,7 @@ public class Namenode implements Namenodedef {
             boolean forRead = request.getForRead();
             if (forRead) {
                 ArrayList<Integer> blocks = map_filename_blocks.get(filename);
+                System.err.println(map_filename_blocks);
                 response.addAllBlockNums(blocks);
             } else {
                 file_number++; // Consider this to be a new file
@@ -222,6 +223,7 @@ public class Namenode implements Namenodedef {
             e.printStackTrace();
         }
         try {
+            System.setProperty("java.rmi.server.hostname", "10.1.39.155");
             Namenode obj = new Namenode();
             Namenodedef stub = (Namenodedef) UnicastRemoteObject.exportObject(obj, 0);
             Registry reg = LocateRegistry.getRegistry("0.0.0.0", 1099);
