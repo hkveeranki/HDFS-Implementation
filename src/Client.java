@@ -139,8 +139,9 @@ public class Client {
                     }
                     break;
                 case "job":
-                    String command = in.nextLine();
-                    String[] params = command.split(" ");
+                    /* Submit a Job */
+                    String line = in.nextLine();
+                    String[] params = line.split(" ");
                     hdfs.JobSubmitRequest.Builder job_request = hdfs.JobSubmitRequest.newBuilder();
                     job_request.setMapName(params[0]);
                     job_request.setReducerName(params[1]);
