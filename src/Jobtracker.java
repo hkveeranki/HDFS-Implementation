@@ -140,7 +140,7 @@ public class Jobtracker implements Jobtrackerdef {
                     /* There are map tasks pending so assign them*/
                     status.started_map++;
                     int task_id = status.started_map;
-                    System.err.println("Assigned map");
+                    System.err.println("Assigned map" + job + "-" + task_id + " to" + request.getTaskTrackerId());
                     hdfs.MapTaskInfo.Builder task = hdfs.MapTaskInfo.newBuilder();
                     task.setInputBlocks(status.map_status.get(task_id).loc_info);
                     task.setJobId(job);
@@ -164,7 +164,7 @@ public class Jobtracker implements Jobtrackerdef {
                     hdfs.ReducerTaskInfo.Builder task = hdfs.ReducerTaskInfo.newBuilder();
                     task.setJobId(job);
                     task.setTaskId(task_id);
-                    System.err.println("Assigned Reduced");
+                    System.err.println("Assigned reduce " + job + "-" + task_id + " to" + request.getTaskTrackerId());
                     task.addAllMapOutputFiles(status.reduce_status.get(task_id).output_files);
                     reduce_slots--;
                 }

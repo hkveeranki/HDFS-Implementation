@@ -83,7 +83,7 @@ public class TaskTracker {
                     while (scanner.hasNextLine()) {
                         String line = scanner.nextLine();
                         out_data += mymap.map(line);
-                        System.err.println(out_data)
+                        System.err.println(out_data);
                     }
                     scanner.close();
                     if (helper.write_to_hdfs(out_file, out_data)) {
@@ -182,7 +182,9 @@ public class TaskTracker {
                     System.err.println("Sent HeartBeat from Task Tracker " + id);
                     hdfs.HeartBeatResponseMapReduce response = hdfs.HeartBeatResponseMapReduce.parseFrom(resp);
                     List<hdfs.MapTaskInfo> map_infos = response.getMapTasksList();
+                    System.err.println("Map Infos: " + map_infos);
                     List<hdfs.ReducerTaskInfo> reduce_infos = response.getReduceTasksList();
+                    System.err.println("Reduce Infos: " + reduce_infos);
                     for (hdfs.MapTaskInfo map_info : map_infos) {
                         hdfs.MapTaskStatus.Builder map_stat = hdfs.MapTaskStatus.newBuilder();
                         map_stat.setJobId(map_info.getJobId());
@@ -191,6 +193,8 @@ public class TaskTracker {
                         String out_file = "map_" + String.valueOf(map_info.getJobId()) + "_" + String.valueOf(map_info.getTaskId());
                         map_stat.setMapOutputFile(out_file);
                         map_statuses.put(out_file, map_stat.build());
+                        System.err.println("Calling Thread Pool for this reduce task "
+                                + map_info.getJobId() + "-" + map_info.getTaskId());
                         Runnable map_executor = new mapExecutor(map_info.toByteArray());
                         map_pool.execute(map_executor);
                     }
@@ -202,6 +206,8 @@ public class TaskTracker {
                         String idx = "reduce" + String.valueOf(reduce_info.getJobId()) + "_" +
                                 String.valueOf(reduce_info.getTaskId());
                         reduce_statuses.put(idx, reduce_stat.build());
+                        System.err.println("Calling Thread Pool for this reduce task "
+                                + reduce_info.getJobId() + "-" + reduce_info.getTaskId());
                         Runnable reduce_executor = new reducerExecutor(reduce_info.toByteArray());
                         reduce_pool.execute(reduce_executor);
                     }
