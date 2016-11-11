@@ -15,8 +15,8 @@ import java.util.Scanner;
 public class Client {
 
     public static void main(String[] args) throws RemoteException, NotBoundException {
-        String namenode_ip = "10.1.39.155";
-        String jobtracker_ip = "10.1.39.155";
+        String namenode_ip = "10.1.39.64";
+        String jobtracker_ip = "10.1.39.64";
         int block_size = 16384; /* 16 KB */
         Registry reg = LocateRegistry.getRegistry(namenode_ip);
         Registry reg2 = LocateRegistry.getRegistry(jobtracker_ip);
@@ -173,7 +173,7 @@ public class Client {
                                 err.println(job_stat_resp.getTotalMapTasks());
                                 err.println(job_stat_resp.getNumMapTasksStarted());
                                 err.println(job_stat_resp.getTotalReduceTasks());
-                                err.println(job_stat_resp.getNumReduceTasksStarted());    
+                                err.println(job_stat_resp.getNumReduceTasksStarted());
                             }
                             job_stat_resp = hdfs.JobStatusResponse.parseFrom(jobtracker_stub.getJobStatus(job_stat_req.build().toByteArray()));
                         }

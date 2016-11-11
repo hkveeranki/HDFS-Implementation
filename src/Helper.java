@@ -50,7 +50,7 @@ public class Helper {
                         if (read_resp != null) {
                             hdfs.ReadBlockResponse readBlockResponse = hdfs.ReadBlockResponse.parseFrom(read_resp);
                             ByteString data = readBlockResponse.getData(0);
-                            read_data += data.toString();
+                            read_data += new String(data.toByteArray());
                         } else {
                             err.println("Error Getting read from DataNode: " + dnLocation.getIp());
                         }

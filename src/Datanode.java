@@ -82,7 +82,7 @@ public class Datanode implements Datanodedef {
 
     public static void main(String[] args) {
         PrintStream err = new PrintStream(System.err);
-        System.setProperty("java.rmi.server.hostname", "10.1.39.172");
+        System.setProperty("java.rmi.server.hostname", "10.1.39.74");
         if (args.length < 1) {
             err.println("Need Data Node ID as an argument");
             System.exit(-1);
