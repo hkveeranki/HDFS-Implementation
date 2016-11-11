@@ -27,8 +27,8 @@ public class TaskTracker {
 
     static public void main(String args[]) {
         try {
-            String host = "10.1.39.155";
-            String namenode_host = "10.1.39.155";
+            String host = "10.1.39.64";
+            String namenode_host = "10.1.39.64";
             int namenode_port = 1099;
             int port = 1099;
             map_pool = (ThreadPoolExecutor) Executors.newFixedThreadPool(map_capacity);

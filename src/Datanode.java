@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public class Datanode implements Datanodedef {
-    private static String namenode_ip = "10.1.39.155";
+    private static String namenode_ip = "10.1.39.64";
 
     private Datanode() {
     }

@@ -216,11 +216,11 @@ public class Jobtracker implements Jobtrackerdef {
 
         Jobtracker job_tracker = new Jobtracker();
         try {
-            System.setProperty("java.rmi.server.hostname", "10.1.39.155");
+            System.setProperty("java.rmi.server.hostname", "10.1.39.64");
             Jobtrackerdef stub = (Jobtrackerdef) UnicastRemoteObject.exportObject(job_tracker, 0);
             Registry reg = LocateRegistry.getRegistry("0.0.0.0", 1099);
             reg.rebind("JobTracker", stub);
-            String namenode_host = "10.1.39.155";
+            String namenode_host = "10.1.39.64";
             int namenode_ip = 1099;
             Registry registry = LocateRegistry.getRegistry(namenode_host, namenode_ip);
             namenode_stub = (Namenodedef) registry.lookup("NameNode");
