@@ -5,7 +5,7 @@ public class Mapper implements Mapperdef {
 
     private Helper helper;
 
-    Mapper(Helper helper) {
+    public Mapper(Helper helper) {
         this.helper = helper;
     }
 

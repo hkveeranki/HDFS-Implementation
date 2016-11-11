@@ -51,9 +51,10 @@ public class Jobtracker implements Jobtrackerdef {
                     for (int i = 0; i < block_count; i++) {
                         hdfs.BlockLocations loc = location_resp.getBlockLocations(i);
                         map_info task_info = new map_info(loc);
-                        new_job.map_status.put(i, task_info);
+                        new_job.map_status.put(i + 1, task_info);
                     }
                     jobs.put(num_jobs, new_job);
+                    map_queue.add(num_jobs);
                     response.setStatus(0); /* Just started */
                     response.setJobId(num_jobs);
                     return response.build().toByteArray();
@@ -91,11 +92,18 @@ public class Jobtracker implements Jobtrackerdef {
                     response.setTotalReduceTasks(status.started_reduce);
                 } else {
                     response.setStatus(0);
-
+                    response.setTotalMapTasks(status.total_map);
+                    response.setTotalReduceTasks(status.total_reduce);
+                    response.setNumMapTasksStarted(status.started_map);
+                    response.setTotalReduceTasks(status.started_reduce);
                 }
 
             } else {
                 response.setStatus(1);
+                response.setTotalMapTasks(status.total_map);
+                response.setTotalReduceTasks(status.total_reduce);
+                response.setNumMapTasksStarted(status.started_map);
+                response.setTotalReduceTasks(status.started_reduce);
             }
             return response.build().toByteArray();
         } catch (InvalidProtocolBufferException e) {
@@ -104,7 +112,7 @@ public class Jobtracker implements Jobtrackerdef {
         return null;
     }
 
-    static void assign_reducers(jobstatus job_status) {
+    static jobstatus assign_reducers(jobstatus job_status) {
         if (job_status.total_reduce < job_status.total_map) {
             /* Caluclate the number of maps needed for reducers */
             int factor = job_status.total_map / job_status.total_reduce + 1;
@@ -124,7 +132,9 @@ public class Jobtracker implements Jobtrackerdef {
                 info.add_string(job_status.map_status.get(i).output_file);
                 job_status.reduce_status.put(i, info);
             }
+            job_status.total_reduce = job_status.total_map;
         }
+        return job_status;
     }
 
     public byte[] heartBeat(byte[] inp) {
@@ -146,6 +156,7 @@ public class Jobtracker implements Jobtrackerdef {
                     task.setJobId(job);
                     task.setTaskId(task_id);
                     task.setMapName(status.mapname);
+                    response.addMapTasks(task.build());
                     map_slots--;
                 }
                 if (status.started_map == status.total_map) {
@@ -155,7 +166,7 @@ public class Jobtracker implements Jobtrackerdef {
                 jobs.put(job, status);
             }
             if (reduce_queue.size() > 0) {
-                int job = map_queue.element();
+                int job = reduce_queue.element();
                 jobstatus status = jobs.get(job);
                 while (status.started_reduce < status.total_reduce && reduce_slots > 0) {
                     /* There are reduce tasks pending so assign them*/
@@ -164,9 +175,11 @@ public class Jobtracker implements Jobtrackerdef {
                     hdfs.ReducerTaskInfo.Builder task = hdfs.ReducerTaskInfo.newBuilder();
                     task.setJobId(job);
                     task.setTaskId(task_id);
+                    task.setReducerName(status.reducename);
                     System.err.println("Assigned reduce " + job + "-" + task_id + " to" + request.getTaskTrackerId());
                     task.addAllMapOutputFiles(status.reduce_status.get(task_id).output_files);
                     reduce_slots--;
+                    response.addReduceTasks(task.build());
                 }
                 jobs.put(job, status);
                 if (status.started_reduce == status.total_reduce) {
@@ -175,35 +188,49 @@ public class Jobtracker implements Jobtrackerdef {
                 }
             }
             List<hdfs.MapTaskStatus> map_statuses = request.getMapStatusList();
+            System.err.println(map_statuses);
             /* If the task is done then do something*/
-            map_statuses.stream().filter(hdfs.MapTaskStatus::getTaskCompleted).forEach(status -> {
+            for (hdfs.MapTaskStatus status : map_statuses) {
+                System.err.println(status + ":" + status.getTaskCompleted());
+                if (status.getTaskCompleted()) {
                     /* If the task is done then do something*/
-                int job_id = status.getJobId();
-                int task_id = status.getTaskId();
-                jobstatus job_status = jobs.get(job_id);
-                map_info task_status = job_status.map_status.get(task_id);
-                task_status.status = true;
-                task_status.output_file = status.getMapOutputFile();
+                    int job_id = status.getJobId();
+                    int task_id = status.getTaskId();
+                    System.err.println("Done Map Task for: " + job_id + " - " + task_id);
+                    jobstatus job_status = jobs.get(job_id);
+                    map_info task_status = job_status.map_status.get(task_id);
+                    task_status.status = true;
+                    task_status.output_file = status.getMapOutputFile();
+                    job_status.map_status.put(task_id, task_status);
+                    jobs.put(job_id, job_status);
                 /* Check whether the given job is done if it is then add it to reducer queue and process reduce */
-                boolean is_done = true;
-                for (int i = 1; i <= job_status.total_map; i++) {
-                    if (!job_status.map_status.get(i).status) {
-                        is_done = false;
-                        break;
+                    boolean is_done = true;
+                    for (int i = 1; i <= job_status.total_map; i++) {
+                        if (!job_status.map_status.get(i).status) {
+                            is_done = false;
+                            break;
+                        }
+                    }
+                    if (is_done) {
+                        job_status = assign_reducers(job_status);
+                        jobs.put(job_id, job_status);
+                        reduce_queue.add(job_id);
+
                     }
                 }
-                if (is_done) {
-                    assign_reducers(job_status);
-                }
-            });
+            }
             List<hdfs.ReduceTaskStatus> reduce_statuses = request.getReduceStatusList();
+            System.err.println(reduce_statuses);
             reduce_statuses.stream().filter(hdfs.ReduceTaskStatus::getTaskCompleted).forEach(status -> {
                 /* If the task is done then do something*/
                 int job_id = status.getJobId();
                 int task_id = status.getTaskId();
+                System.err.println("Done Reduce Task for: " + job_id + " - " + task_id);
                 jobstatus job_status = jobs.get(job_id);
                 reduce_info task_status = job_status.reduce_status.get(task_id);
                 task_status.status = true;
+                job_status.reduce_status.put(task_id, task_status);
+                jobs.put(job_id, job_status);
             });
             return response.build().toByteArray();
         } catch (InvalidProtocolBufferException e) {
