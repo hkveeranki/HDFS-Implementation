@@ -89,13 +89,13 @@ public class Jobtracker implements Jobtrackerdef {
                     response.setTotalMapTasks(status.total_map);
                     response.setTotalReduceTasks(status.total_reduce);
                     response.setNumMapTasksStarted(status.started_map);
-                    response.setTotalReduceTasks(status.started_reduce);
+                    response.setNumReduceTasksStarted(status.started_reduce);
                 } else {
                     response.setStatus(0);
                     response.setTotalMapTasks(status.total_map);
                     response.setTotalReduceTasks(status.total_reduce);
                     response.setNumMapTasksStarted(status.started_map);
-                    response.setTotalReduceTasks(status.started_reduce);
+                    response.setNumReduceTasksStarted(status.started_reduce);
                 }
 
             } else {
@@ -103,7 +103,7 @@ public class Jobtracker implements Jobtrackerdef {
                 response.setTotalMapTasks(status.total_map);
                 response.setTotalReduceTasks(status.total_reduce);
                 response.setNumMapTasksStarted(status.started_map);
-                response.setTotalReduceTasks(status.started_reduce);
+                response.setNumReduceTasksStarted(status.started_reduce);
             }
             return response.build().toByteArray();
         } catch (InvalidProtocolBufferException e) {
