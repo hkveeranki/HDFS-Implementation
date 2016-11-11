@@ -76,18 +76,17 @@ public class TaskTracker {
                     hdfs.ReadBlockResponse readBlockResponse = hdfs.ReadBlockResponse.parseFrom(read_resp);
                     ByteString data = readBlockResponse.getData(0);
                     String input = new String(data.toByteArray());
-                    System.err.println("INPUT IS: " + input);
                     String out_data = "";
-                    System.err.println("Mapper out data is: ");
                     Scanner scanner = new Scanner(input);
                     while (scanner.hasNextLine()) {
                         String line = scanner.nextLine();
                         System.err.println("Calling map on: " + line);
                         out_data += mymap.map(line);
-                        System.err.println(out_data);
                     }
                     scanner.close();
                     if (helper.write_to_hdfs(out_file, out_data)) {
+                        System.err.println("Mapper out data is: " + out_data);
+                        System.err.println(map_statuses);
                     /* Set the status only when write is successfull */
                         System.out.println("MAP TASK COMPLETED, SET STATUS TO TRUE");
                         hdfs.MapTaskStatus.Builder map_stat = hdfs.MapTaskStatus.newBuilder();
@@ -122,22 +121,21 @@ public class TaskTracker {
                 int taskId = reduce_info.getTaskId();
                 String idx = "reduce_" + Integer.toString(jobId) + "_" + Integer.toString(taskId);
                 String out_data = "";
-                System.err.println("Reducer out data is: ");
                 for (String map_output_file : map_output_files) {
                     String reducerName = reduce_info.getReducerName();
-                    System.err.println("Reducer name is: " + reducerName);
+                    System.err.println("Reducer Name:" + reducerName);
                     Reducer reducer = (Reducer) Class.forName(reducerName).newInstance();
                     String input = helper.read_from_hdfs(map_output_file);
                     Scanner scanner = new Scanner(input);
                     while (scanner.hasNextLine()) {
                         String line = scanner.nextLine();
-                        System.err.println("Calling reduce on: " + line);
+                        System.err.println("Calling Reduce on: " + line);
                         out_data += reducer.reduce(line);
-                        System.err.println(out_data);
                     }
                     scanner.close();
                 }
                 if (helper.write_to_hdfs(out_file, out_data)) {
+                    System.err.println("Reducer out data is: " + out_data);
                 /* Set the status only when write is successfull */
                     hdfs.ReduceTaskStatus.Builder reduce_stat = hdfs.ReduceTaskStatus.newBuilder();
                     reduce_stat.setJobId(jobId);
@@ -200,7 +198,7 @@ public class TaskTracker {
                         String out_file = "map_" + String.valueOf(map_info.getJobId()) + "_" + String.valueOf(map_info.getTaskId());
                         map_stat.setMapOutputFile(out_file);
                         map_statuses.put(out_file, map_stat.build());
-                        System.err.println("Calling Thread Pool for this reduce task "
+                        System.err.println("Calling Thread Pool for this map task "
                                 + map_info.getJobId() + "-" + map_info.getTaskId());
                         Runnable map_executor = new mapExecutor(map_info.toByteArray());
                         map_pool.execute(map_executor);

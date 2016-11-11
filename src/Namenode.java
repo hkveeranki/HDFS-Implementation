@@ -21,7 +21,7 @@ public class Namenode implements Namenodedef {
     private static HashMap<Integer, ArrayList<Integer>> map_block_datanode;
     private static int block_number;
     private int file_number;
-    private static String[] datanode_ip = {"10.1.39.172", "10.1.39.119"};
+    private static String[] datanode_ip = {"10.1.39.74", "10.1.39.119"};
 
     private Namenode() {
         file_number = 0;
@@ -223,7 +223,7 @@ public class Namenode implements Namenodedef {
             e.printStackTrace();
         }
         try {
-            System.setProperty("java.rmi.server.hostname", "10.1.39.155");
+            System.setProperty("java.rmi.server.hostname", "10.1.39.64");
             Namenode obj = new Namenode();
             Namenodedef stub = (Namenodedef) UnicastRemoteObject.exportObject(obj, 0);
             Registry reg = LocateRegistry.getRegistry("0.0.0.0", 1099);

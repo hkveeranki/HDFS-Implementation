@@ -156,7 +156,7 @@ public class Client {
                         helper.write_to_hdfs("job.xml", regex);
 
                         hdfs.JobSubmitResponse job_resp = hdfs.JobSubmitResponse.parseFrom(jobtracker_stub.jobSubmit(job_request.build().toByteArray()));
-                        
+
                         int status = job_resp.getStatus();
                         int jobId = job_resp.getJobId();
 
@@ -170,15 +170,16 @@ public class Client {
                             status = job_stat_resp.getStatus();
                             if (status == 0) {
                                 err.println("Please wait - 0");
-                                err.println(job_stat_resp.getTotalMapTasks());
-                                err.println(job_stat_resp.getNumMapTasksStarted());
-                                err.println(job_stat_resp.getTotalReduceTasks());
-                                err.println(job_stat_resp.getNumReduceTasksStarted());
+                                err.println("Total Map Tasks: " + job_stat_resp.getTotalMapTasks());
+                                err.println("Map Tasks Started: " + job_stat_resp.getNumMapTasksStarted());
+                                err.println("Total Reduce Tasks: " + job_stat_resp.getTotalReduceTasks());
+                                err.println("Reduce Tasks Started: " + job_stat_resp.getNumReduceTasksStarted());
+                                Thread.sleep(1000);
                             }
                             job_stat_resp = hdfs.JobStatusResponse.parseFrom(jobtracker_stub.getJobStatus(job_stat_req.build().toByteArray()));
                         }
                         err.println("Done! - 1");
-                    } catch (RemoteException | InvalidProtocolBufferException e) {
+                    } catch (RemoteException | InvalidProtocolBufferException | InterruptedException e) {
                         e.printStackTrace();
                     }
                     break;
