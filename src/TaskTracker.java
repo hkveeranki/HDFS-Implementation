@@ -2,6 +2,9 @@ import HDFS.hdfs;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -22,15 +25,24 @@ public class TaskTracker {
     private static HashMap<String, hdfs.ReduceTaskStatus> reduce_statuses;
     private static Helper helper;
 
-    public TaskTracker() {
-    }
-
     static public void main(String args[]) {
         try {
             String host = "10.1.39.64";
             String namenode_host = "10.1.39.64";
             int namenode_port = 1099;
             int port = 1099;
+            try {
+                BufferedReader in = new BufferedReader(new FileReader("../config/namenode_ip"));
+                String[] str = in.readLine().split(" ");
+                namenode_host = str[0];
+                namenode_port = Integer.valueOf(str[1]);
+                in = new BufferedReader(new FileReader("../config/jobtracker_ip"));
+                str = in.readLine().split(" ");
+                host = str[0];
+                port = Integer.valueOf(str[1]);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             map_pool = (ThreadPoolExecutor) Executors.newFixedThreadPool(map_capacity);
             reduce_pool = (ThreadPoolExecutor) Executors.newFixedThreadPool(reduce_capacity);
             Registry registry = LocateRegistry.getRegistry(host, port);

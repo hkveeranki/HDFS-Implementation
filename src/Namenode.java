@@ -6,11 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static java.lang.Integer.max;
 
@@ -22,6 +18,7 @@ public class Namenode implements Namenodedef {
     private static int block_number;
     private int file_number;
     private static String[] datanode_ip = {"10.1.39.74", "10.1.39.119"};
+    private static int[] datanode_port = {1099, 1099};
 
     private Namenode() {
         file_number = 0;
@@ -89,7 +86,7 @@ public class Namenode implements Namenodedef {
                 for (Integer datanode : datanodes) {
                     hdfs.DataNodeLocation.Builder dataNodeLoc = hdfs.DataNodeLocation.newBuilder();
                     dataNodeLoc.setIp(datanode_ip[datanode]);
-                    dataNodeLoc.setPort(1099);
+                    dataNodeLoc.setPort(datanode_port[datanode]);
                     blockLoc.addLocations(dataNodeLoc.build());
                 }
                 response.addBlockLocations(blockLoc.build());
@@ -132,8 +129,8 @@ public class Namenode implements Namenodedef {
             hdfs.DataNodeLocation.Builder dataNode2 = hdfs.DataNodeLocation.newBuilder();
             dataNode1.setIp(datanode_ip[DataNode1]);
             dataNode2.setIp(datanode_ip[DataNode2]);
-            dataNode1.setPort(1099);
-            dataNode2.setPort(1099);
+            dataNode1.setPort(datanode_port[DataNode1]);
+            dataNode2.setPort(datanode_port[DataNode1]);
 
             hdfs.BlockLocations.Builder blockLoc = hdfs.BlockLocations.newBuilder();
             blockLoc.setBlockNumber(block_number);
@@ -219,6 +216,21 @@ public class Namenode implements Namenodedef {
                 }
                 map_filename_blocks.put(file_name, blocks_data);
             }
+            BufferedReader in = new BufferedReader(new FileReader("../config/datanode_ips"));
+            String str;
+            List<String> list = new ArrayList<>();
+            List<Integer> ports = new ArrayList<>();
+            while ((str = in.readLine()) != null) {
+                list.add(str.split(" ")[0]);
+                ports.add(Integer.valueOf(str.split(" ")[1]));
+            }
+            int[] ret = new int[ports.size()];
+            Iterator<Integer> iterator = ports.iterator();
+            for (int i = 0; i < ret.length; i++) {
+                ret[i] = iterator.next();
+            }
+            datanode_ip = list.toArray(new String[0]);
+            datanode_port = ret;
         } catch (IOException e) {
             e.printStackTrace();
         }

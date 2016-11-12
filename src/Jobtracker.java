@@ -1,6 +1,9 @@
 import HDFS.hdfs;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -248,8 +251,16 @@ public class Jobtracker implements Jobtrackerdef {
             Registry reg = LocateRegistry.getRegistry("0.0.0.0", 1099);
             reg.rebind("JobTracker", stub);
             String namenode_host = "10.1.39.64";
-            int namenode_ip = 1099;
-            Registry registry = LocateRegistry.getRegistry(namenode_host, namenode_ip);
+            int namenode_port = 1099;
+            try {
+                BufferedReader in = new BufferedReader(new FileReader("../config/namenode_ip"));
+                String[] str = in.readLine().split(" ");
+                namenode_host = str[0];
+                namenode_port = Integer.valueOf(str[1]);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Registry registry = LocateRegistry.getRegistry(namenode_host, namenode_port);
             namenode_stub = (Namenodedef) registry.lookup("NameNode");
 
         } catch (RemoteException | NotBoundException e) {

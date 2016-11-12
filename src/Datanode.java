@@ -13,6 +13,7 @@ import java.util.List;
 
 public class Datanode implements Datanodedef {
     private static String namenode_ip = "10.1.39.64";
+    private static int namenode_port = 1099;
 
     private Datanode() {
     }
@@ -97,7 +98,12 @@ public class Datanode implements Datanodedef {
             Registry reg = LocateRegistry.getRegistry("0.0.0.0", 1099);
             Datanodedef stub = (Datanodedef) UnicastRemoteObject.exportObject(obj, 0);
             reg.rebind("DataNode", stub);
-        } catch (RemoteException e) {
+            BufferedReader in = new BufferedReader(new FileReader("../config/namenode_ip"));
+            String[] str = in.readLine().split(" ");
+            namenode_ip = str[0];
+            namenode_port = Integer.valueOf(str[1]);
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -121,7 +127,7 @@ public class Datanode implements Datanodedef {
                 /* Send Periodically HeartBeat */
                     hdfs.HeartBeatRequest.Builder request = hdfs.HeartBeatRequest.newBuilder();
                     request.setId(id);
-                    Registry reg = LocateRegistry.getRegistry(namenode_ip);
+                    Registry reg = LocateRegistry.getRegistry(namenode_ip, namenode_port);
                     System.err.println(Arrays.toString(reg.list()));
                     Namenodedef stub = (Namenodedef) reg.lookup("NameNode");
                     stub.heartBeat(request.build().toByteArray());
@@ -150,7 +156,7 @@ public class Datanode implements Datanodedef {
                     try {
                         hdfs.BlockReportRequest.Builder request = hdfs.BlockReportRequest.newBuilder();
                         request.setId(id);
-                        Registry reg = LocateRegistry.getRegistry(namenode_ip);
+                        Registry reg = LocateRegistry.getRegistry(namenode_ip, namenode_port);
                         Namenodedef stub = (Namenodedef) reg.lookup("NameNode");
                         BufferedReader br = new BufferedReader(new FileReader(blkReport));
                         String blockNumber;
