@@ -242,15 +242,31 @@ public class Jobtracker implements Jobtrackerdef {
         return null;
     }
 
+    private static String getMyIp() {
+        try {
+            BufferedReader in = new BufferedReader(new FileReader("../config/jobtracker_ip"));
+            String[] str = in.readLine().split(" ");
+            return str[0];
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     public static void main(String[] args) {
 
         Jobtracker job_tracker = new Jobtracker();
         try {
-            System.setProperty("java.rmi.server.hostname", "10.1.39.64");
+            String my_ip = getMyIp();
+            if (my_ip.equals("")) {
+                System.err.println("Error in Getting My ip");
+                System.exit(-1);
+            }
+            System.setProperty("java.rmi.server.hostname", "10.2.133.176");
             Jobtrackerdef stub = (Jobtrackerdef) UnicastRemoteObject.exportObject(job_tracker, 0);
             Registry reg = LocateRegistry.getRegistry("0.0.0.0", 1099);
             reg.rebind("JobTracker", stub);
-            String namenode_host = "10.1.39.64";
+            String namenode_host = "10.2.133.176";
             int namenode_port = 1099;
             try {
                 BufferedReader in = new BufferedReader(new FileReader("../config/namenode_ip"));

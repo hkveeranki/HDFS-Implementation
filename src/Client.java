@@ -7,19 +7,37 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Client {
+    private static String namenode_ip = "127.0.0.1";
+    private static String jobtracker_ip = "127.0.0.1";
+    private static int namenode_port = 1099;
+    private static int jobtracker_port = 1099;
+
+    private static void setIps() {
+        try {
+            BufferedReader in = new BufferedReader(new FileReader("../config/namenode_ip"));
+            String[] str = in.readLine().split(" ");
+            namenode_ip = str[0];
+            namenode_port = Integer.valueOf(str[1]);
+            in = new BufferedReader(new FileReader("../config/jobtracker_ip"));
+            str = in.readLine().split(" ");
+            jobtracker_ip = str[0];
+            jobtracker_port = Integer.valueOf(str[1]);
+        } catch (Exception e) {
+            System.err.println("Cannot Get Namenode/Jobtracker Ip's");
+            e.printStackTrace();
+            System.exit(-1);
+        }
+    }
+
 
     public static void main(String[] args) throws RemoteException, NotBoundException {
-        String namenode_ip = "10.1.39.64";
-        String jobtracker_ip = "10.1.39.64";
-        int block_size = 16384; /* 16 KB */
-        Registry reg = LocateRegistry.getRegistry(namenode_ip);
-        Registry reg2 = LocateRegistry.getRegistry(jobtracker_ip);
+        int block_size = 33554432; /* 16 KB */
+        setIps();
+        Registry reg = LocateRegistry.getRegistry(namenode_ip, namenode_port);
+        Registry reg2 = LocateRegistry.getRegistry(jobtracker_ip, jobtracker_port);
         Namenodedef namenode_stub = (Namenodedef) reg.lookup("NameNode");
         Jobtrackerdef jobtracker_stub = (Jobtrackerdef) reg2.lookup("JobTracker");
         Scanner in = new Scanner(System.in);
@@ -126,6 +144,7 @@ public class Client {
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
+
                     }
                     break;
                 case "list":
@@ -153,14 +172,13 @@ public class Client {
                         job_request.setNumReduceTasks(Integer.valueOf(params[5]));
 
                         String regex = params[6];
-                        helper.write_to_hdfs("job.xml", regex);
-
                         hdfs.JobSubmitResponse job_resp = hdfs.JobSubmitResponse.parseFrom(jobtracker_stub.jobSubmit(job_request.build().toByteArray()));
 
                         int status = job_resp.getStatus();
                         int jobId = job_resp.getJobId();
-
+                        helper.write_to_hdfs("job_" + String.valueOf(jobId) + ".xml", regex);
                         err.println(jobId);
+                        err.print("job_" + String.valueOf(jobId) + ".xml is written");
 
                         hdfs.JobStatusRequest.Builder job_stat_req = hdfs.JobStatusRequest.newBuilder();
                         job_stat_req.setJobId(jobId);

@@ -49,6 +49,7 @@ public class Namenode implements Namenodedef {
 
     public byte[] closeFile(byte[] inp) throws RemoteException {
         try {
+            System.err.println("Got close File request");
             hdfs.CloseFileRequest request = hdfs.CloseFileRequest.parseFrom(inp);
             int handle = request.getHandle();
             String filename = map_handle_filename.get(handle);
@@ -149,7 +150,11 @@ public class Namenode implements Namenodedef {
     public byte[] list(byte[] inp) throws RemoteException {
         try {
             hdfs.ListFilesResponse.Builder response = hdfs.ListFilesResponse.newBuilder().setStatus(1);
-            map_filename_blocks.keySet().forEach(response::addFileNames);
+            BufferedReader in = new BufferedReader(new FileReader("file_list.txt"));
+            String str;
+            while ((str = in.readLine()) != null) {
+                response.addFileNames(str);
+            }
             return response.build().toByteArray();
         } catch (Exception e) {
             e.printStackTrace();
@@ -195,27 +200,19 @@ public class Namenode implements Namenodedef {
         return null;
     }
 
-    public static void main(String[] args) {
-        File file_list = new File("file_list.txt"); /* To persist the data */
-        map_filename_blocks = new HashMap<>();
-        block_number = 0;
-        map_block_datanode = new HashMap<>();
-        /* Write the existing data */
+    private static String getMyIp() {
         try {
-            file_list.createNewFile();
-            BufferedReader reader = new BufferedReader(new FileReader(file_list));
-            String line, file_name;
-            while ((line = reader.readLine()) != null) {
-                String[] data = line.split(" ");
-                file_name = data[0];
-                ArrayList<Integer> blocks_data = new ArrayList<>();
-                for (int i = 1; i < data.length; i++) {
-                    int cur = Integer.valueOf(data[i]);
-                    blocks_data.add(cur);
-                    block_number = max(cur, block_number); /* Get the Block Number Used so Far */
-                }
-                map_filename_blocks.put(file_name, blocks_data);
-            }
+            BufferedReader in = new BufferedReader(new FileReader("../config/namenode_ip"));
+            String[] str = in.readLine().split(" ");
+            return str[0];
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    private static void setDatanodeIps() {
+        try {
             BufferedReader in = new BufferedReader(new FileReader("../config/datanode_ips"));
             String str;
             List<String> list = new ArrayList<>();
@@ -232,10 +229,48 @@ public class Namenode implements Namenodedef {
             datanode_ip = list.toArray(new String[0]);
             datanode_port = ret;
         } catch (IOException e) {
+            System.err.println("Cannot get Datanode Ip's");
+            e.printStackTrace();
+            System.exit(-1);
+        }
+    }
+
+    private static void restoreFilelist() {
+        File file_list = new File("file_list.txt"); /* To persist the data */
+        try {
+            file_list.createNewFile();
+            BufferedReader reader = new BufferedReader(new FileReader(file_list));
+            String line, file_name;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(" ");
+                file_name = data[0];
+                ArrayList<Integer> blocks_data = new ArrayList<>();
+                for (int i = 1; i < data.length; i++) {
+                    int cur = Integer.valueOf(data[i]);
+                    blocks_data.add(cur);
+                    block_number = max(cur, block_number); /* Get the Block Number Used so Far */
+                }
+                map_filename_blocks.put(file_name, blocks_data);
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        map_filename_blocks = new HashMap<>();
+        block_number = 0;
+        map_block_datanode = new HashMap<>();
+        /* Write the existing data */
+        restoreFilelist();
+        setDatanodeIps();
+        String myip = getMyIp();
+        if (myip.equals("")) {
+            System.err.println("Error in Getting My ip");
+            System.exit(-1);
+        }
+        System.setProperty("java.rmi.server.hostname", myip);
         try {
-            System.setProperty("java.rmi.server.hostname", "10.1.39.64");
             Namenode obj = new Namenode();
             Namenodedef stub = (Namenodedef) UnicastRemoteObject.exportObject(obj, 0);
             Registry reg = LocateRegistry.getRegistry("0.0.0.0", 1099);

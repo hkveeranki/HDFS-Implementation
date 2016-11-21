@@ -7,8 +7,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 public class Datanode implements Datanodedef {
@@ -22,7 +21,7 @@ public class Datanode implements Datanodedef {
         File file_dir = new File("Blocks");
         hdfs.ReadBlockResponse.Builder response = hdfs.ReadBlockResponse.newBuilder().setStatus(1);
         try {
-            int block_size = 16384; /* 16 KB */
+            int block_size = 33554432; /* 16 KB */
             hdfs.ReadBlockRequest request = hdfs.ReadBlockRequest.parseFrom(inp);
             int block_num = request.getBlockNumber();
             File block = new File(file_dir, String.valueOf(block_num));
@@ -81,28 +80,63 @@ public class Datanode implements Datanodedef {
         return null;
     }
 
-    public static void main(String[] args) {
-        PrintStream err = new PrintStream(System.err);
-        System.setProperty("java.rmi.server.hostname", "10.1.39.74");
-        if (args.length < 1) {
-            err.println("Need Data Node ID as an argument");
-            System.exit(-1);
-        }
-        File file_dir = new File("Blocks");
-        if (!file_dir.exists()) {
-            file_dir.mkdirs();
-        }
-        int myid = Integer.valueOf(args[0]);
-        Datanode obj = new Datanode();
+    private static String getMyIp(int id) {
         try {
-            Registry reg = LocateRegistry.getRegistry("0.0.0.0", 1099);
-            Datanodedef stub = (Datanodedef) UnicastRemoteObject.exportObject(obj, 0);
-            reg.rebind("DataNode", stub);
+            BufferedReader in = new BufferedReader(new FileReader("../config/datanode_ips"));
+            String str;
+            int cnt = 0;
+            while ((str = in.readLine()) != null) {
+                if (cnt == id)
+                    return str.split(" ")[0];
+                cnt++;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    private static void setNamenodeIp() {
+        try {
             BufferedReader in = new BufferedReader(new FileReader("../config/namenode_ip"));
             String[] str = in.readLine().split(" ");
             namenode_ip = str[0];
             namenode_port = Integer.valueOf(str[1]);
 
+        } catch (IOException e) {
+            System.err.println("Unable to get Namenode IP");
+            e.printStackTrace();
+            System.exit(-1);
+        }
+    }
+
+    public static void main(String[] args) {
+        PrintStream err = new PrintStream(System.err);
+
+        if (args.length < 1) {
+            err.println("Need Data Node ID as an argument");
+            System.exit(-1);
+        }
+        int myid = Integer.valueOf(args[0]);
+        String my_ip = getMyIp(myid);
+        if (Objects.equals(my_ip, "")) {
+            System.err.println("Error in Getting My ip");
+            System.exit(-1);
+        }
+
+        System.setProperty("java.rmi.server.hostname", my_ip);
+
+        File file_dir = new File("Blocks");
+        if (!file_dir.exists()) {
+            file_dir.mkdirs();
+        }
+        Datanode obj = new Datanode();
+        setNamenodeIp();
+        try {
+            Registry reg = LocateRegistry.getRegistry("0.0.0.0", 1099);
+            Datanodedef stub = (Datanodedef) UnicastRemoteObject.exportObject(obj, 0);
+            reg.rebind("DataNode", stub);
         } catch (IOException e) {
             e.printStackTrace();
         }

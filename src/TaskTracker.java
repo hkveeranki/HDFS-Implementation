@@ -59,12 +59,17 @@ public class TaskTracker {
         }
     }
 
+
     private static class mapExecutor implements Runnable {
         /* Class to deal with Map Tasks */
         private byte[] info;
 
         mapExecutor(byte[] info) {
             this.info = info;
+        }
+
+        private String getSearchRegex(int job_id) {
+            return helper.read_from_hdfs("job_" + String.valueOf(job_id) + ".xml");
         }
 
         public void run() {
@@ -84,7 +89,8 @@ public class TaskTracker {
                 if (read_resp != null) {
                     String mapName = map_info.getMapName();
                     System.err.println(mapName);
-                    Mapper mymap = (Mapper) Class.forName(mapName).getConstructor(Helper.class).newInstance(helper);
+                    String search_regex = getSearchRegex(jobId);
+                    Mapper mymap = (Mapper) Class.forName(mapName).getConstructor(String.class).newInstance(search_regex);
                     hdfs.ReadBlockResponse readBlockResponse = hdfs.ReadBlockResponse.parseFrom(read_resp);
                     ByteString data = readBlockResponse.getData(0);
                     String input = new String(data.toByteArray());
@@ -147,7 +153,6 @@ public class TaskTracker {
                     scanner.close();
                 }
                 if (helper.write_to_hdfs(out_file, out_data)) {
-                    System.err.println("Reducer out data is: " + out_data);
                 /* Set the status only when write is successfull */
                     hdfs.ReduceTaskStatus.Builder reduce_stat = hdfs.ReduceTaskStatus.newBuilder();
                     reduce_stat.setJobId(jobId);
@@ -178,20 +183,24 @@ public class TaskTracker {
                     request.setNumMapSlotsFree(map_capacity - map_pool.getActiveCount());
                     request.setNumReduceSlotsFree(reduce_capacity - reduce_pool.getActiveCount());
                     /* Need to set the status as well */
-                    for (HashMap.Entry<String, hdfs.MapTaskStatus> entry : map_statuses.entrySet()) {
-                        String key = entry.getKey();
-                        hdfs.MapTaskStatus map_status = entry.getValue();
-                        request.addMapStatus(map_status);
-                        if (map_status.getTaskCompleted()) {
-                            map_statuses.remove(key);
+                    synchronized (map_statuses) {
+                        for (HashMap.Entry<String, hdfs.MapTaskStatus> entry : map_statuses.entrySet()) {
+                            String key = entry.getKey();
+                            hdfs.MapTaskStatus map_status = entry.getValue();
+                            request.addMapStatus(map_status);
+                            if (map_status.getTaskCompleted()) {
+                                map_statuses.remove(key);
+                            }
                         }
                     }
-                    for (HashMap.Entry<String, hdfs.ReduceTaskStatus> entry : reduce_statuses.entrySet()) {
-                        String key = entry.getKey();
-                        hdfs.ReduceTaskStatus reduce_status = entry.getValue();
-                        request.addReduceStatus(reduce_status);
-                        if (reduce_status.getTaskCompleted()) {
-                            reduce_statuses.remove(key);
+                    synchronized (reduce_statuses) {
+                        for (HashMap.Entry<String, hdfs.ReduceTaskStatus> entry : reduce_statuses.entrySet()) {
+                            String key = entry.getKey();
+                            hdfs.ReduceTaskStatus reduce_status = entry.getValue();
+                            request.addReduceStatus(reduce_status);
+                            if (reduce_status.getTaskCompleted()) {
+                                reduce_statuses.remove(key);
+                            }
                         }
                     }
                     /* Get response and act on it */
