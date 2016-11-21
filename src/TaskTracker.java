@@ -13,6 +13,8 @@ import java.rmi.registry.Registry;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class TaskTracker {
     private static Jobtrackerdef jobtracker_stub;
@@ -24,6 +26,7 @@ public class TaskTracker {
     private static HashMap<String, hdfs.MapTaskStatus> map_statuses;
     private static HashMap<String, hdfs.ReduceTaskStatus> reduce_statuses;
     private static Helper helper;
+    private static Lock mapLock, reduceLock;
 
     static public void main(String args[]) {
         try {
@@ -31,6 +34,8 @@ public class TaskTracker {
             String namenode_host = "10.1.39.64";
             int namenode_port = 1099;
             int port = 1099;
+            mapLock = new ReentrantLock();
+            reduceLock = new ReentrantLock();
             try {
                 BufferedReader in = new BufferedReader(new FileReader("../config/namenode_ip"));
                 String[] str = in.readLine().split(" ");
@@ -103,8 +108,6 @@ public class TaskTracker {
                     }
                     scanner.close();
                     if (helper.write_to_hdfs(out_file, out_data)) {
-                        System.err.println("Mapper out data is: " + out_data);
-                        System.err.println(map_statuses);
                     /* Set the status only when write is successfull */
                         System.out.println("MAP TASK COMPLETED, SET STATUS TO TRUE");
                         hdfs.MapTaskStatus.Builder map_stat = hdfs.MapTaskStatus.newBuilder();
@@ -112,8 +115,9 @@ public class TaskTracker {
                         map_stat.setTaskId(map_info.getTaskId());
                         map_stat.setTaskCompleted(true);
                         map_stat.setMapOutputFile(out_file);
+                        mapLock.lock();
                         map_statuses.put(out_file, map_stat.build());
-                        System.out.println(map_statuses.get(out_file).getTaskCompleted());// Testing Remove after confirmed
+                        mapLock.unlock();
                     }
                 }
             } catch (InvalidProtocolBufferException | ClassNotFoundException | NotBoundException | RemoteException | InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
@@ -158,7 +162,9 @@ public class TaskTracker {
                     reduce_stat.setJobId(jobId);
                     reduce_stat.setTaskId(taskId);
                     reduce_stat.setTaskCompleted(true);
+                    reduceLock.lock();
                     reduce_statuses.put(idx, reduce_stat.build());
+                    reduceLock.unlock();
                 }
             } catch (InvalidProtocolBufferException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
@@ -183,26 +189,26 @@ public class TaskTracker {
                     request.setNumMapSlotsFree(map_capacity - map_pool.getActiveCount());
                     request.setNumReduceSlotsFree(reduce_capacity - reduce_pool.getActiveCount());
                     /* Need to set the status as well */
-                    synchronized (map_statuses) {
-                        for (HashMap.Entry<String, hdfs.MapTaskStatus> entry : map_statuses.entrySet()) {
-                            String key = entry.getKey();
-                            hdfs.MapTaskStatus map_status = entry.getValue();
-                            request.addMapStatus(map_status);
-                            if (map_status.getTaskCompleted()) {
-                                map_statuses.remove(key);
-                            }
+                    mapLock.lock();
+                    for (HashMap.Entry<String, hdfs.MapTaskStatus> entry : map_statuses.entrySet()) {
+                        String key = entry.getKey();
+                        hdfs.MapTaskStatus map_status = entry.getValue();
+                        request.addMapStatus(map_status);
+                        if (map_status.getTaskCompleted()) {
+                            map_statuses.remove(key);
                         }
                     }
-                    synchronized (reduce_statuses) {
-                        for (HashMap.Entry<String, hdfs.ReduceTaskStatus> entry : reduce_statuses.entrySet()) {
-                            String key = entry.getKey();
-                            hdfs.ReduceTaskStatus reduce_status = entry.getValue();
-                            request.addReduceStatus(reduce_status);
-                            if (reduce_status.getTaskCompleted()) {
-                                reduce_statuses.remove(key);
-                            }
+                    mapLock.unlock();
+                    reduceLock.lock();
+                    for (HashMap.Entry<String, hdfs.ReduceTaskStatus> entry : reduce_statuses.entrySet()) {
+                        String key = entry.getKey();
+                        hdfs.ReduceTaskStatus reduce_status = entry.getValue();
+                        request.addReduceStatus(reduce_status);
+                        if (reduce_status.getTaskCompleted()) {
+                            reduce_statuses.remove(key);
                         }
                     }
+                    reduceLock.unlock();
                     /* Get response and act on it */
                     byte[] resp = jobtracker_stub.heartBeat(request.build().toByteArray());
                     System.err.println("Sent HeartBeat from Task Tracker " + id);
@@ -211,6 +217,7 @@ public class TaskTracker {
                     System.err.println("Map Infos: " + map_infos);
                     List<hdfs.ReducerTaskInfo> reduce_infos = response.getReduceTasksList();
                     System.err.println("Reduce Infos: " + reduce_infos);
+                    mapLock.lock();
                     for (hdfs.MapTaskInfo map_info : map_infos) {
                         hdfs.MapTaskStatus.Builder map_stat = hdfs.MapTaskStatus.newBuilder();
                         map_stat.setJobId(map_info.getJobId());
@@ -218,12 +225,16 @@ public class TaskTracker {
                         map_stat.setTaskCompleted(false);
                         String out_file = "map_" + String.valueOf(map_info.getJobId()) + "_" + String.valueOf(map_info.getTaskId());
                         map_stat.setMapOutputFile(out_file);
+
                         map_statuses.put(out_file, map_stat.build());
                         System.err.println("Calling Thread Pool for this map task "
                                 + map_info.getJobId() + "-" + map_info.getTaskId());
+
                         Runnable map_executor = new mapExecutor(map_info.toByteArray());
                         map_pool.execute(map_executor);
                     }
+                    mapLock.unlock();
+                    reduceLock.lock();
                     for (hdfs.ReducerTaskInfo reduce_info : reduce_infos) {
                         hdfs.ReduceTaskStatus.Builder reduce_stat = hdfs.ReduceTaskStatus.newBuilder();
                         reduce_stat.setJobId(reduce_info.getJobId());
@@ -237,6 +248,7 @@ public class TaskTracker {
                         Runnable reduce_executor = new reducerExecutor(reduce_info.toByteArray());
                         reduce_pool.execute(reduce_executor);
                     }
+                    reduceLock.unlock();
                     Thread.sleep(10000); /* Sleep for 10 Seconds */
                 }
             } catch (InterruptedException | InvalidProtocolBufferException | RemoteException e) {
